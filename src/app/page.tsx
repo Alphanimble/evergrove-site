@@ -18,7 +18,7 @@ export default function OverlayDesign() {
   );
 
   useEffect(() => {
-    fetch("/union.svg")
+    fetch("/Union.svg")
       .then((response) => response.text())
       .then((svg) => setSvgContent(svg))
       .catch((error) => console.error("Error loading SVG:", error));
@@ -65,7 +65,7 @@ export default function OverlayDesign() {
           )}
 
           <Image
-            src="/union.svg"
+            src="/Union.svg"
             alt="EverGrove Spaces"
             width={1200}
             height={500}
