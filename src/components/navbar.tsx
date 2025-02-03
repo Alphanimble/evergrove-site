@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
-import { useTheme } from "next-themes"
+import * as React from "react";
+import Link from "next/link";
+import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { useTheme } from "next-themes";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,15 +14,15 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu";
 
 export function Navbar() {
-  const { setTheme, theme } = useTheme()
-  const [mounted, setMounted] = React.useState(false)
+  const { setTheme, theme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 px-4 py-3">
@@ -40,21 +40,33 @@ export function Navbar() {
             <NavigationMenuList className="space-x-6">
               <NavigationMenuItem>
                 <Link href="/" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle() + " text-lg py-2 px-4"}>
+                  <NavigationMenuLink
+                    className={
+                      navigationMenuTriggerStyle() + " text-lg py-2 px-4"
+                    }
+                  >
                     Home
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/services" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle() + " text-lg py-2 px-4"}>
+                  <NavigationMenuLink
+                    className={
+                      navigationMenuTriggerStyle() + " text-lg py-2 px-4"
+                    }
+                  >
                     Services
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/our-team" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle() + " text-lg py-2 px-4"}>
+                  <NavigationMenuLink
+                    className={
+                      navigationMenuTriggerStyle() + " text-lg py-2 px-4"
+                    }
+                  >
                     Our Team
                   </NavigationMenuLink>
                 </Link>
@@ -78,6 +90,5 @@ export function Navbar() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-
