@@ -25,69 +25,54 @@ export function Navbar() {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 px-4 py-3">
-      <div className="container mx-auto">
-        <div className="flex h-20 items-center justify-between rounded-full bg-background/40 backdrop-blur-lg px-6">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Link href="/" className="text-4xl font-bold text-primary">
-              Evergrove
-            </Link>
-          </div>
+    <div className="fixed top-0 left-1/2 -translate-x-1/2 z-50 w-full max-w-5xl px-4 py-4">
+      <div className="flex h-14 items-center justify-between gap-4 rounded-full bg-background/40 backdrop-blur-lg px-6 shadow-xl">
+        {/* Logo */}
+        <Link
+          href="/"
+          className="text-2xl font-bold text-primary hover:text-primary/90 transition-colors"
+        >
+          Evergrove
+        </Link>
 
-          {/* Navigation */}
-          <NavigationMenu>
-            <NavigationMenuList className="space-x-6">
-              <NavigationMenuItem>
-                <Link href="/" legacyBehavior passHref>
+        {/* Navigation */}
+        <NavigationMenu>
+          <NavigationMenuList className="space-x-2">
+            {["Home", "Services", "Our Team"].map((item) => (
+              <NavigationMenuItem key={item}>
+                <Link
+                  href={
+                    item === "Home"
+                      ? "/"
+                      : `/${item.toLowerCase().replace(" ", "-")}`
+                  }
+                  legacyBehavior
+                  passHref
+                >
                   <NavigationMenuLink
-                    className={
-                      navigationMenuTriggerStyle() + " text-lg py-2 px-4"
-                    }
+                    className={`${navigationMenuTriggerStyle()} text-base py-2 px-4 font-medium`}
                   >
-                    Home
+                    {item}
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/services" legacyBehavior passHref>
-                  <NavigationMenuLink
-                    className={
-                      navigationMenuTriggerStyle() + " text-lg py-2 px-4"
-                    }
-                  >
-                    Services
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/our-team" legacyBehavior passHref>
-                  <NavigationMenuLink
-                    className={
-                      navigationMenuTriggerStyle() + " text-lg py-2 px-4"
-                    }
-                  >
-                    Our Team
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
 
-          {/* Theme Switcher */}
-          {mounted && (
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-12 w-12 rounded-full"
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            >
-              <SunIcon className="h-6 w-6 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <MoonIcon className="absolute h-6 w-6 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-          )}
-        </div>
+        {/* Theme Switcher */}
+        {mounted && (
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-10 w-10 rounded-full"
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+          >
+            <SunIcon className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            <MoonIcon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <span className="sr-only">Toggle theme</span>
+          </Button>
+        )}
       </div>
     </div>
   );

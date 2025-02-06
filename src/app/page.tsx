@@ -27,6 +27,12 @@ export default function OverlayDesign() {
   });
 
   const xPosition = useTransform(scrollYProgress, [0, 1], ["0%", "-125%"]);
+  const yPosition = useTransform(scrollYProgress, [0, 0.1], ["0%", "-125%"]);
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.6], // scroll progress points
+    [1, 1, 0] // corresponding opacity values
+  );
 
   useEffect(() => {
     fetch("/Union.svg")
@@ -39,7 +45,7 @@ export default function OverlayDesign() {
     <div ref={containerRef} className="relative w-full h-[200vh] bg-black">
       {/* Background Image Container with Gradient */}
       <div className="sticky top-0 h-screen">
-        <div className="absolute inset-0">
+        <motion.div className="absolute inset-0" style={{ opacity: opacity }}>
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-[1]" />
 
@@ -50,7 +56,7 @@ export default function OverlayDesign() {
             className="object-cover"
             priority
           />
-        </div>
+        </motion.div>
 
         {/* Logo Container */}
         <motion.div
@@ -91,45 +97,31 @@ export default function OverlayDesign() {
         </motion.div>
 
         {/* Rest of the component remains the same */}
-        <div className="absolute top-0 left-0 right-0 z-30 w-full p-6 flex justify-between items-start">
-          <div className="flex items-start gap-3">
-            <span className="text-white/60 text-lg tracking-wider">
-              FOLLOW US ON
-            </span>
-            <div className="flex gap-4 p-[1.5]">
-              <FaFacebookF className="text-white/60 w-5 h-5 cursor-pointer hover:opacity-40" />
-              <FaInstagram className="text-white/60 w-5 h-5 cursor-pointer hover:opacity-40" />
-              <FaTwitter className="text-white/60 w-5 h-5 cursor-pointer hover:opacity-40" />
-              <FaPinterestP className="text-white/60 w-5 h-5 cursor-pointer hover:opacity-40" />
-              <FaLinkedinIn className="text-white/60 w-5 h-5 cursor-pointer hover:opacity-40" />
-            </div>
-          </div>
-
-          <nav className={`${teko.className} flex gap-8 mr-20`}>
+        <motion.div
+          className="absolute top-0 right-0 z-30 w-full p-6 pr-10 flex justify-end items-start"
+          style={{ y: yPosition }}
+        >
+          <nav className={`${teko.className} flex gap-4 md:gap-8 ml-20`}>
             <a
               href="#"
-              className="text-black text-3xl hover:opacity-80 transition-opacity"
+              className="text-black text-lg md:text-3xl hover:opacity-80 transition-opacity"
             >
               HOME
             </a>
             <a
               href="#"
-              className="text-black text-3xl hover:opacity-80 transition-opacity"
+              className="text-black text-lg md:text-3xl hover:opacity-80 transition-opacity"
             >
               SERVICES
             </a>
             <a
               href="#"
-              className="text-black text-3xl hover:opacity-80 transition-opacity"
+              className="text-black text-lg md:text-3xl hover:opacity-80 transition-opacity"
             >
               OUR TEAM
             </a>
           </nav>
-        </div>
-
-        <div className="absolute bottom-28 left-6 z-20">
-          <p className="text-white text-sm tracking-wider">A FEW LINES</p>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
