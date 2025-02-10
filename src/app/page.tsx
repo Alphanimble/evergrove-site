@@ -76,9 +76,9 @@ export default function OverlayDesign() {
       description:
         "Your personal retreat for perfect relaxation. Our bedrooms offer a sanctuary of comfort, combining luxurious design with practical amenities for restful nights.",
       images: [
-        "/Renders/Clubhouse/Etasha/Renders/3.png",
-        "/Renders/Clubhouse/Etasha/Renders/a.png",
-        "/Renders/Clubhouse/Etasha/Renders/3.3.png",
+        "/Renders/Clubhouse/Eternia/eternia_1.png",
+        "/Renders/Clubhouse/Eternia/eternia_2.png",
+        "/Renders/Clubhouse/Eternia/eternia_3.png",
       ],
     },
   ];
