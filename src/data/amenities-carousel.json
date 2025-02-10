@@ -1,31 +1,16 @@
 {
   "items": [
     {
-      "title": "Luxury Amenities",
+      "title": "Master Plan:Eternia",
       "description": "Indulge in our world-class amenities designed for your comfort and enjoyment.",
-      "images": [
-        "/placeholder.svg?height=300&width=409",
-        "/placeholder.svg?height=300&width=410",
-        "/placeholder.svg?height=300&width=411"
-      ]
+      "images": ["/Renders/Master plan/Eternia/Master plan/1.jpg"],
+      "style": "w-fit h-fit"
     },
     {
-      "title": "Scenic Views",
+      "title": "Water Tank",
+
       "description": "Wake up to breathtaking views that inspire and rejuvenate your senses every day.",
-      "images": [
-        "/placeholder.svg?height=300&width=412",
-        "/placeholder.svg?height=300&width=413",
-        "/placeholder.svg?height=300&width=414"
-      ]
-    },
-    {
-      "title": "Community Spaces",
-      "description": "Connect with your neighbors in our thoughtfully designed community areas.",
-      "images": [
-        "/placeholder.svg?height=300&width=415",
-        "/placeholder.svg?height=300&width=416",
-        "/placeholder.svg?height=300&width=417"
-      ]
+      "images": ["/Renders/water_tank/1.jpeg"]
     }
   ]
-} 
+}

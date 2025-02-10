@@ -228,16 +228,14 @@ export default function OverlayDesign() {
       >
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8">
           <div className="w-full md:w-1/2">
-            <div className="relative w-full rounded-lg overflow-hidden">
-              <video
-                src="/video.mp4"
-                poster="/video-thumbnail.jpg"
-                controls
-                muted
-                className="w-full"
-              >
-                Your browser does not support the video tag.
-              </video>
+            <div className="relative w-full rounded-lg overflow-hidden aspect-video">
+              <iframe
+                src="https://www.youtube.com/embed/AlYKDTWKGOc"
+                title="EverGrove Experience"
+                className="absolute top-0 left-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
             </div>
           </div>
 
