@@ -14,9 +14,9 @@ import {
 import { useTheme } from "next-themes";
 import { HoverVideoPlayer } from "@/components/ui/hover-video-player";
 import { CyclingImageCard } from "@/components/cycling-image-card";
-import clubhouseData from '@/data/clubhouse-carousel.json';
-import archData from '@/data/arch-carousel.json';
-import amenitiesData from '@/data/amenities-carousel.json';
+import clubhouseData from "@/data/clubhouse-carousel.json";
+import archData from "@/data/arch-carousel.json";
+import amenitiesData from "@/data/amenities-carousel.json";
 
 const teko = Teko({
   subsets: ["latin"],
@@ -226,21 +226,30 @@ export default function OverlayDesign() {
         animate={videoInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <div className="max-w-4xl mx-auto">
-          <h2
-            className={`${teko.className} text-3xl md:text-5xl mb-8 text-center`}
-          >
-            Experience EverGrove
-          </h2>
-          <div className="relative w-full max-w-[800px] mx-auto rounded-lg overflow-hidden">
-            <video
-              src="/video.mp4"
-              poster="/video-thumbnail.jpg"
-              controls
-              className="w-full"
-            >
-              Your browser does not support the video tag.
-            </video>
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8">
+          <div className="w-full md:w-1/2">
+            <div className="relative w-full rounded-lg overflow-hidden">
+              <video
+                src="/video.mp4"
+                poster="/video-thumbnail.jpg"
+                controls
+                muted
+                className="w-full"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+
+          <div className="w-full md:w-1/2">
+            <h2 className={`${teko.className} text-3xl md:text-5xl mb-4`}>
+              Experience EverGrove
+            </h2>
+            <p className="text-lg">
+              Immerse yourself in the world of EverGrove, where nature meets
+              innovation. Watch our showcase video to discover the unique
+              experiences that await you.
+            </p>
           </div>
         </div>
       </motion.div>
