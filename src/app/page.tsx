@@ -37,7 +37,7 @@ export default function OverlayDesign() {
     offset: ["start start", "end start"],
   });
 
-  const xPosition = useTransform(scrollYProgress, [0, 1], ["0%", "-125%"]);
+  const xPosition = useTransform(scrollYProgress, [0, 0.5], ["0%", "-155%"]);
   const yPosition = useTransform(scrollYProgress, [0, 0.1], ["0%", "-125%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.6], [1, 1, 0]);
 
@@ -232,23 +232,16 @@ export default function OverlayDesign() {
           >
             Experience EverGrove
           </h2>
-          <HoverVideoPlayer
-            videoSrc="/public/video.mp4"
-            pausedOverlay={
-              <Image
-                src="/placeholder.svg?height=600&width=800"
-                alt="Video thumbnail"
-                width={800}
-                height={600}
-                className="object-cover w-full h-full"
-              />
-            }
-            loadingOverlay={
-              <div className="loading-overlay">
-                <div className="loading-spinner" />
-              </div>
-            }
-          />
+          <div className="relative w-full max-w-[800px] mx-auto rounded-lg overflow-hidden">
+            <video
+              src="/video.mp4"
+              poster="/video-thumbnail.jpg"
+              controls
+              className="w-full"
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
       </motion.div>
     </div>
