@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { MoonIcon, SunIcon, Menu } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,12 @@ import {
   // NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { 
+  Sheet, 
+  SheetContent, 
+  SheetTrigger,
+  SheetTitle 
+} from "@/components/ui/sheet";
 
 export function Navbar() {
   const { setTheme, theme } = useTheme();
@@ -35,30 +41,62 @@ export function Navbar() {
           Evergrove
         </Link>
 
-        {/* Navigation */}
-        <NavigationMenu>
-          <NavigationMenuList className="space-x-2">
-            {["Home", "Services", "Our Team"].map((item) => (
-              <NavigationMenuItem key={item}>
-                <Link
-                  href={
-                    item === "Home"
-                      ? "/"
-                      : `/${item.toLowerCase().replace(" ", "-")}`
-                  }
-                  legacyBehavior
-                  passHref
-                >
-                  <NavigationMenuLink
-                    className={`${navigationMenuTriggerStyle()} text-base py-2 px-4 font-medium`}
+        {/* Desktop Navigation */}
+        <div className="hidden md:block">
+          <NavigationMenu>
+            <NavigationMenuList className="space-x-2">
+              {["Home", "Services", "Our Team"].map((item) => (
+                <NavigationMenuItem key={item}>
+                  <Link
+                    href={
+                      item === "Home"
+                        ? "/"
+                        : `/${item.toLowerCase().replace(" ", "-")}`
+                    }
+                    legacyBehavior
+                    passHref
+                  >
+                    <NavigationMenuLink
+                      className={`${navigationMenuTriggerStyle()} text-base py-2 px-4 font-medium`}
+                    >
+                      {item}
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
+
+        {/* Mobile Navigation */}
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="h-10 w-10">
+                <Menu className="h-5 w-5" />
+                <span className="sr-only">Open menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[240px] sm:w-[300px]">
+              <SheetTitle>Navigation Menu</SheetTitle>
+              <nav className="flex flex-col gap-4 mt-8">
+                {["Home", "Services", "Our Team"].map((item) => (
+                  <Link
+                    key={item}
+                    href={
+                      item === "Home"
+                        ? "/"
+                        : `/${item.toLowerCase().replace(" ", "-")}`
+                    }
+                    className="text-lg font-medium hover:text-primary transition-colors"
                   >
                     {item}
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            ))}
-          </NavigationMenuList>
-        </NavigationMenu>
+                  </Link>
+                ))}
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
 
         {/* Theme Switcher */}
         {mounted && (
