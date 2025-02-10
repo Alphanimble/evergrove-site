@@ -30,7 +30,7 @@ export function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          className="text-2xl font-bold text-primary hover:text-primary/90 transition-colors"
+          className="text-lg md:text-xl font-bold text-primary hover:text-primary/90 transition-colors"
         >
           Evergrove
         </Link>
