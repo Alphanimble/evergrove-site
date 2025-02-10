@@ -1,0 +1,31 @@
+{
+  "items": [
+    {
+      "title": "ClubHouse:Ernika",
+      "description": "Spacious and elegantly designed for ultimate comfort. Our living rooms blend style with functionality, creating the perfect space for relaxation and entertainment.",
+      "images": [
+        "/Renders/Clubhouse/Ernika/ernika_1.png",
+        "/Renders/Clubhouse/Ernika/ernika_4.png",
+        "/Renders/Clubhouse/Ernika/ernika_3.png"
+      ]
+    },
+    {
+      "title": "Clubhouse:Etasha",
+      "description": "State-of-the-art appliances in a sleek, functional space. Our kitchens are designed to inspire culinary creativity while providing efficiency and style.",
+      "images": [
+        "/Renders/Clubhouse/Etasha/Renders/entry.png",
+        "/Renders/Clubhouse/Etasha/Renders/a.png",
+        "/Renders/Clubhouse/Etasha/Renders/gym_1.png"
+      ]
+    },
+    {
+      "title": "Clubhouse:Eternia",
+      "description": "Your personal retreat for perfect relaxation. Our bedrooms offer a sanctuary of comfort, combining luxurious design with practical amenities for restful nights.",
+      "images": [
+        "/Renders/Clubhouse/Eternia/eternia_1.png",
+        "/Renders/Clubhouse/Eternia/eternia_2.png",
+        "/Renders/Clubhouse/Eternia/eternia_3.png"
+      ]
+    }
+  ]
+} 

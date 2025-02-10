@@ -14,6 +14,9 @@ import {
 import { useTheme } from "next-themes";
 import { HoverVideoPlayer } from "@/components/ui/hover-video-player";
 import { CyclingImageCard } from "@/components/cycling-image-card";
+import clubhouseData from '@/data/clubhouse-carousel.json';
+import archData from '@/data/arch-carousel.json';
+import amenitiesData from '@/data/amenities-carousel.json';
 
 const teko = Teko({
   subsets: ["latin"],
@@ -49,39 +52,6 @@ export default function OverlayDesign() {
       .then((svg) => setSvgContent(svg))
       .catch((error) => console.error("Error loading SVG:", error));
   }, []);
-
-  const carouselData = [
-    {
-      title: "ClubHouse:Ernika",
-      description:
-        "Spacious and elegantly designed for ultimate comfort. Our living rooms blend style with functionality, creating the perfect space for relaxation and entertainment.",
-      images: [
-        "/Renders/Clubhouse/Ernika/ernika_1.png",
-        "/Renders/Clubhouse/Ernika/ernika_4.png",
-        "/Renders/Clubhouse/Ernika/ernika_3.png",
-      ],
-    },
-    {
-      title: "Clubhouse:Etasha",
-      description:
-        "State-of-the-art appliances in a sleek, functional space. Our kitchens are designed to inspire culinary creativity while providing efficiency and style.",
-      images: [
-        "/Renders/Clubhouse/Etasha/Renders/entry.png",
-        "/Renders/Clubhouse/Etasha/Renders/a.png",
-        "/Renders/Clubhouse/Etasha/Renders/gym_1.png",
-      ],
-    },
-    {
-      title: "Clubhouse:Eternia",
-      description:
-        "Your personal retreat for perfect relaxation. Our bedrooms offer a sanctuary of comfort, combining luxurious design with practical amenities for restful nights.",
-      images: [
-        "/Renders/Clubhouse/Eternia/eternia_1.png",
-        "/Renders/Clubhouse/Eternia/eternia_2.png",
-        "/Renders/Clubhouse/Eternia/eternia_3.png",
-      ],
-    },
-  ];
 
   return (
     <div
@@ -188,7 +158,7 @@ export default function OverlayDesign() {
       >
         <Carousel className="max-w-6xl mx-auto">
           <CarouselContent>
-            {carouselData.map((item, index) => (
+            {clubhouseData.items.map((item, index) => (
               <CarouselItem key={index}>
                 <CyclingImageCard
                   images={item.images}
@@ -211,39 +181,7 @@ export default function OverlayDesign() {
       >
         <Carousel className="max-w-6xl mx-auto">
           <CarouselContent>
-            {[
-              {
-                title: "Arch:Ernika",
-                description:
-                  "Embrace nature with our beautifully landscaped outdoor areas. Perfect for relaxation or entertaining guests.",
-                images: [
-                  "/Renders/Entrance_Arch/Ernika/1.png",
-                  "/Renders/Entrance_Arch/Ernika/2.png",
-                  "/Renders/Entrance_Arch/Ernika/3.png",
-                ],
-              },
-              {
-                title: "Arch:Etasha",
-                description:
-                  "Experience the future of living with our cutting-edge smart home features, offering convenience at your fingertips.",
-                images: [
-                  "/Renders/Entrance_Arch/Etasha/1.jpeg",
-                  "/Renders/Entrance_Arch/Etasha/2.jpeg",
-                  "/Renders/Entrance_Arch/Etasha/3.jpeg",
-                ],
-              },
-              {
-                title: "Arch:Eternia",
-                description:
-                  "Rejuvenate your body and mind in our state-of-the-art wellness center, complete with gym and spa facilities.",
-                images: [
-                  "/Renders/Entrance_Arch/Eternia/1.jpg",
-                  "/Renders/Entrance_Arch/Eternia/2.jpg",
-                  "/Renders/Entrance_Arch/Eternia/3.jpg",
-                  "/Renders/Entrance_Arch/Eternia/4.jpg",
-                ],
-              },
-            ].map((item, index) => (
+            {archData.items.map((item, index) => (
               <CarouselItem key={index}>
                 <CyclingImageCard
                   images={item.images}
@@ -266,38 +204,7 @@ export default function OverlayDesign() {
       >
         <Carousel className="max-w-6xl mx-auto">
           <CarouselContent>
-            {[
-              {
-                title: "Luxury Amenities",
-                description:
-                  "Indulge in our world-class amenities designed for your comfort and enjoyment.",
-                images: [
-                  "/placeholder.svg?height=300&width=409",
-                  "/placeholder.svg?height=300&width=410",
-                  "/placeholder.svg?height=300&width=411",
-                ],
-              },
-              {
-                title: "Scenic Views",
-                description:
-                  "Wake up to breathtaking views that inspire and rejuvenate your senses every day.",
-                images: [
-                  "/placeholder.svg?height=300&width=412",
-                  "/placeholder.svg?height=300&width=413",
-                  "/placeholder.svg?height=300&width=414",
-                ],
-              },
-              {
-                title: "Community Spaces",
-                description:
-                  "Connect with your neighbors in our thoughtfully designed community areas.",
-                images: [
-                  "/placeholder.svg?height=300&width=415",
-                  "/placeholder.svg?height=300&width=416",
-                  "/placeholder.svg?height=300&width=417",
-                ],
-              },
-            ].map((item, index) => (
+            {amenitiesData.items.map((item, index) => (
               <CarouselItem key={index}>
                 <CyclingImageCard
                   images={item.images}

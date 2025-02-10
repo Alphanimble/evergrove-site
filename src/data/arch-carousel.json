@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "title": "Arch:Ernika",
+      "description": "Embrace nature with our beautifully landscaped outdoor areas. Perfect for relaxation or entertaining guests.",
+      "images": [
+        "/Renders/Entrance_Arch/Ernika/1.png",
+        "/Renders/Entrance_Arch/Ernika/2.png",
+        "/Renders/Entrance_Arch/Ernika/3.png"
+      ]
+    },
+    {
+      "title": "Arch:Etasha",
+      "description": "Experience the future of living with our cutting-edge smart home features, offering convenience at your fingertips.",
+      "images": [
+        "/Renders/Entrance_Arch/Etasha/1.jpeg",
+        "/Renders/Entrance_Arch/Etasha/2.jpeg",
+        "/Renders/Entrance_Arch/Etasha/3.jpeg"
+      ]
+    },
+    {
+      "title": "Arch:Eternia",
+      "description": "Rejuvenate your body and mind in our state-of-the-art wellness center, complete with gym and spa facilities.",
+      "images": [
+        "/Renders/Entrance_Arch/Eternia/1.jpg",
+        "/Renders/Entrance_Arch/Eternia/2.jpg",
+        "/Renders/Entrance_Arch/Eternia/3.jpg",
+        "/Renders/Entrance_Arch/Eternia/4.jpg"
+      ]
+    }
+  ]
+} 
