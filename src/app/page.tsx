@@ -130,7 +130,7 @@ export default function OverlayDesign() {
         </motion.div>
       </div>
 
-      <motion.div
+      {/* <motion.div
         ref={oasisRef}
         className="py-20 px-4 text-center"
         initial={{ opacity: 0, y: 50 }}
@@ -144,7 +144,7 @@ export default function OverlayDesign() {
           Discover unparalleled comfort and style in our meticulously designed
           spaces. EverGrove brings your dream living to reality.
         </p>
-      </motion.div>
+      </motion.div> */}
 
       <motion.div
         ref={carousel1Ref}
