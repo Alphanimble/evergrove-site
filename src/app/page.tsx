@@ -11,9 +11,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Card, CardContent } from "@/components/ui/card";
 import { useTheme } from "next-themes";
 import { HoverVideoPlayer } from "@/components/ui/hover-video-player";
+import { CyclingImageCard } from "@/components/cycling-image-card";
 
 const teko = Teko({
   subsets: ["latin"],
@@ -49,6 +49,39 @@ export default function OverlayDesign() {
       .then((svg) => setSvgContent(svg))
       .catch((error) => console.error("Error loading SVG:", error));
   }, []);
+
+  const carouselData = [
+    {
+      title: "ClubHouse:Ernika",
+      description:
+        "Spacious and elegantly designed for ultimate comfort. Our living rooms blend style with functionality, creating the perfect space for relaxation and entertainment.",
+      images: [
+        "/Renders/Clubhouse/Ernika/ernika_1.png",
+        "/Renders/Clubhouse/Ernika/ernika_4.png",
+        "/Renders/Clubhouse/Ernika/ernika_3.png",
+      ],
+    },
+    {
+      title: "Clubhouse:Etasha",
+      description:
+        "State-of-the-art appliances in a sleek, functional space. Our kitchens are designed to inspire culinary creativity while providing efficiency and style.",
+      images: [
+        "/Renders/Clubhouse/Etasha/Renders/entry.png",
+        "/Renders/Clubhouse/Etasha/Renders/a.png",
+        "/Renders/Clubhouse/Etasha/Renders/gym_1.png",
+      ],
+    },
+    {
+      title: "Clubhouse:Eternia",
+      description:
+        "Your personal retreat for perfect relaxation. Our bedrooms offer a sanctuary of comfort, combining luxurious design with practical amenities for restful nights.",
+      images: [
+        "/Renders/Clubhouse/Etasha/Renders/3.png",
+        "/Renders/Clubhouse/Etasha/Renders/a.png",
+        "/Renders/Clubhouse/Etasha/Renders/3.3.png",
+      ],
+    },
+  ];
 
   return (
     <div
@@ -155,81 +188,15 @@ export default function OverlayDesign() {
       >
         <Carousel className="max-w-6xl mx-auto">
           <CarouselContent>
-            <CarouselItem>
-              <Card>
-                <CardContent className="p-0 flex">
-                  <div className="w-1/2">
-                    <Image
-                      src="/placeholder.svg?height=300&width=400"
-                      alt="Luxurious Living Room"
-                      width={400}
-                      height={300}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                  <div className="w-1/2 p-6 flex flex-col justify-center">
-                    <h3 className={`${teko.className} text-2xl mb-2`}>
-                      Luxurious Living Rooms
-                    </h3>
-                    <p>
-                      Spacious and elegantly designed for ultimate comfort. Our
-                      living rooms blend style with functionality, creating the
-                      perfect space for relaxation and entertainment.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </CarouselItem>
-            <CarouselItem>
-              <Card>
-                <CardContent className="p-0 flex">
-                  <div className="w-1/2">
-                    <Image
-                      src="/placeholder.svg?height=300&width=400"
-                      alt="Modern Kitchen"
-                      width={400}
-                      height={300}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                  <div className="w-1/2 p-6 flex flex-col justify-center">
-                    <h3 className={`${teko.className} text-2xl mb-2`}>
-                      Modern Kitchens
-                    </h3>
-                    <p>
-                      State-of-the-art appliances in a sleek, functional space.
-                      Our kitchens are designed to inspire culinary creativity
-                      while providing efficiency and style.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </CarouselItem>
-            <CarouselItem>
-              <Card>
-                <CardContent className="p-0 flex">
-                  <div className="w-1/2">
-                    <Image
-                      src="/placeholder.svg?height=300&width=400"
-                      alt="Serene Bedroom"
-                      width={400}
-                      height={300}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                  <div className="w-1/2 p-6 flex flex-col justify-center">
-                    <h3 className={`${teko.className} text-2xl mb-2`}>
-                      Serene Bedrooms
-                    </h3>
-                    <p>
-                      Your personal retreat for perfect relaxation. Our bedrooms
-                      offer a sanctuary of comfort, combining luxurious design
-                      with practical amenities for restful nights.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </CarouselItem>
+            {carouselData.map((item, index) => (
+              <CarouselItem key={index}>
+                <CyclingImageCard
+                  images={item.images}
+                  title={item.title}
+                  description={item.description}
+                />
+              </CarouselItem>
+            ))}
           </CarouselContent>
           <CarouselPrevious />
           <CarouselNext />
@@ -237,87 +204,107 @@ export default function OverlayDesign() {
       </motion.div>
 
       <motion.div
-        ref={carousel2Ref}
         className="py-20 px-4 bg-secondary"
         initial={{ opacity: 0, y: 50 }}
-        animate={carousel2InView ? { opacity: 1, y: 0 } : {}}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
         <Carousel className="max-w-6xl mx-auto">
           <CarouselContent>
-            <CarouselItem>
-              <Card>
-                <CardContent className="p-0 flex">
-                  <div className="w-1/2">
-                    <Image
-                      src="/placeholder.svg?height=300&width=400"
-                      alt="Outdoor Spaces"
-                      width={400}
-                      height={300}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                  <div className="w-1/2 p-6 flex flex-col justify-center">
-                    <h3 className={`${teko.className} text-2xl mb-2`}>
-                      Stunning Outdoor Spaces
-                    </h3>
-                    <p>
-                      Embrace nature with our beautifully landscaped outdoor
-                      areas. Perfect for relaxation or entertaining guests.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </CarouselItem>
-            <CarouselItem>
-              <Card>
-                <CardContent className="p-0 flex">
-                  <div className="w-1/2">
-                    <Image
-                      src="/placeholder.svg?height=300&width=400"
-                      alt="Smart Home Features"
-                      width={400}
-                      height={300}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                  <div className="w-1/2 p-6 flex flex-col justify-center">
-                    <h3 className={`${teko.className} text-2xl mb-2`}>
-                      Smart Home Integration
-                    </h3>
-                    <p>
-                      Experience the future of living with our cutting-edge
-                      smart home features, offering convenience at your
-                      fingertips.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </CarouselItem>
-            <CarouselItem>
-              <Card>
-                <CardContent className="p-0 flex">
-                  <div className="w-1/2">
-                    <Image
-                      src="/placeholder.svg?height=300&width=400"
-                      alt="Wellness Center"
-                      width={400}
-                      height={300}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                  <div className="w-1/2 p-6 flex flex-col justify-center">
-                    <h3 className={`${teko.className} text-2xl mb-2`}>
-                      Wellness Center
-                    </h3>
-                    <p>
-                      Rejuvenate your body and mind in our state-of-the-art
-                      wellness center, complete with gym and spa facilities.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </CarouselItem>
+            {[
+              {
+                title: "Stunning Outdoor Spaces",
+                description:
+                  "Embrace nature with our beautifully landscaped outdoor areas. Perfect for relaxation or entertaining guests.",
+                images: [
+                  "/Renders/Clubhouse/Etasha/Renders/entry.png",
+                  "/Renders/Clubhouse/Etasha/Renders/3.png",
+                  "/Renders/Clubhouse/Etasha/Renders/1.2.png",
+                ],
+              },
+              {
+                title: "Smart Home Integration",
+                description:
+                  "Experience the future of living with our cutting-edge smart home features, offering convenience at your fingertips.",
+                images: [
+                  "/placeholder.svg?height=300&width=403",
+                  "/placeholder.svg?height=300&width=404",
+                  "/placeholder.svg?height=300&width=405",
+                ],
+              },
+              {
+                title: "Wellness Center",
+                description:
+                  "Rejuvenate your body and mind in our state-of-the-art wellness center, complete with gym and spa facilities.",
+                images: [
+                  "/placeholder.svg?height=300&width=406",
+                  "/placeholder.svg?height=300&width=407",
+                  "/placeholder.svg?height=300&width=408",
+                ],
+              },
+            ].map((item, index) => (
+              <CarouselItem key={index}>
+                <CyclingImageCard
+                  images={item.images}
+                  title={item.title}
+                  description={item.description}
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </motion.div>
+
+      <motion.div
+        className="py-20 px-4"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
+        <Carousel className="max-w-6xl mx-auto">
+          <CarouselContent>
+            {[
+              {
+                title: "Luxury Amenities",
+                description:
+                  "Indulge in our world-class amenities designed for your comfort and enjoyment.",
+                images: [
+                  "/placeholder.svg?height=300&width=409",
+                  "/placeholder.svg?height=300&width=410",
+                  "/placeholder.svg?height=300&width=411",
+                ],
+              },
+              {
+                title: "Scenic Views",
+                description:
+                  "Wake up to breathtaking views that inspire and rejuvenate your senses every day.",
+                images: [
+                  "/placeholder.svg?height=300&width=412",
+                  "/placeholder.svg?height=300&width=413",
+                  "/placeholder.svg?height=300&width=414",
+                ],
+              },
+              {
+                title: "Community Spaces",
+                description:
+                  "Connect with your neighbors in our thoughtfully designed community areas.",
+                images: [
+                  "/placeholder.svg?height=300&width=415",
+                  "/placeholder.svg?height=300&width=416",
+                  "/placeholder.svg?height=300&width=417",
+                ],
+              },
+            ].map((item, index) => (
+              <CarouselItem key={index}>
+                <CyclingImageCard
+                  images={item.images}
+                  title={item.title}
+                  description={item.description}
+                />
+              </CarouselItem>
+            ))}
           </CarouselContent>
           <CarouselPrevious />
           <CarouselNext />
