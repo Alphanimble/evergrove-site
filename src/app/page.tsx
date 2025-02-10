@@ -76,9 +76,9 @@ export default function OverlayDesign() {
       description:
         "Your personal retreat for perfect relaxation. Our bedrooms offer a sanctuary of comfort, combining luxurious design with practical amenities for restful nights.",
       images: [
-        "/Renders/Clubhouse/Etasha/Renders/3.png",
-        "/Renders/Clubhouse/Etasha/Renders/a.png",
-        "/Renders/Clubhouse/Etasha/Renders/3.3.png",
+        "/Renders/Clubhouse/Eternia/eternia_1.png",
+        "/Renders/Clubhouse/Eternia/eternia_2.png",
+        "/Renders/Clubhouse/Eternia/eternia_3.png",
       ],
     },
   ];
@@ -213,33 +213,34 @@ export default function OverlayDesign() {
           <CarouselContent>
             {[
               {
-                title: "Stunning Outdoor Spaces",
+                title: "Arch:Ernika",
                 description:
                   "Embrace nature with our beautifully landscaped outdoor areas. Perfect for relaxation or entertaining guests.",
                 images: [
-                  "/Renders/Clubhouse/Etasha/Renders/entry.png",
-                  "/Renders/Clubhouse/Etasha/Renders/3.png",
-                  "/Renders/Clubhouse/Etasha/Renders/1.2.png",
+                  "/Renders/Entrance_Arch/Ernika/1.png",
+                  "/Renders/Entrance_Arch/Ernika/2.png",
+                  "/Renders/Entrance_Arch/Ernika/3.png",
                 ],
               },
               {
-                title: "Smart Home Integration",
+                title: "Arch:Etasha",
                 description:
                   "Experience the future of living with our cutting-edge smart home features, offering convenience at your fingertips.",
                 images: [
-                  "/placeholder.svg?height=300&width=403",
-                  "/placeholder.svg?height=300&width=404",
-                  "/placeholder.svg?height=300&width=405",
+                  "/Renders/Entrance_Arch/Etasha/1.jpeg",
+                  "/Renders/Entrance_Arch/Etasha/2.jpeg",
+                  "/Renders/Entrance_Arch/Etasha/3.jpeg",
                 ],
               },
               {
-                title: "Wellness Center",
+                title: "Arch:Eternia",
                 description:
                   "Rejuvenate your body and mind in our state-of-the-art wellness center, complete with gym and spa facilities.",
                 images: [
-                  "/placeholder.svg?height=300&width=406",
-                  "/placeholder.svg?height=300&width=407",
-                  "/placeholder.svg?height=300&width=408",
+                  "/Renders/Entrance_Arch/Eternia/1.jpg",
+                  "/Renders/Entrance_Arch/Eternia/2.jpg",
+                  "/Renders/Entrance_Arch/Eternia/3.jpg",
+                  "/Renders/Entrance_Arch/Eternia/4.jpg",
                 ],
               },
             ].map((item, index) => (
