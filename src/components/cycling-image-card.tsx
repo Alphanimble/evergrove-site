@@ -28,10 +28,10 @@ export function CyclingImageCard({
   }, [images, interval]);
 
   return (
-    <Card className="overflow-hidden">
-      <CardContent className="p-0">
-        <div className="flex flex-col md:flex-row">
-          <div className="w-full md:w-1/2 relative h-[300px] overflow-hidden">
+    <Card className="overflow-hidden h-[50vh]">
+      <CardContent className="p-0 h-full">
+        <div className="flex flex-col md:flex-row h-full">
+          <div className="w-full md:w-2/3 relative h-full overflow-hidden">
             {images.map((src, index) => (
               <Image
                 key={src}
@@ -44,9 +44,9 @@ export function CyclingImageCard({
               />
             ))}
           </div>
-          <div className="w-full md:w-1/2 p-6 flex flex-col justify-center">
-            <h3 className="text-2xl mb-2">{title}</h3>
-            <p>{description}</p>
+          <div className="w-full md:w-1/3 p-8 flex flex-col justify-center">
+            <h3 className="text-3xl mb-4">{title}</h3>
+            <p className="text-lg">{description}</p>
           </div>
         </div>
       </CardContent>

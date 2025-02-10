@@ -156,7 +156,7 @@ export default function OverlayDesign() {
         animate={carousel1InView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <Carousel className="max-w-6xl mx-auto">
+        <Carousel className="max-w-[80%] mx-auto">
           <CarouselContent>
             {clubhouseData.items.map((item, index) => (
               <CarouselItem key={index}>
@@ -179,7 +179,7 @@ export default function OverlayDesign() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <Carousel className="max-w-6xl mx-auto">
+        <Carousel className="max-w-[80%] mx-auto">
           <CarouselContent>
             {archData.items.map((item, index) => (
               <CarouselItem key={index}>
@@ -202,7 +202,7 @@ export default function OverlayDesign() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <Carousel className="max-w-6xl mx-auto">
+        <Carousel className="max-w-[80%] mx-auto">
           <CarouselContent>
             {amenitiesData.items.map((item, index) => (
               <CarouselItem key={index}>
