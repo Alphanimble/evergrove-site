@@ -107,27 +107,41 @@ export default function OverlayDesign() {
         </motion.div>
 
         <motion.div
-          className="absolute top-0 right-0 z-30 w-full p-6 pr-10 flex justify-end items-start"
+          className="absolute top-0 right-0 z-30 w-full pr-2 sm:pr-10 pt-2 flex justify-end items-start"
           style={{ y: yPosition }}
         >
           <nav className={`${teko.className} flex gap-4 md:gap-8 ml-20`}>
             <a
               href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
               className="text-black text-lg md:text-3xl hover:opacity-80 transition-opacity"
             >
               HOME
             </a>
             <a
-              href="#"
+              href="#services"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById("services");
+                element?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
               className="text-black text-lg md:text-3xl hover:opacity-80 transition-opacity"
             >
               SERVICES
             </a>
             <a
-              href="#"
+              href=""
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById("about");
+                element?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
               className="text-black text-lg md:text-3xl hover:opacity-80 transition-opacity"
             >
-              OUR TEAM
+              ABOUT US
             </a>
           </nav>
         </motion.div>
@@ -151,6 +165,7 @@ export default function OverlayDesign() {
 
       <motion.div
         ref={carousel1Ref}
+        id="services"
         className="py-20 px-4"
         initial={{ opacity: 0, y: 50 }}
         animate={carousel1InView ? { opacity: 1, y: 0 } : {}}
@@ -174,7 +189,7 @@ export default function OverlayDesign() {
       </motion.div>
 
       <motion.div
-        className="py-20 px-4 bg-secondary"
+        className="py-20 px-4 bg-secondary dark:bg-primary"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -197,7 +212,7 @@ export default function OverlayDesign() {
       </motion.div>
 
       <motion.div
-        className="py-20 px-4"
+        className="py-20 px-4 bg-secondary dark:bg-primary"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -221,7 +236,7 @@ export default function OverlayDesign() {
 
       <motion.div
         ref={videoRef}
-        className="py-20 px-4"
+        className="py-20 px-4 bg-secondary dark:bg-primary"
         initial={{ opacity: 0, y: 50 }}
         animate={videoInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, delay: 0.2 }}
