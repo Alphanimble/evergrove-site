@@ -2,18 +2,18 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { MoonIcon, SunIcon, Menu } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Teko, Fraunces } from "next/font/google";
 
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
-  NavigationMenuContent,
+  // NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
+  // NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 

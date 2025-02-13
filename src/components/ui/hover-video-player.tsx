@@ -11,7 +11,7 @@ interface HoverVideoPlayerProps {
 export const HoverVideoPlayer = ({
   videoSrc,
   pausedOverlay,
-  loadingOverlay,
+  // loadingOverlay,
 }: HoverVideoPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
