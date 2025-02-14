@@ -1,11 +1,45 @@
-import React from 'react'
+"use client";
 
-function page() {
+import React from 'react'
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+const teamMembers = [
+  {
+    name: "John Smith",
+    role: "Principal Architect",
+    image: "/person.avif", // Add actual image paths
+    bio: "With over 15 years of experience in architectural design, John leads our creative vision."
+  },
+  {
+    name: "Sarah Johnson",
+    role: "Design Director",
+    image: "/person.avif",
+    bio: "Sarah brings innovative design solutions with her extensive background in interior architecture."
+  },
+  {
+    name: "Michael Chen",
+    role: "Project Manager",
+    image: "/person.avif",
+    bio: "Michael ensures seamless execution of projects with his detail-oriented approach."
+  },
+  // Add more team members as needed
+];
+
+function Page() {
   return (
-    <div>page
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8">
         {/* About Section */}
-        <section className="max-w-7xl mx-auto mb-20">
+        <motion.section 
+          className="max-w-7xl mx-auto mb-20"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        >
           <h1 className="text-4xl font-bold text-center mb-8">About Evergrove</h1>
           <div className="prose dark:prose-invert max-w-3xl mx-auto">
             <p className="text-lg mb-6">
@@ -15,10 +49,46 @@ function page() {
               Founded with a vision to transform digital landscapes, we specialize in web development, design, and digital strategy. Our approach is rooted in understanding our clients' unique needs and delivering solutions that exceed expectations.
             </p>
           </div>
-        </section>
+        </motion.section>
+
+        {/* Team Section */}
+        <motion.section 
+          className="max-w-7xl mx-auto mb-20"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+        >
+          <h2 className="text-3xl font-bold text-center mb-12">Meet Our Team</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {teamMembers.map((member, index) => (
+              <motion.div
+                key={member.name}
+                className="bg-secondary dark:bg-primary/10 rounded-lg overflow-hidden shadow-lg"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2 * index, duration: 0.5 }}
+              >
+                <div className="aspect-square relative">
+                  <div className="w-full h-full bg-gray-200 dark:bg-gray-700" />
+                  <Image src={member.image} alt={member.name} fill className="object-cover" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
+                  <p className="text-primary dark:text-secondary mb-3">{member.role}</p>
+                  <p className="text-gray-600 dark:text-gray-300">{member.bio}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
 
         {/* Contact Form Section */}
-        <section className="max-w-3xl mx-auto bg-secondary dark:bg-primary/10 p-8 rounded-lg shadow-md">
+        <motion.section 
+          className="max-w-3xl mx-auto bg-secondary dark:bg-primary/10 p-8 rounded-lg shadow-md"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+        >
           <h2 className="text-3xl font-semibold text-center mb-8">Get in Touch</h2>
           <form className="space-y-6">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -83,10 +153,10 @@ function page() {
               </button>
             </div>
           </form>
-        </section>
+        </motion.section>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
-export default page
+export default Page

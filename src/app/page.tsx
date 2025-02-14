@@ -158,7 +158,7 @@ export default function OverlayDesign() {
                 description: "Master-planned communities with premium infrastructure and modern amenities."
               },
               className: "md:col-span-2",
-              thumbnail: "/Renders/Master plan/Eternia/Master plan/1.jpg"
+              thumbnail: "https://www.prestigecityhyderabad.live/project/plotted-development-in-bangalore.webp"
             },
             {
               id: 2,
@@ -166,7 +166,7 @@ export default function OverlayDesign() {
                 title: "Clubhouse",
                 description: "Luxurious community spaces designed for recreation, wellness, and social gatherings."
               },
-              className: "md:col-span-1", thumbnail: "/Renders/Clubhouse/Eternia/eternia_1.png"
+              className: "md:col-span-1", thumbnail: "/Renders/Clubhouse/Eternia/eternia_2.png"
             },
             {
               id: 3,
@@ -175,7 +175,7 @@ export default function OverlayDesign() {
                 description: "Bespoke home designs that perfectly balance elegance with functionality."
               },
               className: "md:col-span-1",
-              thumbnail: "/Renders/Clubhouse/Ernika/ernika_1.png"
+              thumbnail: "/Renders/Clubhouse/Ernika/ernika_2.png"
             },
             {
               id: 4,
@@ -184,7 +184,7 @@ export default function OverlayDesign() {
                 description: "Expert construction services with attention to detail and quality craftsmanship."
               },
               className: "md:col-span-2",
-              thumbnail: "/Renders/Clubhouse/Etasha/Renders/entry.png"
+              thumbnail: "/Renders/Entrance_Arch/Ernika/2.png"
             },
 
           ]} />
