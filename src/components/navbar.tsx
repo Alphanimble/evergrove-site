@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { MoonIcon, SunIcon, Menu } from "lucide-react";
+import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Teko, Fraunces } from "next/font/google";
 
@@ -35,16 +35,16 @@ export function Navbar() {
     setMounted(true);
   }, []);
 
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
+  // const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+  //   e.preventDefault();
+  //   const element = document.getElementById(id);
+  //   if (element) {
+  //     element.scrollIntoView({
+  //       behavior: "smooth",
+  //       block: "start",
+  //     });
+  //   }
+  // };
 
   return (
     <div className="fixed top-0 left-1/2 -translate-x-1/2 z-50 w-full">

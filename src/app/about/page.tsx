@@ -58,7 +58,7 @@ function Page() {
               At Evergrove, we are passionate about creating digital experiences that leave a lasting impact. Our team of dedicated professionals combines creativity with technical expertise to deliver exceptional solutions for our clients.
             </p>
             <p className="text-2xl mb-6">
-              Founded with a vision to transform digital landscapes, we specialize in web development, design, and digital strategy. Our approach is rooted in understanding our clients' unique needs and delivering solutions that exceed expectations.
+              Founded with a vision to transform digital landscapes, we specialize in web development, design, and digital strategy. Our approach is rooted in understanding our clients&apos; unique needs and delivering solutions that exceed expectations.
             </p>
           </div>
         </motion.section>

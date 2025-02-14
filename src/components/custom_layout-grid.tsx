@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { LayoutGrid } from "@/components/ui/layout-grid";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 
 interface CardContent {
   title: string;
@@ -10,9 +10,9 @@ interface CardContent {
 
 interface Card {
   id: number;
-  content: CardContent;
+  content: React.ReactNode;
   className: string;
-  thumbnail: string;
+  thumbnail: React.ReactNode;
 }
 
 interface CustomLayoutGridProps {

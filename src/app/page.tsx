@@ -43,7 +43,7 @@ export default function OverlayDesign() {
   // const oasisInView = useInView(oasisRef, { once: true, amount: 0.5 });
   const carousel1InView = useInView(carousel1Ref, { once: true, amount: 0.3 });
   // const carousel2InView = useInView(carousel2Ref, { once: true, amount: 0.3 });
-  const videoInView = useInView(videoRef, { once: true, amount: 0.3 });
+  // const videoInView = useInView(videoRef, { once: true, amount: 0.3 });
 
   useEffect(() => {
     fetch("/Union.svg")
