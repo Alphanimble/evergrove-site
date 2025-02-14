@@ -17,6 +17,7 @@ import { CyclingImageCard } from "@/components/cycling-image-card";
 import clubhouseData from "@/data/clubhouse-carousel.json";
 import archData from "@/data/arch-carousel.json";
 import amenitiesData from "@/data/amenities-carousel.json";
+import CustomLayoutGrid from "@/components/custom_layout-grid";
 
 const teko = Teko({
   subsets: ["latin"],
@@ -144,6 +145,9 @@ export default function OverlayDesign() {
           </nav>
         </motion.div>
       </div>
+      <div>
+        <CustomLayoutGrid />
+      </div>
 
       {/* <motion.div
         ref={oasisRef}
@@ -232,13 +236,7 @@ export default function OverlayDesign() {
         </Carousel>
       </motion.div>
 
-      <motion.div
-        ref={videoRef}
-        className="py-20 px-4 bg-secondary dark:bg-primary"
-        initial={{ opacity: 0, y: 50 }}
-        animate={videoInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
+      <div ref={videoRef} className="py-20 px-4 bg-secondary dark:bg-primary">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8">
           <div className="w-full md:w-1/2">
             <div className="relative w-full rounded-lg overflow-hidden aspect-video">
@@ -263,7 +261,7 @@ export default function OverlayDesign() {
             </p>
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
