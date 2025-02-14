@@ -12,8 +12,6 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 import archData from "@/data/arch-carousel.json";
-import amenitiesData from "@/data/amenities-carousel.json";
-import clubhouseData from "@/data/clubhouse-carousel.json";
 import landscapeData from "@/data/landscape-carousel.json";
 import infrastructureData from "@/data/infrastructure-carousel.json";
 import waterManagementData from "@/data/water-management-carousel.json";
@@ -49,7 +47,7 @@ const services = [
 
 function Page() {
   const headerRef = useRef(null);
-  const carouselRefs = useRef(services.map(() => useRef(null)));
+  const carouselRefs = useRef(Array(services.length).fill(null).map(() => ({ current: null })));
   const headerInView = useInView(headerRef, { once: true });
 
   return (
@@ -77,7 +75,7 @@ function Page() {
       {services.map((service, index) => (
         <motion.div
           key={index}
-          ref={carouselRefs.current[index]}
+          ref={carouselRefs.current[index].current}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: index * 0.2 }}

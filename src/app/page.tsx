@@ -3,20 +3,9 @@
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { Teko } from "next/font/google";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-// import { useTheme } from "next-themes";
-// import { HoverVideoPlayer } from "@/components/ui/hover-video-player";
-import { CyclingImageCard } from "@/components/cycling-image-card";
-import clubhouseData from "@/data/clubhouse-carousel.json";
-import archData from "@/data/arch-carousel.json";
-import amenitiesData from "@/data/amenities-carousel.json";
+import { motion, useScroll, useTransform } from "framer-motion";
+import Link from "next/link";
+
 import CustomLayoutGrid from "@/components/custom_layout-grid";
 
 const teko = Teko({
@@ -28,7 +17,7 @@ export default function OverlayDesign() {
   const [svgContent, setSvgContent] = useState<string | null>(null);
   const containerRef = useRef(null);
   // const oasisRef = useRef(null);
-  const carousel1Ref = useRef(null);
+  // const carousel1Ref = useRef(null);
   // const carousel2Ref = useRef(null);
   const videoRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -41,7 +30,7 @@ export default function OverlayDesign() {
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.6], [1, 0, 0]);
 
   // const oasisInView = useInView(oasisRef, { once: true, amount: 0.5 });
-  const carousel1InView = useInView(carousel1Ref, { once: true, amount: 0.3 });
+  // const carousel1InView = useInView(carousel1Ref, { once: true, amount: 0.3 });
   // const carousel2InView = useInView(carousel2Ref, { once: true, amount: 0.3 });
   // const videoInView = useInView(videoRef, { once: true, amount: 0.3 });
 
@@ -59,7 +48,7 @@ export default function OverlayDesign() {
     >
       <div className="sticky top-0 h-screen">
         <motion.div className="absolute inset-0" style={{ opacity: opacity }}>
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/40 dark:from-primary/50 to-transparent z-[1]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 dark:from-gray-900/40 to-transparent z-[1]" />
           <Image
             src="/dark.png"
             alt="Modern house in forest"
@@ -110,38 +99,24 @@ export default function OverlayDesign() {
           style={{ y: yPosition }}
         >
           <nav className={`${teko.className} flex gap-4 md:gap-8 ml-20`}>
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
+            <Link
+              href="/"
               className="text-black text-lg md:text-3xl hover:opacity-80 transition-opacity"
             >
               HOME
-            </a>
-            <a
-              href="#services"
-              onClick={(e) => {
-                e.preventDefault();
-                const element = document.getElementById("services");
-                element?.scrollIntoView({ behavior: "smooth", block: "start" });
-              }}
+            </Link>
+            <Link
+              href="/services"
               className="text-black text-lg md:text-3xl hover:opacity-80 transition-opacity"
             >
               SERVICES
-            </a>
-            <a
-              href=""
-              onClick={(e) => {
-                e.preventDefault();
-                const element = document.getElementById("about");
-                element?.scrollIntoView({ behavior: "smooth", block: "start" });
-              }}
+            </Link>
+            <Link
+              href="/about"
               className="text-black text-lg md:text-3xl hover:opacity-80 transition-opacity"
             >
               ABOUT US
-            </a>
+            </Link>
           </nav>
         </motion.div>
       </div>
@@ -219,7 +194,7 @@ export default function OverlayDesign() {
           <div className="w-full md:w-1/2">
             <div className="relative w-full rounded-lg overflow-hidden aspect-video">
               <iframe
-                src="https://www.youtube.com/watch?v=mJVuZiK9a6I"
+                src="https://www.youtube.com/embed/mJVuZiK9a6I"
                 title="EverGrove Experience"
                 className="absolute top-0 left-0 w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

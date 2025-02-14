@@ -33,7 +33,26 @@ function Page() {
       transition={{ duration: 0.5 }}
       className="min-h-screen bg-secondary/90 dark:bg-primary/90"
     >
-      <div className="py-20 px-4 sm:px-6 lg:px-8">
+      <motion.div 
+        className="relative h-[400px] mb-12 w-full"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <Image
+          src="/team.jpg"
+          alt="Team background"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <h1 className="text-5xl font-bold text-white">About Evergrove</h1>
+        </div>
+      </motion.div>
+
+      <div className="px-4 sm:px-6 lg:px-8">
         {/* About Section */}
         <motion.section 
           className="mb-20"
@@ -41,19 +60,6 @@ function Page() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
-          <div className="relative h-[400px] mb-12 w-full">
-            <Image
-              src="/team.jpg"
-              alt="Team background"
-              fill
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <h1 className="text-5xl font-bold text-white">About Evergrove</h1>
-            </div>
-          </div>
           <div className="prose dark:prose-invert max-w-4xl mx-auto px-4">
             <p className="text-2xl mb-6 text-foreground">
               At Evergrove, we are passionate about creating digital experiences that leave a lasting impact. Our team of dedicated professionals combines creativity with technical expertise to deliver exceptional solutions for our clients.

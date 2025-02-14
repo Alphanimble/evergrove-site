@@ -10,7 +10,10 @@ interface CardContent {
 
 interface Card {
   id: number;
-  content: React.ReactNode;
+  content: {
+    title: string;
+    description: string;
+  };
   className: string;
   thumbnail: React.ReactNode;
 }
