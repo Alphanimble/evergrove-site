@@ -54,7 +54,7 @@ function Page() {
             </div>
           </div>
           <div className="prose dark:prose-invert max-w-4xl mx-auto px-4">
-            <p className="text-lg mb-6">
+            <p className="text-2xl mb-6">
               At Evergrove, we are passionate about creating digital experiences that leave a lasting impact. Our team of dedicated professionals combines creativity with technical expertise to deliver exceptional solutions for our clients.
             </p>
             <p className="text-2xl mb-6">
