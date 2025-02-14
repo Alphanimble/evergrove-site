@@ -146,7 +146,49 @@ export default function OverlayDesign() {
         </motion.div>
       </div>
       <div>
-        <CustomLayoutGrid />
+        <div className="py-20">
+          <h2 className={`${teko.className} text-4xl md:text-6xl text-center`}>
+            Our Expertise
+          </h2>
+          <CustomLayoutGrid cards={[
+            {
+              id: 1,
+              content: {
+                title: "Plotted Development",
+                description: "Master-planned communities with premium infrastructure and modern amenities."
+              },
+              className: "md:col-span-2",
+              thumbnail: "/Renders/Master plan/Eternia/Master plan/1.jpg"
+            },
+            {
+              id: 2,
+              content: {
+                title: "Clubhouse",
+                description: "Luxurious community spaces designed for recreation, wellness, and social gatherings."
+              },
+              className: "md:col-span-1", thumbnail: "/Renders/Clubhouse/Eternia/eternia_1.png"
+            },
+            {
+              id: 3,
+              content: {
+                title: "Individual Residence",
+                description: "Bespoke home designs that perfectly balance elegance with functionality."
+              },
+              className: "md:col-span-1",
+              thumbnail: "/Renders/Clubhouse/Ernika/ernika_1.png"
+            },
+            {
+              id: 4,
+              content: {
+                title: "Construction",
+                description: "Expert construction services with attention to detail and quality craftsmanship."
+              },
+              className: "md:col-span-2",
+              thumbnail: "/Renders/Clubhouse/Etasha/Renders/entry.png"
+            },
+
+          ]} />
+        </div>
       </div>
 
       {/* <motion.div

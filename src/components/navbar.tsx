@@ -65,7 +65,7 @@ export function Navbar() {
               {[
                 { name: "Home", path: "/" },
                 { name: "Services", path: "/services" },
-                { name: "About Us", path: "" },
+                { name: "About Us", path: "/about" },
               ].map((item) => (
                 <NavigationMenuItem key={item.name}>
                   <Link href={item.path} legacyBehavior passHref>
