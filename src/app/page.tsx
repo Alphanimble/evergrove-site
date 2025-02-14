@@ -150,44 +150,51 @@ export default function OverlayDesign() {
           <h2 className={`${teko.className} text-4xl md:text-6xl text-center`}>
             Our Expertise
           </h2>
-          <CustomLayoutGrid cards={[
-            {
-              id: 1,
-              content: {
-                title: "Plotted Development",
-                description: "Master-planned communities with premium infrastructure and modern amenities."
+          <CustomLayoutGrid
+            cards={[
+              {
+                id: 1,
+                content: {
+                  title: "Plotted Development",
+                  description:
+                    "Master-planned communities with premium infrastructure and modern amenities.",
+                },
+                className: "md:col-span-2",
+                thumbnail:
+                  "https://www.prestigecityhyderabad.live/project/plotted-development-in-bangalore.webp",
               },
-              className: "md:col-span-2",
-              thumbnail: "https://www.prestigecityhyderabad.live/project/plotted-development-in-bangalore.webp"
-            },
-            {
-              id: 2,
-              content: {
-                title: "Clubhouse",
-                description: "Luxurious community spaces designed for recreation, wellness, and social gatherings."
+              {
+                id: 2,
+                content: {
+                  title: "Clubhouse",
+                  description:
+                    "Luxurious community spaces designed for recreation, wellness, and social gatherings.",
+                },
+                className: "md:col-span-1",
+                thumbnail: "/Renders/Clubhouse/Eternia/eternia_2.png",
               },
-              className: "md:col-span-1", thumbnail: "/Renders/Clubhouse/Eternia/eternia_2.png"
-            },
-            {
-              id: 3,
-              content: {
-                title: "Individual Residence",
-                description: "Bespoke home designs that perfectly balance elegance with functionality."
+              {
+                id: 3,
+                content: {
+                  title: "Individual Residence",
+                  description:
+                    "Bespoke home designs that perfectly balance elegance with functionality.",
+                },
+                className: "md:col-span-1",
+                thumbnail: "/Renders/Clubhouse/Ernika/ernika_2.png",
               },
-              className: "md:col-span-1",
-              thumbnail: "/Renders/Clubhouse/Ernika/ernika_2.png"
-            },
-            {
-              id: 4,
-              content: {
-                title: "Construction",
-                description: "Expert construction services with attention to detail and quality craftsmanship."
+              {
+                id: 4,
+                content: {
+                  title: "Construction",
+                  description:
+                    "Expert construction services with attention to detail and quality craftsmanship.",
+                },
+                className: "md:col-span-2",
+                thumbnail: "/Renders/Entrance_Arch/Ernika/2.png",
               },
-              className: "md:col-span-2",
-              thumbnail: "/Renders/Entrance_Arch/Ernika/2.png"
-            },
-
-          ]} />
+            ]}
+          />
         </div>
       </div>
 
@@ -206,77 +213,6 @@ export default function OverlayDesign() {
           spaces. EverGrove brings your dream living to reality.
         </p>
       </motion.div> */}
-
-      <motion.div
-        ref={carousel1Ref}
-        id="services"
-        className="py-20 px-4"
-        initial={{ opacity: 0, y: 50 }}
-        animate={carousel1InView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <Carousel className="max-w-[80%] mx-auto">
-          <CarouselContent>
-            {clubhouseData.items.map((item, index) => (
-              <CarouselItem key={index}>
-                <CyclingImageCard
-                  images={item.images}
-                  title={item.title}
-                  description={item.description}
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
-      </motion.div>
-
-      <motion.div
-        className="py-20 px-4 bg-secondary dark:bg-primary"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <Carousel className="max-w-[80%] mx-auto">
-          <CarouselContent>
-            {archData.items.map((item, index) => (
-              <CarouselItem key={index}>
-                <CyclingImageCard
-                  images={item.images}
-                  title={item.title}
-                  description={item.description}
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
-      </motion.div>
-
-      <motion.div
-        className="py-20 px-4 bg-secondary dark:bg-primary"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <Carousel className="max-w-[80%] mx-auto">
-          <CarouselContent>
-            {amenitiesData.items.map((item, index) => (
-              <CarouselItem key={index}>
-                <CyclingImageCard
-                  images={item.images}
-                  title={item.title}
-                  description={item.description}
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
-      </motion.div>
 
       <div ref={videoRef} className="py-20 px-4 bg-secondary dark:bg-primary">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8">

@@ -46,6 +46,7 @@ export default function RootLayout({
               y: navbarY,
               zIndex: 1000,
             }}
+            className="shadow-lg bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
           >
             <Navbar />
           </motion.div>
