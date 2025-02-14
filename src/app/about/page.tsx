@@ -35,17 +35,29 @@ function Page() {
       <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8">
         {/* About Section */}
         <motion.section 
-          className="max-w-7xl mx-auto mb-20"
+          className="mb-20"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
-          <h1 className="text-4xl font-bold text-center mb-8">About Evergrove</h1>
-          <div className="prose dark:prose-invert max-w-3xl mx-auto">
+          <div className="relative h-[400px] mb-12 w-full">
+            <Image
+              src="/team.jpg"
+              alt="Team background"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <h1 className="text-5xl font-bold text-white">About Evergrove</h1>
+            </div>
+          </div>
+          <div className="prose dark:prose-invert max-w-4xl mx-auto px-4">
             <p className="text-lg mb-6">
               At Evergrove, we are passionate about creating digital experiences that leave a lasting impact. Our team of dedicated professionals combines creativity with technical expertise to deliver exceptional solutions for our clients.
             </p>
-            <p className="text-lg mb-6">
+            <p className="text-2xl mb-6">
               Founded with a vision to transform digital landscapes, we specialize in web development, design, and digital strategy. Our approach is rooted in understanding our clients' unique needs and delivering solutions that exceed expectations.
             </p>
           </div>
