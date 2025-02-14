@@ -55,11 +55,11 @@ export default function OverlayDesign() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full bg-background text-foreground"
+      className="relative w-full bg-secondary/90 dark:bg-primary/90 text-foreground"
     >
       <div className="sticky top-0 h-screen">
         <motion.div className="absolute inset-0" style={{ opacity: opacity }}>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-[1]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/40 dark:from-primary/50 to-transparent z-[1]" />
           <Image
             src="/dark.png"
             alt="Modern house in forest"

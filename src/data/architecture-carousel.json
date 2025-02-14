@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "title": "Residential Architecture",
+      "title": "Residential Design",
       "description": "Creating bespoke living spaces that blend aesthetics with functionality, tailored to your lifestyle.",
       "images": [
         "/Renders/Entrance_Arch/Ernika/1.png",
@@ -10,21 +10,12 @@
       ]
     },
     {
-      "title": "Commercial Architecture",
+      "title": "Commercial Spaces",
       "description": "Innovative commercial architecture that maximizes space efficiency and creates lasting impressions.",
       "images": [
         "/Renders/Entrance_Arch/Eternia/1.jpg",
         "/Renders/Entrance_Arch/Eternia/2.jpg",
         "/Renders/Entrance_Arch/Eternia/3.jpg"
-      ]
-    },
-    {
-      "title": "Interior Design",
-      "description": "Transforming spaces with thoughtful interior design that reflects your style and enhances functionality.",
-      "images": [
-        "/Renders/Clubhouse/Etasha/Renders/entry.png",
-        "/Renders/Clubhouse/Etasha/Renders/a.png",
-        "/Renders/Clubhouse/Etasha/Renders/gym_1.png"
       ]
     }
   ]

@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "title": "Garden Design",
+      "description": "Creating serene outdoor spaces that harmonize with nature and enhance your property's beauty.",
+      "images": [
+        "/Renders/Clubhouse/Ernika/ernika_1.png",
+        "/Renders/Clubhouse/Ernika/ernika_3.png",
+        "/Renders/Clubhouse/Ernika/ernika_4.png"
+      ]
+    },
+    {
+      "title": "Recreational Areas",
+      "description": "Designing engaging outdoor spaces that promote community interaction and wellness.",
+      "images": [
+        "/Renders/Clubhouse/Eternia/eternia_1.png",
+        "/Renders/Clubhouse/Eternia/eternia_2.png",
+        "/Renders/Clubhouse/Eternia/eternia_3.png"
+      ]
+    }
+  ]
+} 

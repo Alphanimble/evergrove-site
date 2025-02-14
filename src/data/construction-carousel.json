@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "title": "Residential Construction",
+      "description": "Expert construction services delivering high-quality homes with precision and care.",
+      "images": [
+        "/Renders/Entrance_Arch/Ernika/1.png",
+        "/Renders/Entrance_Arch/Ernika/2.png",
+        "/Renders/Entrance_Arch/Ernika/3.png"
+      ]
+    },
+    {
+      "title": "Commercial Construction",
+      "description": "Building commercial spaces that stand the test of time with superior craftsmanship.",
+      "images": [
+        "/Renders/Entrance_Arch/Eternia/1.jpg",
+        "/Renders/Entrance_Arch/Eternia/2.jpg",
+        "/Renders/Entrance_Arch/Eternia/3.jpg"
+      ]
+    }
+  ]
+} 
