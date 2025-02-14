@@ -18,7 +18,6 @@ function Page() {
   const carousel1Ref = useRef(null);
   const carousel2Ref = useRef(null);
   const carousel3Ref = useRef(null);
-  const servicesRef = useRef(null);
 
   return (
     <div className="container mx-auto px-4">
