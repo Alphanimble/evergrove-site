@@ -5,10 +5,10 @@ import { Teko } from "next/font/google";
 import { motion } from "framer-motion";
 import CustomLayoutGrid from "@/components/custom_layout-grid";
 
-const teko = Teko({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
+// const teko = Teko({
+//   subsets: ["latin"],
+//   weight: ["300", "400", "500", "600", "700"],
+// });
 
 export default function OverlayDesign() {
   return (

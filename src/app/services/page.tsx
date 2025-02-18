@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { ServiceContent } from "@/components/ui/ServiceContent";
 import { useSearchParams } from "next/navigation";
-import Image from "next/image";
+// import Image from "next/image";
 
 export default function ServicesPage() {
   const searchParams = useSearchParams();

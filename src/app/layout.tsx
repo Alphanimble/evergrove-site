@@ -5,7 +5,6 @@ import { ThemeProvider } from "../components/theme-provider";
 import { Geist, Azeret_Mono as Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "../components/navbar";
-import { useScroll, motion, useTransform } from "framer-motion";
 import type React from "react"; // Added import for React
 
 const geistSans = Geist({
