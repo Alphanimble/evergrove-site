@@ -4,19 +4,6 @@ import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { Teko } from "next/font/google";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-// import { useTheme } from "next-themes";
-// import { HoverVideoPlayer } from "@/components/ui/hover-video-player";
-import { CyclingImageCard } from "@/components/cycling-image-card";
-import clubhouseData from "@/data/clubhouse-carousel.json";
-import archData from "@/data/arch-carousel.json";
-import amenitiesData from "@/data/amenities-carousel.json";
 import CustomLayoutGrid from "@/components/custom_layout-grid";
 
 const teko = Teko({
@@ -39,11 +26,6 @@ export default function OverlayDesign() {
   const xPosition = useTransform(scrollYProgress, [0, 0.5], ["0%", "-155%"]);
   const yPosition = useTransform(scrollYProgress, [0, 0.1], ["0%", "-125%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.6], [1, 0, 0]);
-
-  // const oasisInView = useInView(oasisRef, { once: true, amount: 0.5 });
-  const carousel1InView = useInView(carousel1Ref, { once: true, amount: 0.3 });
-  // const carousel2InView = useInView(carousel2Ref, { once: true, amount: 0.3 });
-  // const videoInView = useInView(videoRef, { once: true, amount: 0.3 });
 
   useEffect(() => {
     fetch("/Union.svg")

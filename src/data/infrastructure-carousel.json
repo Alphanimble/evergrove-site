@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "title": "Master Planning",
+      "description": "Comprehensive infrastructure planning that ensures sustainable and efficient development.",
+      "images": ["/Renders/Master plan/Eternia/Master plan/1.jpg"]
+    },
+    {
+      "title": "Urban Development",
+      "description": "Creating connected communities through strategic infrastructure planning and implementation.",
+      "images": [
+        "/Renders/Entrance_Arch/Etasha/1.jpeg",
+        "/Renders/Entrance_Arch/Etasha/2.jpeg",
+        "/Renders/Entrance_Arch/Etasha/3.jpeg"
+      ]
+    }
+  ]
+} 

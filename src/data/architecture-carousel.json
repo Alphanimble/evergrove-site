@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "title": "Residential Design",
+      "description": "Creating bespoke living spaces that blend aesthetics with functionality, tailored to your lifestyle.",
+      "images": [
+        "/Renders/Entrance_Arch/Ernika/1.png",
+        "/Renders/Entrance_Arch/Ernika/2.png",
+        "/Renders/Entrance_Arch/Ernika/3.png"
+      ]
+    },
+    {
+      "title": "Commercial Spaces",
+      "description": "Innovative commercial architecture that maximizes space efficiency and creates lasting impressions.",
+      "images": [
+        "/Renders/Entrance_Arch/Eternia/1.jpg",
+        "/Renders/Entrance_Arch/Eternia/2.jpg",
+        "/Renders/Entrance_Arch/Eternia/3.jpg"
+      ]
+    }
+  ]
+} 

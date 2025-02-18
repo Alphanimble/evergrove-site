@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "title": "Water Resource Planning",
+      "description": "Sustainable water management solutions for residential and commercial developments.",
+      "images": ["/Renders/water_tank/1.jpeg"]
+    },
+    {
+      "title": "Building Services",
+      "description": "Integrated building services that optimize resource utilization and enhance comfort.",
+      "images": [
+        "/Renders/Clubhouse/Etasha/Renders/entry.png",
+        "/Renders/Clubhouse/Etasha/Renders/a.png",
+        "/Renders/Clubhouse/Etasha/Renders/gym_1.png"
+      ]
+    }
+  ]
+} 

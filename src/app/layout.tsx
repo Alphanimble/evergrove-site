@@ -28,28 +28,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { scrollY } = useScroll();
-  const navbarY = useTransform(scrollY, [0, 100], [-100, 0]);
-
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <motion.div
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              right: 0,
-              y: navbarY,
-              zIndex: 1000,
-            }}
-            className="shadow-lg bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
-          >
+          <div className="fixed top-0 left-0 right-0 z-[1000] shadow-lg bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <Navbar />
-          </motion.div>
+          </div>
           <main className="">{children}</main>
         </ThemeProvider>
       </body>
