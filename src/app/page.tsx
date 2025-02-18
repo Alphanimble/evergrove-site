@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Teko } from "next/font/google";
+// import { Teko } from "next/font/google";
 import { motion } from "framer-motion";
 import CustomLayoutGrid from "@/components/custom_layout-grid";
 
