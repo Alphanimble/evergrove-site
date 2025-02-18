@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { ServiceContent } from "@/components/ui/ServiceContent";
 import { useSearchParams } from "next/navigation";
 // import Image from "next/image";
 
-export default function ServicesPage() {
+function ServicesContent() {
   const searchParams = useSearchParams();
   const [selectedService, setSelectedService] = useState("architecture-design");
 
@@ -58,5 +58,13 @@ export default function ServicesPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ServicesPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ServicesContent />
+    </Suspense>
   );
 }
