@@ -32,7 +32,7 @@ function Page() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-secondary/80 dark:bg-primary/80">
         {/* About Section */}
         <motion.section 
           className="mb-20"

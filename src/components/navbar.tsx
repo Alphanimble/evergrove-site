@@ -81,56 +81,21 @@ export function Navbar() {
                     Services
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="w-[calc(100vw-2rem)] max-w-[800px] p-4 grid grid-cols-1 gap-4 relative left-1/2 -translate-x-1/2">
+                    <div className="p-4 min-w-[200px] md:w-[300px]">
                       {[
-                        {
-                          title: "Architecture & Interior Design",
-                          description:
-                            "Creating spaces that inspire and transform lives through innovative design solutions.",
-                          image: "/path-to-image1.jpg",
-                          href: "/services?service=architecture-design",
-                        },
-                        {
-                          title: "Landscape Design",
-                          description:
-                            "Crafting outdoor spaces that harmonize with nature and enhance the environment.",
-                          image: "/path-to-image2.jpg",
-                          href: "/services?service=landscape-design",
-                        },
-                        {
-                          title: "Infra Engineering",
-                          description:
-                            "Building robust infrastructure solutions for sustainable development.",
-                          image: "/path-to-image3.jpg",
-                          href: "/services?service=infrastructure",
-                        },
-                        {
-                          title: "Building Services & Water Resources",
-                          description:
-                            "Comprehensive building services and water management solutions.",
-                          image: "/path-to-image4.jpg",
-                          href: "/services?service=building-services",
-                        },
-                        {
-                          title: "Execution",
-                          description:
-                            "Bringing designs to life with precision and excellence.",
-                          image: "/path-to-image5.jpg",
-                          href: "/services?service=execution",
-                        },
+                        { title: "Architecture & Interior Design", href: "/services?service=architecture-design" },
+                        { title: "Landscape Design", href: "/services?service=landscape-design" },
+                        { title: "Infra Engineering", href: "/services?service=infrastructure" },
+                        { title: "Building Services & Water Resources", href: "/services?service=building-services" },
+                        { title: "Execution", href: "/services?service=execution" },
                       ].map((service) => (
                         <Link
                           key={service.title}
                           href={service.href}
                           onClick={() => setIsMenuOpen(false)}
-                          className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          className="block select-none rounded-md p-3 text-base leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                         >
-                          <div className="text-sm font-medium leading-none mb-2">
-                            {service.title}
-                          </div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            {service.description}
-                          </p>
+                          {service.title}
                         </Link>
                       ))}
                     </div>
