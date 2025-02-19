@@ -145,8 +145,7 @@ export default function OverlayDesign() {
                     id: 1,
                     content: {
                       title: "Plotted Development",
-                      description:
-                        "Master-planned communities with premium infrastructure and modern amenities.",
+                      description: "Master-planned communities with premium infrastructure and modern amenities for sustainable living.",
                       subPoints: [
                         "Premium Infrastructure",
                         "Modern Amenities",
@@ -157,16 +156,19 @@ export default function OverlayDesign() {
                       ],
                     },
                     className: "md:col-span-2",
-                    thumbnail:
-                      "https://www.prestigecityhyderabad.live/project/plotted-development-in-bangalore.webp",
+                    thumbnail: "https://www.prestigecityhyderabad.live/project/plotted-development-in-bangalore.webp",
                   },
                   {
                     id: 2,
                     content: {
                       title: "Clubhouse",
-                      description:
-                        "Luxurious community spaces designed for recreation, wellness, and social gatherings.",
-                      subPoints: ["Recreation Facilities", "Wellness Center"],
+                      description: "Luxurious community spaces designed for recreation, wellness, and social gatherings.",
+                      subPoints: [
+                        "Recreation Facilities",
+                        "Wellness Center",
+                        "Social Spaces",
+                        "Modern Amenities",
+                      ],
                     },
                     className: "md:col-span-1",
                     thumbnail: "/Renders/Clubhouse/Eternia/eternia_2.png",
@@ -175,9 +177,13 @@ export default function OverlayDesign() {
                     id: 3,
                     content: {
                       title: "Individual Residence",
-                      description:
-                        "Bespoke home designs that perfectly balance elegance with functionality.",
-                      subPoints: ["Custom Designs", "Premium Finishes"],
+                      description: "Bespoke home designs that perfectly balance elegance with functionality for modern living.",
+                      subPoints: [
+                        "Custom Designs",
+                        "Premium Finishes",
+                        "Smart Features",
+                        "Sustainable Living",
+                      ],
                     },
                     className: "md:col-span-1",
                     thumbnail: "/Renders/Clubhouse/Ernika/ernika_2.png",

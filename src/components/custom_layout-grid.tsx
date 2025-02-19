@@ -64,18 +64,31 @@ const HoverCard = ({ card }: { card: Card }) => {
         </h3>
       </div>
       {/* Hover Content */}
-      <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-        <div className={`grid ${gridColumns} gap-4 w-full h-full p-6`}>
-          {card.content.subPoints?.map((point, index) => (
-            <div 
-              key={index}
-              className="bg-white/10 rounded-lg backdrop-blur-sm flex items-center justify-center p-4"
-            >
-              <p className="text-white text-lg md:text-2xl lg:text-4xl text-center font-bold">
-                {point}
-              </p>
-            </div>
-          ))}
+      <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="h-full flex flex-col p-6">
+          {/* Title and Description */}
+          <div className="mb-6">
+            <h3 className="text-white text-2xl md:text-3xl font-bold mb-3">
+              {card.content.title}
+            </h3>
+            <p className="text-white/80 text-sm md:text-base">
+              {card.content.description}
+            </p>
+          </div>
+          
+          {/* Grid of points */}
+          <div className={`grid ${gridColumns} gap-3 flex-1`}>
+            {card.content.subPoints?.map((point, index) => (
+              <div 
+                key={index}
+                className="bg-white/10 rounded-lg backdrop-blur-sm flex items-center justify-center p-3"
+              >
+                <p className="text-white text-sm md:text-base lg:text-lg text-center font-semibold">
+                  {point}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

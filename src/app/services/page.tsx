@@ -43,7 +43,7 @@ function ServicesContent() {
                 className={`px-6 py-3 rounded-lg transition-all duration-300 ${
                   selectedService === service.id
                     ? "bg-primary/60 text-white shadow-lg scale-120"
-                    : "bg-white/60 text-primary dark:text-white hover:bg-white/30"
+                    : "bg-white/80 text-primary dark:text-black hover:bg-white/30"
                 }`}
               >
                 {service.name}
