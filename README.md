@@ -1,4 +1,25 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EverGrove Spaces
+
+A modern architectural and design portfolio website built with Next.js, showcasing architectural projects, services, and team information.
+
+## Features
+
+- Responsive design with dark/light mode support
+- Dynamic service pages with interactive content
+- Image carousels and animations using Framer Motion
+- Custom UI components built with Radix UI and Tailwind CSS
+- Optimized image loading and performance
+
+## Tech Stack
+
+- Next.js 14
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Radix UI
+- Shadcn UI
+
+## Project Structure
 
 ## Getting Started
 
