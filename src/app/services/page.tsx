@@ -40,10 +40,10 @@ function ServicesContent() {
               <button
                 key={service.id}
                 onClick={() => setSelectedService(service.id)}
-                className={`px-6 py-3 rounded-lg transition-all duration-300 backdrop-blur-sm ${
+                className={`px-6 py-3 rounded-lg transition-all duration-300 ${
                   selectedService === service.id
-                    ? "bg-primary/90 text-white shadow-lg scale-105"
-                    : "bg-white/10 text-primary dark:text-white hover:bg-white/20"
+                    ? "bg-primary/60 text-white shadow-lg scale-120"
+                    : "bg-white/60 text-primary dark:text-white hover:bg-white/30"
                 }`}
               >
                 {service.name}

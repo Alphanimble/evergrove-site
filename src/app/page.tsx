@@ -31,7 +31,10 @@ export default function OverlayDesign() {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative w-full bg-background text-foreground">
+    <div
+      ref={containerRef}
+      className="relative w-full bg-background text-foreground"
+    >
       <div className="sticky top-0 h-screen">
         <motion.div className="absolute inset-0" style={{ opacity: opacity }}>
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-[1]" />
@@ -53,8 +56,12 @@ export default function OverlayDesign() {
               <div
                 className="absolute inset-0 backdrop-blur-sm bg-black/30"
                 style={{
-                  WebkitMaskImage: `url("data:image/svg+xml,${encodeURIComponent(svgContent)}")`,
-                  maskImage: `url("data:image/svg+xml,${encodeURIComponent(svgContent)}")`,
+                  WebkitMaskImage: `url("data:image/svg+xml,${encodeURIComponent(
+                    svgContent
+                  )}")`,
+                  maskImage: `url("data:image/svg+xml,${encodeURIComponent(
+                    svgContent
+                  )}")`,
                   WebkitMaskSize: "contain",
                   maskSize: "contain",
                   WebkitMaskRepeat: "no-repeat",
@@ -81,13 +88,22 @@ export default function OverlayDesign() {
           style={{ y: yPosition }}
         >
           <nav className={`${teko.className} flex gap-4 md:gap-8 ml-20`}>
-            <a href="#" className="text-black text-lg md:text-3xl hover:opacity-80 transition-opacity">
+            <a
+              href="#"
+              className="text-black text-lg md:text-3xl hover:opacity-80 transition-opacity"
+            >
               HOME
             </a>
-            <a href="#services" className="text-black text-lg md:text-3xl hover:opacity-80 transition-opacity">
+            <a
+              href="#services"
+              className="text-black text-lg md:text-3xl hover:opacity-80 transition-opacity"
+            >
               SERVICES
             </a>
-            <a href="#about" className="text-black text-lg md:text-3xl hover:opacity-80 transition-opacity">
+            <a
+              href="#about"
+              className="text-black text-lg md:text-3xl hover:opacity-80 transition-opacity"
+            >
               ABOUT US
             </a>
           </nav>
@@ -116,10 +132,12 @@ export default function OverlayDesign() {
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80" />
               <div className="absolute inset-0 flex items-center justify-center text-center px-4">
-                <h1 className="text-5xl md:text-7xl font-bold text-white">Our Expertise</h1>
+                <h1 className="text-5xl md:text-7xl font-bold text-white">
+                  Our Expertise
+                </h1>
               </div>
             </div>
-            
+
             <div className="py-20 px-4 sm:px-6 lg:px-8">
               <CustomLayoutGrid
                 cards={[
@@ -127,28 +145,28 @@ export default function OverlayDesign() {
                     id: 1,
                     content: {
                       title: "Plotted Development",
-                      description: "Master-planned communities with premium infrastructure and modern amenities.",
+                      description:
+                        "Master-planned communities with premium infrastructure and modern amenities.",
                       subPoints: [
                         "Premium Infrastructure",
                         "Modern Amenities",
                         "Strategic Location",
                         "Sustainable Planning",
                         "Green Spaces",
-                        "Community Living"
-                      ]
+                        "Community Living",
+                      ],
                     },
                     className: "md:col-span-2",
-                    thumbnail: "https://www.prestigecityhyderabad.live/project/plotted-development-in-bangalore.webp",
+                    thumbnail:
+                      "https://www.prestigecityhyderabad.live/project/plotted-development-in-bangalore.webp",
                   },
                   {
                     id: 2,
                     content: {
                       title: "Clubhouse",
-                      description: "Luxurious community spaces designed for recreation, wellness, and social gatherings.",
-                      subPoints: [
-                        "Recreation Facilities",
-                        "Wellness Center",
-                      ]
+                      description:
+                        "Luxurious community spaces designed for recreation, wellness, and social gatherings.",
+                      subPoints: ["Recreation Facilities", "Wellness Center"],
                     },
                     className: "md:col-span-1",
                     thumbnail: "/Renders/Clubhouse/Eternia/eternia_2.png",
@@ -157,11 +175,9 @@ export default function OverlayDesign() {
                     id: 3,
                     content: {
                       title: "Individual Residence",
-                      description: "Bespoke home designs that perfectly balance elegance with functionality.",
-                      subPoints: [
-                        "Custom Designs",
-                        "Premium Finishes",
-                      ]
+                      description:
+                        "Bespoke home designs that perfectly balance elegance with functionality.",
+                      subPoints: ["Custom Designs", "Premium Finishes"],
                     },
                     className: "md:col-span-1",
                     thumbnail: "/Renders/Clubhouse/Ernika/ernika_2.png",
@@ -170,13 +186,14 @@ export default function OverlayDesign() {
                     id: 4,
                     content: {
                       title: "Construction",
-                      description: "Expert construction services with attention to detail and quality craftsmanship.",
+                      description:
+                        "Expert construction services with attention to detail and quality craftsmanship.",
                       subPoints: [
                         "Quality Craftsmanship",
                         "Timeline Management",
                         "Expert Supervision",
-                        "Premium Materials"
-                      ]
+                        "Premium Materials",
+                      ],
                     },
                     className: "md:col-span-2",
                     thumbnail: "/Renders/Entrance_Arch/Ernika/2.png",
