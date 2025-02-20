@@ -35,15 +35,15 @@ function ServicesContent() {
           </h1>
 
           {/* Service Selection */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <div className="flex flex-wrap justify-center gap-4 mb-12 font-bold">
             {services.map((service) => (
               <button
                 key={service.id}
                 onClick={() => setSelectedService(service.id)}
                 className={`px-6 py-3 rounded-lg transition-all duration-300 ${
                   selectedService === service.id
-                    ? "bg-primary/60 text-white shadow-lg scale-120"
-                    : "bg-white/80 text-primary dark:text-black hover:bg-white/30"
+                    ? "bg-primary text-white shadow-lg scale-120"
+                    : "bg-white text-primary dark:text-black hover:bg-white/30"
                 }`}
               >
                 {service.name}
