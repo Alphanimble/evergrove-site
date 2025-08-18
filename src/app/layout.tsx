@@ -34,7 +34,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${playfair.variable} antialiased`}>
+      {/* suppressHydrationWarning on body silences harmless mismatches from browser extensions */}
+      <body suppressHydrationWarning className={`${inter.variable} ${playfair.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <main className="relative">{children}</main>
           <FloatingDock />
