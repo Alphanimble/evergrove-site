@@ -22,10 +22,11 @@ const layoutProjects = [
       "This project is a masterful fusion of thoughtful design and expert execution, carefully crafted to ensure that modern living aligns perfectly with the tranquillity of nature. From the initial concept to the final execution, every detail has been meticulously planned to create spaces that blend seamlessly with their natural surroundings. The design embraces sustainability, with eco-friendly materials, energy-efficient systems, and green spaces that encourage a harmonious connection with the environment.",
     scope: ["Master Plan", "Entrance Arch", "MEP Services", "Landscape Design"],
     images: [
-      "/Renders/Master_plan/Eternia/Master_plan/1.jpg",
       "/Renders/Entrance_Arch/Eternia/1.jpg",
       "/Renders/Entrance_Arch/Eternia/2.jpg",
       "/Renders/Entrance_Arch/Eternia/3.jpg",
+      "/Renders/Master_plan/Eternia/Master_plan/1.jpg",
+      "/Renders/Entrance_Arch/Eternia/4.jpg",
     ],
   },
   {
@@ -76,10 +77,10 @@ const layoutProjects = [
       "Project is designed with a strong focus on sustainability, offering residents an eco-friendly living environment that harmonizes with nature. The layout maximizes green spaces, ensuring that each plot benefits from ample natural surroundings, while promoting energy-efficient design through thoughtful placement and orientation. Sustainable infrastructure, such as rainwater harvesting systems, solar energy solutions, and efficient waste management, are integrated throughout the development.",
     scope: ["Master Plan", "Entrance Arch", "MEP Services", "Landscape Design"],
     images: [
-      "/placeholder.svg?height=400&width=600&text=Evara+Master+Plan",
-      "/placeholder.svg?height=400&width=600&text=Evara+Entrance",
-      "/placeholder.svg?height=400&width=600&text=Evara+Landscape",
-      "/placeholder.svg?height=400&width=600&text=Evara+Amenities",
+      "/Renders/Entrance_Arch/Evara/Evara_1.png",
+      "/Renders/Entrance_Arch/Evara/Evara_2.png",
+      "/Renders/Entrance_Arch/Evara/Evara_3.png",
+      "/Renders/Entrance_Arch/Evara/Evara_4.png",
     ],
   },
 ]
