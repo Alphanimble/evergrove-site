@@ -33,11 +33,22 @@ jobs:
       - name: Build
         run: npm run build --if-present
 
+      - name: List build output
+        run: |
+          echo "Listing repository root"
+          ls -la || true
+          echo "Listing .next directory (if present)"
+          ls -la .next || true
+          echo "Listing out directory (if present)"
+          ls -la out || true
+
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: production-build
-          path: .next
+          path: .next/**
+          if-no-files-found: error
+          compression-level: 6
 
   deploy:
     name: Deploy
