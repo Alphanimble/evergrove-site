@@ -439,7 +439,7 @@ export default function ProjectsPage() {
                 viewport={{ once: true }}
                 className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
               >
-                Let's discuss how we can bring your vision to life with our expertise in luxury development and
+                Let&apos;s discuss how we can bring your vision to life with our expertise in luxury development and
                 sustainable design.
               </motion.p>
               <motion.div

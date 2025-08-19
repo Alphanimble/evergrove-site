@@ -56,7 +56,7 @@ export default function HomePage() {
       setCurrentTextIndex((prev) => (prev + 1) % morphingTexts.length)
     }, 3000)
     return () => clearInterval(interval)
-  }, [])
+  }, [morphingTexts.length])
 
   if (!isLoaded) {
     return <LoadingScreen />
@@ -132,7 +132,7 @@ export default function HomePage() {
               transition={{ duration: 1, delay: 1 }}
             >
               <TextReveal className="font-display text-4xl md:text-2xl font-bold text-white leading-tight">
-                Crafting Tomorrow's Living Spaces
+                Crafting Tomorrow&apos;s Living Spaces
               </TextReveal>
 
               <motion.div
@@ -407,7 +407,7 @@ export default function HomePage() {
                     viewport={{ once: true }}
                     className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
                   >
-                    Let's collaborate to create spaces that inspire and endure.
+                    Let&apos;s collaborate to create spaces that inspire and endure.
                     Contact us today to begin your architectural journey.
                   </motion.p>
                   <motion.div
