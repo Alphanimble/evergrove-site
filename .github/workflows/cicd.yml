@@ -52,6 +52,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Check Vercel secrets are present
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+        run: |
+          echo "VERCEL_TOKEN set: ${VERCEL_TOKEN:+yes}"
+          echo "VERCEL_PROJECT_ID set: ${VERCEL_PROJECT_ID:+yes}"
+          echo "VERCEL_ORG_ID set: ${VERCEL_ORG_ID:+yes}"
+
       # Optional: Vercel deploy. To enable set the repository secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID
       - name: Deploy to Vercel
         if: ${{ secrets.VERCEL_TOKEN && secrets.VERCEL_PROJECT_ID && secrets.VERCEL_ORG_ID }}
