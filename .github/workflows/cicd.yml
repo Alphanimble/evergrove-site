@@ -61,4 +61,4 @@ jobs:
           vercel-token: TdVAjO6DHJwwJa5xgKSZctpz
           vercel-project-id: prj_D6zlgx0I62bIHAugdcy53BrF2Isc
           working-directory: ./
-          prod: true
+          vercel-args: '--prod'
