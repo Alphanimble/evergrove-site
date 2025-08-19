@@ -2,14 +2,13 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import { useEffect, useState } from "react"
-import { useTheme } from "next-themes"
 import Image from "next/image"
 
 export function LoadingScreen() {
   const [isLoading, setIsLoading] = useState(true)
   const [progress, setProgress] = useState(0)
   const [mounted, setMounted] = useState(false)
-  const { theme } = useTheme()
+
 
   useEffect(() => {
     setMounted(true)
@@ -107,7 +106,7 @@ export function LoadingScreen() {
               transition={{ delay: 0.5, duration: 0.8 }}
               className="text-white/60 text-xl mt-2 mb-8 relative z-50"
             >
-              Crafting Tomorrow's Spaces
+              Crafting Tomorrow&apos;s Spaces
             </motion.div>
 
             {/* Progress Bar */}

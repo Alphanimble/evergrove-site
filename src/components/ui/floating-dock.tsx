@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
-import { Home, Briefcase, Users, Mail, Phone, MoonIcon, SunIcon, ChevronDown, Menu, X, FolderOpen } from "lucide-react"
+import { Home, Briefcase, Users,  MoonIcon, SunIcon, Menu, X, FolderOpen } from "lucide-react"
 import Link from "next/link"
 import { useTheme } from "next-themes"
 import { usePathname } from "next/navigation"
@@ -86,7 +86,7 @@ export function FloatingDock() {
 
           {/* Navigation Items */}
           <div className="flex items-center gap-2">
-            {dockItems.map((item, index) => (
+            {dockItems.map((item) => (
               <Link key={item.label} href={item.href}>
                 <motion.div
                   whileHover={{ scale: 1.1 }}

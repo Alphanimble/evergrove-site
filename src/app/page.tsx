@@ -10,7 +10,7 @@ import { LoadingScreen } from "@/components/ui/loading-screen"
 import { TextReveal } from "@/components/ui/text-reveal"
 import { Sparkles } from "@/components/ui/sparkles"
 import { Particles } from "@/components/ui/particles"
-import { AnimatedBeam } from "@/components/ui/animated-beam"
+
 
 export default function HomePage() {
   const [svgContent, setSvgContent] = useState<string | null>(null)
