@@ -59,6 +59,7 @@ jobs:
         uses: amondnet/vercel-action@v20
         with:
           vercel-token: TdVAjO6DHJwwJa5xgKSZctpz
+          VERCEL_ORG_ID: 8pVp3Gz9xxvaLF8qvVpzc46f
           vercel-project-id: prj_D6zlgx0I62bIHAugdcy53BrF2Isc
           working-directory: ./
           vercel-args: '--prod'
