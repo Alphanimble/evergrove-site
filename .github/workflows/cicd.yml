@@ -42,13 +42,6 @@ jobs:
           echo "Listing out directory (if present)"
           ls -la out || true
 
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: production-build
-          path: .next/**
-          if-no-files-found: error
-          compression-level: 6
 
   deploy:
     name: Deploy
@@ -60,11 +53,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: production-build
-          path: .next
 
       # Optional: Vercel deploy. To enable set the repository secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID
       - name: Deploy to Vercel
