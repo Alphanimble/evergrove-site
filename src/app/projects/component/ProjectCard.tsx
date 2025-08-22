@@ -5,7 +5,18 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, MapPin, Home, Layers } from "lucide-react"
 
 export interface ProjectCardProps {
-  project: any
+  project: {
+    id: number;
+    name: string;
+    area: string;
+    plots: number;
+    theme: string;
+    icon: React.ElementType;
+    color: string;
+    description: string;
+    scope: string[];
+    images: string[];
+  };
   index: number
   onViewDetails: () => void
 }

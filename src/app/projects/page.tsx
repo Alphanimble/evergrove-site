@@ -138,19 +138,17 @@ const clubhouseProjects = [
 
 export default function ProjectsPage() {
 	const [activeTab, setActiveTab] = useState<"layouts" | "clubhouses">("layouts")
-	const [selectedProject, setSelectedProject] = useState<number | null>(null)
-	const [selectedClubhouse, setSelectedClubhouse] = useState<number | null>(null)
 	const [modalOpen, setModalOpen] = useState(false)
 	const [modalImages, setModalImages] = useState<string[]>([])
 	const [modalTitle, setModalTitle] = useState("")
 
 	// Handlers for opening modals
-	const handleViewProjectDetails = (project: any) => {
+	const handleViewProjectDetails = (project: typeof layoutProjects[number]) => {
 		setModalImages(project.images)
 		setModalTitle(project.name)
 		setModalOpen(true)
 	}
-	const handleExploreClubhouse = (clubhouse: any) => {
+	const handleExploreClubhouse = (clubhouse: typeof clubhouseProjects[number]) => {
 		setModalImages(clubhouse.images)
 		setModalTitle(clubhouse.name)
 		setModalOpen(true)

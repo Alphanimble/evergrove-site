@@ -5,7 +5,16 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 
 export interface ClubhouseCardProps {
-  clubhouse: any
+  clubhouse: {
+    id: number
+    name: string
+    area: string
+    theme: string
+    color: string
+    description: string
+    amenities: string[]
+    images: string[]
+  }
   index: number
   onExplore: () => void
 }
