@@ -81,7 +81,7 @@ function ServicesContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="bg-card rounded-2xl shadow-lg overflow-hidden"
+            className="bg-card dark:bg-slate-900/95 rounded-2xl shadow-lg overflow-hidden"
           >
             {selectedService === "architecture-design" ? (
               <div className="container mx-auto px-4 py-8">

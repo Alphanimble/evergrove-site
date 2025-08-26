@@ -79,10 +79,10 @@ const layoutProjects = [
 			"Project is designed with a strong focus on sustainability, offering residents an eco-friendly living environment that harmonizes with nature. The layout maximizes green spaces, ensuring that each plot benefits from ample natural surroundings, while promoting energy-efficient design through thoughtful placement and orientation. Sustainable infrastructure, such as rainwater harvesting systems, solar energy solutions, and efficient waste management, are integrated throughout the development. By prioritizing environmentally conscious building practices and creating a balanced relationship between nature and modern living, this project aims to provide long-term value for both residents and the planet, creating a community that thrives in harmony with its surroundings.",
 		scope: ["Master Plan", "Entrance Arch", "MEP Services", "Landscape Design"],
 		images: [
-			"/placeholder.svg?height=400&width=600&text=Evara+Master+Plan",
-			"/placeholder.svg?height=400&width=600&text=Evara+Entrance",
-			"/placeholder.svg?height=400&width=600&text=Evara+Landscape",
-			"/placeholder.svg?height=400&width=600&text=Evara+Amenities",
+			"/Renders/Entrance_Arch/Evara/1.png",
+			"/Renders/Entrance_Arch/Evara/2.png",
+			"/Renders/Entrance_Arch/Evara/3.png",
+			"/Renders/Entrance_Arch/Evara/4.png",
 		],
 	},
 ]

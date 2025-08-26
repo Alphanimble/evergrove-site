@@ -61,20 +61,20 @@ export function ServiceCard({
             width: { duration: 0.5 },
             opacity: { duration: 0.4 }
           }}
-          className="overflow-hidden bg-white border-l border-gray-100 flex-shrink-0"
+          className="bg-card text-card-foreground border border-border/30 rounded-lg shadow-sm"
         >
           <div className="p-8 h-[300px] overflow-y-auto">
             <div className="space-y-6">
-              <div className="border-b border-gray-100 pb-4">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-3">{title}</h3>
-                <p className="text-gray-600 leading-relaxed">{description}</p>
+              <div className="border-b border-border/20 pb-4">
+                <h3 className="text-2xl font-semibold text-card-foreground mb-3">{title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{description}</p>
               </div>
               
               <div className="space-y-5">
                 {detailedContent?.additionalInfo && (
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-3 text-lg">Overview</h4>
-                    <p className="text-gray-700 leading-relaxed">
+                    <h4 className="font-semibold text-card-foreground mb-3 text-lg">Overview</h4>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                       {detailedContent.additionalInfo}
                     </p>
                   </div>
@@ -82,8 +82,8 @@ export function ServiceCard({
                 
                 {detailedContent?.keyPoints && (
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-3 text-lg">Key Features</h4>
-                    <ul className="space-y-2 text-gray-700">
+                    <h4 className="font-semibold text-card-foreground mb-3 text-lg">Key Features</h4>
+                    <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                       {detailedContent.keyPoints.map((point, idx) => (
                         <li key={idx} className="flex items-start">
                           <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
@@ -96,7 +96,7 @@ export function ServiceCard({
 
                 {detailedContent?.highlights && (
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-3 text-lg">Service Highlights</h4>
+                    <h4 className="font-semibold text-card-foreground mb-3 text-lg">Service Highlights</h4>
                     <div className="flex flex-wrap gap-2">
                       {detailedContent.highlights.map((highlight, idx) => (
                         <span 
@@ -149,19 +149,19 @@ export function ServiceCard({
       
       {/* Expand/Collapse button */}
       <div className={`absolute top-4 ${isEvenIndex ? 'right-4' : 'left-4'} z-10`}>
-        <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-lg px-4 py-2 flex items-center space-x-2 shadow-sm">
-          <span className="text-sm font-medium text-gray-700">
+        <div className="bg-card/95 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 rounded-lg px-4 py-2 flex items-center space-x-2 shadow-sm">
+          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
             {isOpen ? 'Close' : 'View Details'}
           </span>
           {isEvenIndex ? (
             <ChevronRight 
-              className={`w-4 h-4 text-gray-700 transition-transform duration-300 ${
+              className={`w-4 h-4 text-gray-700 dark:text-primary transition-transform duration-300 ${
                 isOpen ? 'rotate-90' : ''
               }`}
             />
           ) : (
             <ChevronLeft 
-              className={`w-4 h-4 text-gray-700 transition-transform duration-300 ${
+              className={`w-4 h-4 text-gray-700 dark:text-primary transition-transform duration-300 ${
                 isOpen ? '-rotate-90' : ''
               }`}
             />
@@ -173,7 +173,7 @@ export function ServiceCard({
       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6">
         <h3 className="text-2xl font-semibold text-white mb-2">{title}</h3>
         {!isOpen && (
-          <p className="text-gray-200 text-sm leading-relaxed line-clamp-2">
+          <p className="text-gray-200  text-sm leading-relaxed line-clamp-2">
             {description}
           </p>
         )}
@@ -182,7 +182,7 @@ export function ServiceCard({
   );
 
   return (
-    <div className={`rounded-xl overflow-hidden bg-white shadow-lg border border-gray-100 mb-8 ${index % 2 === 1 ? 'ml-auto' : ''}`} style={{maxWidth: '100%'}}>
+    <div className={`rounded-xl overflow-hidden bg-card/90 backdrop-blur-sm shadow-xl ring-1 ring-gray-100 dark:ring-white/5 mb-8 ${index % 2 === 1 ? 'ml-auto' : ''}`} style={{maxWidth: '100%'}}>
       <div className={`flex ${index % 2 === 1 ? 'flex-row-reverse' : ''}`}>
         <ImagePanel />
         <ContentPanel />
