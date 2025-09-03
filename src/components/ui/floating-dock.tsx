@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
-import { Home, Briefcase, Users, Mail, Phone, MoonIcon, SunIcon, ChevronDown, Menu, X, FolderOpen } from "lucide-react"
+import { Home, Briefcase, Users,  MoonIcon, SunIcon, Menu, X, FolderOpen } from "lucide-react"
 import Link from "next/link"
 import { useTheme } from "next-themes"
 import { usePathname } from "next/navigation"
