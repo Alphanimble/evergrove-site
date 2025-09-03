@@ -42,7 +42,7 @@ export default function ServicesClient() {
               Our <span className="text-gradient">Services</span>
             </h1>
             <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              Comprehensive architectural solutions tailored to your vision and needs
+              Things we offer
             </p>
           </motion.div>
         </div>
