@@ -97,4 +97,13 @@ body {
     background: hsl(220 13% 20%);
     border-color: hsl(220 13% 28%);
   }
+
+  /* Hide scrollbar but keep scroll functionality */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }

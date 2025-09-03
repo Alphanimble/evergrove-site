@@ -141,16 +141,19 @@ export default function ProjectsPage() {
 	const [modalOpen, setModalOpen] = useState(false)
 	const [modalImages, setModalImages] = useState<string[]>([])
 	const [modalTitle, setModalTitle] = useState("")
+	const [modalInitialIndex, setModalInitialIndex] = useState(0)
 
 	// Handlers for opening modals
-	const handleViewProjectDetails = (project: typeof layoutProjects[number]) => {
+	const handleViewProjectDetails = (project: typeof layoutProjects[number], index: number = 0) => {
 		setModalImages(project.images)
 		setModalTitle(project.name)
+		setModalInitialIndex(index)
 		setModalOpen(true)
 	}
 	const handleExploreClubhouse = (clubhouse: typeof clubhouseProjects[number]) => {
 		setModalImages(clubhouse.images)
 		setModalTitle(clubhouse.name)
+		setModalInitialIndex(0)
 		setModalOpen(true)
 	}
 
@@ -236,7 +239,7 @@ export default function ProjectsPage() {
 									key={project.id}
 									project={project}
 									index={index}
-									onViewDetails={() => handleViewProjectDetails(project)}
+									onViewDetails={(clickedIndex?: number) => handleViewProjectDetails(project, clickedIndex ?? 0)}
 								/>
 							))}
 						</motion.div>
@@ -268,6 +271,7 @@ export default function ProjectsPage() {
 					onClose={() => setModalOpen(false)}
 					images={modalImages}
 					title={modalTitle}
+					initialIndex={modalInitialIndex}
 				/>
 			</section>
 
