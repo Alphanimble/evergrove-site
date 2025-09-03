@@ -61,13 +61,7 @@ function Page() {
 		<div className="min-h-screen bg-background">
 			{/* Hero Section */}
 			<section className="relative h-[60vh] overflow-hidden">
-				<Image
-					src="/team.jpg"
-					alt="EverGrove team"
-					fill
-					className="object-cover"
-					priority
-				/>
+				<Image src="/team.jpg" alt="EverGrove team" fill className="object-cover" priority />
 				<div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
 				<div className="absolute inset-0 flex items-center justify-center">
 					<motion.div
@@ -77,12 +71,10 @@ function Page() {
 						className="text-center"
 					>
 						<h1 className="font-display text-5xl md:text-7xl font-bold text-white mb-4">
-							About{" "}
-							<span className="text-gradient">EverGrove</span>
+							About <span className="text-gradient">EverGrove</span>
 						</h1>
 						<p className="text-xl text-white/90 max-w-2xl mx-auto">
-							Pioneering architectural excellence through innovation, sustainability,
-							and timeless design
+							Pioneering architectural excellence through innovation, sustainability, and timeless design
 						</p>
 					</motion.div>
 				</div>
@@ -98,24 +90,18 @@ function Page() {
 						viewport={{ once: true }}
 						className="max-w-4xl mx-auto text-center mb-16"
 					>
-						<h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-8">
-							Our Story
-						</h2>
+						<h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-8">Our Story</h2>
 						<div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
 							<p>
-								Founded with a vision to transform architectural landscapes, EverGrove
-								Spaces represents the perfect fusion of innovative design, sustainable
-								practices, and exceptional craftsmanship. Our journey began with a
-								simple belief: every space should inspire, endure, and enhance the
-								lives of those who inhabit it.
+								Founded with a vision to transform architectural landscapes, EverGrove Spaces represents the perfect
+								fusion of innovative design, sustainable practices, and exceptional craftsmanship. Our journey began
+								with a simple belief: every space should inspire, endure, and enhance the lives of those who inhabit it.
 							</p>
 							<p>
-								Today, we stand as leaders in architectural excellence, having
-								delivered over 500 projects that showcase our commitment to quality,
-								sustainability, and timeless design. Our multidisciplinary approach
-								ensures that every project, from intimate residences to expansive
-								commercial developments, receives the attention and expertise it
-								deserves.
+								Today, we stand as leaders in architectural excellence, having delivered over 500 projects that showcase
+								our commitment to quality, sustainability, and timeless design. Our multidisciplinary approach ensures
+								that every project, from intimate residences to expansive commercial developments, receives the
+								attention and expertise it deserves.
 							</p>
 						</div>
 					</motion.div>
@@ -133,13 +119,11 @@ function Page() {
 						className="text-center mb-16"
 					>
 						<h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-							Meet Our{" "}
-							<span className="text-gradient">Team</span>
+							Meet Our <span className="text-gradient">Team</span>
 						</h2>
 						<p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-							Our diverse team of architects, designers, and engineers brings
-							together decades of experience and a shared passion for creating
-						extraordinary spaces.
+							Our diverse team of architects, designers, and engineers brings together decades of experience and a
+							shared passion for creating extraordinary spaces.
 						</p>
 					</motion.div>
 
@@ -163,15 +147,9 @@ function Page() {
 										/>
 									</div>
 									<div className="p-8">
-										<h3 className="font-display text-2xl font-bold text-foreground mb-2">
-											{member.name}
-										</h3>
-										<p className="text-primary font-semibold mb-4">
-											{member.role}
-										</p>
-										<p className="text-muted-foreground leading-relaxed">
-											{member.bio}
-										</p>
+										<h3 className="font-display text-2xl font-bold text-foreground mb-2">{member.name}</h3>
+										<p className="text-primary font-semibold mb-4">{member.role}</p>
+										<p className="text-muted-foreground leading-relaxed">{member.bio}</p>
 									</div>
 								</div>
 							</motion.div>
@@ -191,12 +169,11 @@ function Page() {
 						className="text-center mb-16"
 					>
 						<h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-							Featured{" "}
-							<span className="text-gradient">Projects</span>
+							Featured <span className="text-gradient">Projects</span>
 						</h2>
 						<p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-							Explore some of our most celebrated projects that showcase our
-							commitment to architectural excellence and innovative design solutions.
+							Explore some of our most celebrated projects that showcase our commitment to architectural excellence and
+							innovative design solutions.
 						</p>
 					</motion.div>
 
@@ -206,31 +183,28 @@ function Page() {
 								key={project.name}
 								initial={{ opacity: 0, y: 30 }}
 								whileInView={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.6, delay: index * 0.1 }}
+								transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 0.25, 0.25, 0.75] }}
 								viewport={{ once: true }}
+								whileHover={{ scale: 1.02, y: -10 }}
 								className="group"
 							>
-								<div className="bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2">
+								<div className="bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
 									<div className="aspect-video relative overflow-hidden">
 										<Image
 											src={project.image || "/placeholder.svg"}
 											alt={project.name}
 											fill
-											className="object-cover group-hover:scale-110 transition-transform duration-500"
+											className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
 										/>
 									</div>
 									<div className="p-8">
 										<div className="flex items-center justify-between mb-4">
-											<h3 className="font-display text-2xl font-bold text-foreground">
-												{project.name}
-											</h3>
+											<h3 className="font-display text-2xl font-bold text-foreground">{project.name}</h3>
 											<span className="text-primary font-semibold text-sm bg-primary/10 px-3 py-1 rounded-full">
 												{project.type}
 											</span>
 										</div>
-										<p className="text-muted-foreground leading-relaxed">
-											{project.description}
-										</p>
+										<p className="text-muted-foreground leading-relaxed">{project.description}</p>
 									</div>
 								</div>
 							</motion.div>
@@ -251,12 +225,10 @@ function Page() {
 							className="text-center mb-12"
 						>
 							<h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-								Let&apos;s Create Something{" "}
-								<span className="text-gradient">Extraordinary</span>
+								Let's Create Something <span className="text-gradient">Extraordinary</span>
 							</h2>
 							<p className="text-xl text-muted-foreground">
-								Ready to bring your vision to life? Get in touch with our team
-								today.
+								Ready to bring your vision to life? Get in touch with our team today.
 							</p>
 						</motion.div>
 
@@ -275,9 +247,7 @@ function Page() {
 									</div>
 									<div>
 										<h3 className="font-semibold text-foreground">Email Us</h3>
-										<p className="text-muted-foreground">
-											hello@evergrove.com
-										</p>
+										<p className="text-muted-foreground">hello@evergrove.com</p>
 									</div>
 								</div>
 
@@ -287,9 +257,7 @@ function Page() {
 									</div>
 									<div>
 										<h3 className="font-semibold text-foreground">Call Us</h3>
-										<p className="text-muted-foreground">
-											+1 (555) 123-4567
-										</p>
+										<p className="text-muted-foreground">+1 (555) 123-4567</p>
 									</div>
 								</div>
 
@@ -299,9 +267,7 @@ function Page() {
 									</div>
 									<div>
 										<h3 className="font-semibold text-foreground">Visit Us</h3>
-										<p className="text-muted-foreground">
-											123 Architecture Ave, Design City
-										</p>
+										<p className="text-muted-foreground">123 Architecture Ave, Design City</p>
 									</div>
 								</div>
 							</motion.div>
@@ -317,9 +283,7 @@ function Page() {
 								<form className="space-y-6">
 									<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 										<div>
-											<label className="block text-sm font-semibold text-foreground mb-2">
-												First Name
-											</label>
+											<label className="block text-sm font-semibold text-foreground mb-2">First Name</label>
 											<input
 												type="text"
 												className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
@@ -327,9 +291,7 @@ function Page() {
 											/>
 										</div>
 										<div>
-											<label className="block text-sm font-semibold text-foreground mb-2">
-												Last Name
-											</label>
+											<label className="block text-sm font-semibold text-foreground mb-2">Last Name</label>
 											<input
 												type="text"
 												className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
@@ -339,9 +301,7 @@ function Page() {
 									</div>
 
 									<div>
-										<label className="block text-sm font-semibold text-foreground mb-2">
-											Email
-										</label>
+										<label className="block text-sm font-semibold text-foreground mb-2">Email</label>
 										<input
 											type="email"
 											className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
@@ -350,9 +310,7 @@ function Page() {
 									</div>
 
 									<div>
-										<label className="block text-sm font-semibold text-foreground mb-2">
-											Message
-										</label>
+										<label className="block text-sm font-semibold text-foreground mb-2">Message</label>
 										<textarea
 											rows={4}
 											className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors resize-none"

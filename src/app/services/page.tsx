@@ -500,10 +500,6 @@ function ServicesContent() {
   )
 }
 
-export default function ServicesPage() {
-  return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
-      <ServicesContent />
-    </Suspense>
-  )
+export default function Page() {
+  return <ServicesClient />
 }
