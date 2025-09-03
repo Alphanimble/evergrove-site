@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation"
 import { Teko } from "next/font/google"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip"
 
 const teko = Teko({
   subsets: ["latin"],
@@ -57,71 +58,88 @@ export function FloatingDock() {
   return (
     <>
       {/* Desktop Dock */}
-      <motion.div
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: -100, opacity: 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-        className="fixed top-8 left-[38%] transform -translate-x-1/2 z-50 hidden lg:block"
-      >
-        <div className="flex items-center gap-4 bg-black/20 backdrop-blur-xl border border-white/10 rounded-2xl p-3">
-          {/* Logo on the left */}
-          <Link href="/" className="flex items-center">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="px-4 py-2"
-            >
-              <Image
-                src='/Background.png'
-                alt="EverGrove"
-                width={140}
-                height={40}
-                className="h-8 w-auto"
-              />
-            </motion.div>
-          </Link>
+      <TooltipProvider>
+        <motion.div
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -100, opacity: 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="fixed top-8 left-[38%] transform -translate-x-1/2 z-50 hidden lg:block"
+        >
+          <div className="flex items-center gap-4 bg-black/20 backdrop-blur-xl border border-white/10 rounded-2xl p-3">
+            {/* Logo on the left */}
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link href="/" className="flex items-center">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    className="px-4 py-2"
+                  >
+                    <Image
+                      src='/Background.png'
+                      alt="EverGrove"
+                      width={140}
+                      height={40}
+                      className="h-8 w-auto"
+                    />
+                  </motion.div>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>Home</TooltipContent>
+            </Tooltip>
 
-          {/* Separator */}
-          <div className="w-px h-8 bg-white/20" />
+            {/* Separator */}
+            <div className="w-px h-8 bg-white/20" />
 
-          {/* Navigation Items */}
-          <div className="flex items-center gap-2">
-            {dockItems.map((item) => (
-              <Link key={item.label} href={item.href}>
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-12 h-12 bg-white/10 hover:bg-primary/20 rounded-xl flex items-center justify-center cursor-pointer transition-colors"
-                >
-                  <item.icon className="w-6 h-6 text-white" />
-                </motion.div>
-              </Link>
-            ))}
+            {/* Navigation Items */}
+            <div className="flex items-center gap-2">
+              {dockItems.map((item, index) => (
+                <Tooltip key={item.label}>
+                  <TooltipTrigger asChild>
+                    <Link href={item.href}>
+                      <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="w-12 h-12 bg-white/10 hover:bg-primary/20 rounded-xl flex items-center justify-center cursor-pointer transition-colors"
+                      >
+                        <item.icon className="w-6 h-6 text-white" />
+                      </motion.div>
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent>{item.label}</TooltipContent>
+                </Tooltip>
+              ))}
+            </div>
+
+            {/* Separator */}
+            <div className="w-px h-8 bg-white/20" />
+
+            {/* Theme Switcher */}
+            {mounted && (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-12 w-12 rounded-xl bg-white/10 hover:bg-primary/20 transition-colors"
+                      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                    >
+                      <SunIcon className="h-6 w-6 text-white rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                      <MoonIcon className="absolute h-6 w-6 text-white rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                      <span className="sr-only">Toggle theme</span>
+                    </Button>
+                  </motion.div>
+                </TooltipTrigger>
+                <TooltipContent>{theme === "light" ? "Switch to dark mode" : "Switch to light mode"}</TooltipContent>
+              </Tooltip>
+            )}
           </div>
-
-          {/* Separator */}
-          <div className="w-px h-8 bg-white/20" />
-
-          {/* Theme Switcher */}
-          {mounted && (
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-12 w-12 rounded-xl bg-white/10 hover:bg-primary/20 transition-colors"
-                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              >
-                <SunIcon className="h-6 w-6 text-white rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <MoonIcon className="absolute h-6 w-6 text-white rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                <span className="sr-only">Toggle theme</span>
-              </Button>
-            </motion.div>
-          )}
-        </div>
-      </motion.div>
+        </motion.div>
+      </TooltipProvider>
 
       {/* Mobile Dock */}
       <motion.div
