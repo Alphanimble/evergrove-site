@@ -1,4 +1,4 @@
-import { ServiceCard } from "./ServiceCard";
+import { ServiceCard } from "@/app/services/component/ServiceCard";
 
 interface ServiceContentProps {
   service: string;
@@ -100,7 +100,7 @@ export function ServiceContent({ service }: ServiceContentProps) {
           title={item.title}
           description={item.description}
           imageUrl={item.imageUrl}
-          isReversed={index % 2 !== 0}
+          
         />
       ))}
     </div>
