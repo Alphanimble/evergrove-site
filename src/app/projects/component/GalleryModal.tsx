@@ -287,31 +287,9 @@ const GalleryModal: React.FC<GalleryModalProps> = ({
                   <p className="text-sm text-gray-300">
                     {testimonials[currentIndex]?.designation}
                   </p>
-                  <motion.p className="mt-8 text-lg text-gray-200">
-                    {testimonials[currentIndex]?.quote.split(" ").map((word, index) => (
-                      <motion.span
-                        key={index}
-                        initial={{
-                          filter: "blur(10px)",
-                          opacity: 0,
-                          y: 5,
-                        }}
-                        animate={{
-                          filter: "blur(0px)",
-                          opacity: 1,
-                          y: 0,
-                        }}
-                        transition={{
-                          duration: 0.2,
-                          ease: "easeInOut",
-                          delay: 0.02 * index,
-                        }}
-                        className="inline-block"
-                      >
-                        {word}&nbsp;
-                      </motion.span>
-                    ))}
-                  </motion.p>
+                  <p className="mt-8 text-lg text-gray-200">
+                    {testimonials[currentIndex]?.quote}
+                  </p>
                 </motion.div>
                 
                 {/* Testimonial Navigation */}
