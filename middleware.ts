@@ -12,7 +12,13 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(maintenanceUrl)
   }
   
-  // If not in maintenance mode, check localhost restriction
+  // If maintenance mode is active, allow access to maintenance page only
+  if (isMaintenanceMode && isMaintenancePage) {
+    console.log(`Allowing access to maintenance page`)
+    return NextResponse.next()
+  }
+  
+  // Always check localhost restriction (unless we're in maintenance mode)
   if (!isMaintenanceMode) {
     const host = request.headers.get('host') || ''
     
@@ -24,7 +30,7 @@ export function middleware(request: NextRequest) {
                        host.startsWith('localhost:') ||
                        host.startsWith('127.0.0.1:')
 
-    console.log(`Middleware check - Host: ${host}, IsLocalhost: ${isLocalhost}`)
+    console.log(`Middleware check - Host: ${host}, IsLocalhost: ${isLocalhost}, MaintenanceMode: ${isMaintenanceMode}`)
 
     // Block everything that's not localhost
     if (!isLocalhost) {
