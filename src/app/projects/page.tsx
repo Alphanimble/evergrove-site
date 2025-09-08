@@ -1,6 +1,5 @@
-import ProjectsClient from "../../components/projects/ProjectsClient"
 "use client"
-
+import ProjectsClient from "../../components/projects/ProjectsClient"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { useState } from "react"
@@ -14,7 +13,7 @@ import ClubhouseCard from "@/app/projects/component/ClubhouseCard"
 import GalleryModal from "@/app/projects/component/GalleryModal"
 
 const layoutProjects = [
-	
+
 	{
 		id: 1,
 		name: "Eternia",
@@ -81,10 +80,10 @@ const layoutProjects = [
 			"Project is designed with a strong focus on sustainability, offering residents an eco-friendly living environment that harmonizes with nature. The layout maximizes green spaces, ensuring that each plot benefits from ample natural surroundings, while promoting energy-efficient design through thoughtful placement and orientation. Sustainable infrastructure, such as rainwater harvesting systems, solar energy solutions, and efficient waste management, are integrated throughout the development. By prioritizing environmentally conscious building practices and creating a balanced relationship between nature and modern living, this project aims to provide long-term value for both residents and the planet, creating a community that thrives in harmony with its surroundings.",
 		scope: ["Master Plan", "Entrance Arch", "MEP Services", "Landscape Design"],
 		images: [
-			"/placeholder.svg?height=400&width=600&text=Evara+Master+Plan",
-			"/placeholder.svg?height=400&width=600&text=Evara+Entrance",
-			"/placeholder.svg?height=400&width=600&text=Evara+Landscape",
-			"/placeholder.svg?height=400&width=600&text=Evara+Amenities",
+			"/Renders/Entrance_Arch/Evara/1.png",
+			"/Renders/Entrance_Arch/Evara/2.png",
+			"/Renders/Entrance_Arch/Evara/3.png",
+			"/Renders/Entrance_Arch/Evara/4.png",
 		],
 	},
 ]
@@ -136,52 +135,7 @@ const clubhouseProjects = [
 			"/Renders/Clubhouse/Ernika/ernika_4.png",
 		],
 	},
-	{
-		id: 1,
-		name: "Eternia Clubhouse",
-		area: "10,600 Sqft",
-		theme: "Refined Luxury",
-		color: "from-purple-500 to-indigo-600",
-		description:
-			"The clubhouse at the Eternia Project, where refined luxury meets sustainable design. Anchored by a sculptural waffle-slab ceiling and framed by a striking terracotta jali wall that doubles as a living green façade, the space filters light and invites nature in. Inside, residents enjoy a gym, indoor games, coworking spaces, an AMTC room, and a rooftop restaurant—each space designed to meet modern lifestyle needs. Blending greenery with clean lines and natural textures, this is a serene, contemporary retreat that redefines eco-conscious living.",
-		amenities: ["Gym", "Indoor Games", "Coworking Spaces", "AMTC Room", "Rooftop Restaurant"],
-		images: [
-			"/Renders/Clubhouse/Eternia/eternia_1.png",
-			"/Renders/Clubhouse/Eternia/eternia_2.png",
-			"/Renders/Clubhouse/Eternia/eternia_3.png",
-		],
-	},
-	{
-		id: 2,
-		name: "Etasha Clubhouse",
-		area: "9,700 Sqft",
-		theme: "Island Retreat",
-		color: "from-teal-500 to-blue-600",
-		description:
-			"Island-inspired retreat designed to foster community and relaxation. Surrounded by water and lush greenery, it features a warm Mangalore tile roof and fluid, coastal-style architecture. Inside, residents enjoy a modern gym, indoor games area, co-working space, and a terrace restaurant with panoramic views. With an AMTC room for efficient management, the Clubhouse blends natural charm with everyday functionality—serving as the vibrant heart of the Etasha community.",
-		amenities: ["Modern Gym", "Indoor Games", "Co-working Space", "Terrace Restaurant", "AMTC Room"],
-		images: [
-			"/Renders/Clubhouse/Etasha/Renders/entry.png",
-			"/Renders/Clubhouse/Etasha/Renders/a.png",
-			"/Renders/Clubhouse/Etasha/Renders/gym_1.png",
-		],
-	},
-	{
-		id: 3,
-		name: "Ernika Clubhouse",
-		area: "10,200 Sqft",
-		theme: "Biophilic Design",
-		color: "from-green-500 to-emerald-600",
-		description:
-			"The clubhouse at the Ernika project, Where Nature Meets Contemporary Living is a vibrant, biophilic hub designed to seamlessly blend nature with modern amenities, fostering wellness, community, and connection. Featuring lush greenery throughout, including vertical gardens, stepped balconies, and landscaped terraces, the architecture emphasizes natural light, ventilation, and organic forms through curved walls and layered elevations. This thoughtfully crafted space houses a fully equipped gym, indoor games area, co-working space, an AMTC room for facility management, and a scenic terrace restaurant.",
-		amenities: ["Fully Equipped Gym", "Indoor Games", "Co-working Space", "AMTC Room", "Scenic Terrace Restaurant"],
-		images: [
-			"/Renders/Clubhouse/Ernika/ernika_1.png",
-			"/Renders/Clubhouse/Ernika/ernika_2.png",
-			"/Renders/Clubhouse/Ernika/ernika_3.png",
-			"/Renders/Clubhouse/Ernika/ernika_4.png",
-		],
-	},
+
 ]
 
 export default function ProjectsPage() {
