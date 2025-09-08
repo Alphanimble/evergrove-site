@@ -1,24 +1,36 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export function middleware(request: NextRequest) {
-  // Get the host header
-  const host = request.headers.get('host') || ''
+  // Check for maintenance mode first
+  const isMaintenanceMode = process.env.MAINTENANCE_MODE === 'true'
+  const isMaintenancePage = request.nextUrl.pathname === '/maintenance'
   
-  // Only allow localhost and 127.0.0.1 - be very strict
-  const isLocalhost = host === 'localhost:3000' || 
-                     host === '127.0.0.1:3000' ||
-                     host === 'localhost' ||
-                     host === '127.0.0.1' ||
-                     host.startsWith('localhost:') ||
-                     host.startsWith('127.0.0.1:')
+  // If in maintenance mode and not already on maintenance page, redirect
+  if (isMaintenanceMode && !isMaintenancePage) {
+    const maintenanceUrl = new URL('/maintenance', request.url)
+    console.log(`Maintenance mode active - redirecting to maintenance page`)
+    return NextResponse.redirect(maintenanceUrl)
+  }
+  
+  // If not in maintenance mode, check localhost restriction
+  if (!isMaintenanceMode) {
+    const host = request.headers.get('host') || ''
+    
+    // Only allow localhost and 127.0.0.1 - be very strict
+    const isLocalhost = host === 'localhost:3000' || 
+                       host === '127.0.0.1:3000' ||
+                       host === 'localhost' ||
+                       host === '127.0.0.1' ||
+                       host.startsWith('localhost:') ||
+                       host.startsWith('127.0.0.1:')
 
-  console.log(`Middleware check - Host: ${host}, IsLocalhost: ${isLocalhost}`)
+    console.log(`Middleware check - Host: ${host}, IsLocalhost: ${isLocalhost}`)
 
-  // Block everything that's not localhost
-  if (!isLocalhost) {
-    console.log(`Blocking access from host: ${host}`)
-    return new NextResponse(
-      `<!DOCTYPE html>
+    // Block everything that's not localhost
+    if (!isLocalhost) {
+      console.log(`Blocking access from host: ${host}`)
+      return new NextResponse(
+        `<!DOCTYPE html>
 <html>
 <head>
   <title>Access Restricted</title>
@@ -36,17 +48,19 @@ export function middleware(request: NextRequest) {
   </div>
 </body>
 </html>`,
-      {
-        status: 403,
-        headers: {
-          'Content-Type': 'text/html',
-          'X-Robots-Tag': 'noindex'
+        {
+          status: 403,
+          headers: {
+            'Content-Type': 'text/html',
+            'X-Robots-Tag': 'noindex'
+          }
         }
-      }
-    )
-  }
+      )
+    }
 
-  console.log(`Allowing access from host: ${host}`)
+    console.log(`Allowing access from host: ${host}`)
+  }
+  
   // Allow the request to continue
   return NextResponse.next()
 }
