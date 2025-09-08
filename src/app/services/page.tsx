@@ -4,9 +4,9 @@ import { useState, useEffect, Suspense } from "react"
 import { ServiceContent } from "@/app/services/component/ServiceContent"
 import { ServiceCard } from "@/app/services/component/ServiceCard"
 import { useSearchParams } from "next/navigation"
-import { motion } from "framer-motion"
+import { motion } from "framer-motion"  
 import Image from "next/image"
-import ServicesClient from "@/components/pages/ServicesClient"
+
 
 function ServicesContent() {
   const searchParams = useSearchParams()
@@ -100,8 +100,8 @@ function ServicesContent() {
                   <ServiceCard
                     title="Conceptual Design and Master Planning"
                     description="We create compelling design concepts and master plans for plotted developments, ensuring that the layout, spatial distribution, and design elements align with the client's vision and the surrounding environment."
-                    imageUrl="/Renders/Master_plan/Ernika/Masterplan and parks detail with pictures (2).pdf"
-                    
+                    imageUrl="/Renders/Master_plan/Eternia/Master_plan/1.jpg"
+
                     index={0}
                     detailedContent={{
                       additionalInfo: "Our conceptual design process begins with understanding your vision and site characteristics. We develop comprehensive master plans that optimize land use, integrate infrastructure, and create sustainable communities.",

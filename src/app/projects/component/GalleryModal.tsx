@@ -1,9 +1,10 @@
 "use client"
 import React, { useEffect, useMemo, useRef, useState } from "react"
 import { createPortal } from "react-dom"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
+import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react"
 
 interface GalleryModalProps {
   open: boolean
@@ -11,11 +12,29 @@ interface GalleryModalProps {
   images: string[]
   title: string
   initialIndex?: number
+  testimonialData?: {
+    quote: string
+    name: string
+    designation: string
+  }[]
+  showTestimonials?: boolean
+  autoplayTestimonials?: boolean
+  onToggleMode?: (showTestimonials: boolean) => void
 }
 
 const SWIPE_THRESHOLD_PX = 80
 
-const GalleryModal: React.FC<GalleryModalProps> = ({ open, onClose, images, title, initialIndex = 0 }) => {
+const GalleryModal: React.FC<GalleryModalProps> = ({ 
+  open, 
+  onClose, 
+  images, 
+  title, 
+  initialIndex = 0,
+  testimonialData,
+  showTestimonials = false,
+  autoplayTestimonials = false,
+  onToggleMode
+}) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex)
   const [previousIndex, setPreviousIndex] = useState<number | null>(null)
   const lastIndexRef = useRef<number>(initialIndex)
@@ -26,6 +45,31 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ open, onClose, images, titl
   const dialogRef = useRef<HTMLDivElement>(null)
   const thumbRefs = useRef<(HTMLButtonElement | null)[]>([])
   const lastActiveElementRef = useRef<HTMLElement | null>(null)
+
+  // Create testimonials data from images and testimonial data
+  const testimonials = useMemo(() => {
+    if (!testimonialData || !showTestimonials) return []
+    return images.map((image, index) => ({
+      src: image,
+      name: testimonialData[index]?.name || `Image ${index + 1}`,
+      designation: testimonialData[index]?.designation || title,
+      quote: testimonialData[index]?.quote || `Gallery image ${index + 1} from ${title}`
+    }))
+  }, [images, testimonialData, showTestimonials, title])
+
+  // Auto-advance testimonials
+  useEffect(() => {
+    if (showTestimonials && autoplayTestimonials && open) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % images.length)
+      }, 5000)
+      return () => clearInterval(interval)
+    }
+  }, [showTestimonials, autoplayTestimonials, open, images.length])
+
+  const randomRotateY = () => {
+    return Math.floor(Math.random() * 21) - 10
+  }
   // Reset index when opening or when images change
   useEffect(() => {
     if (open) setCurrentIndex(Math.max(0, Math.min(Number.isFinite(initialIndex) ? Number(initialIndex) : 0, images.length - 1)))
@@ -142,112 +186,254 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ open, onClose, images, titl
             <X className="w-8 h-8" />
           </button>
 
-          {/* Prev button */}
-          <button
-            className="absolute left-6 z-20 text-white hover:text-primary"
-            onClick={prevImage}
-            aria-label="Previous image"
-          >
-            <ChevronLeft className="w-10 h-10" />
-          </button>
+          {/* Mode Toggle Button */}
+          {testimonialData && testimonialData.length > 0 && onToggleMode && (
+            <button
+              className="absolute top-4 right-16 z-20 px-4 py-2 bg-white/20 hover:bg-white/30 text-white rounded-full text-sm font-medium transition-colors"
+              onClick={() => onToggleMode(!showTestimonials)}
+              aria-label={showTestimonials ? "Switch to gallery view" : "Switch to testimonials view"}
+            >
+              {showTestimonials ? "Gallery" : "Stories"}
+            </button>
+          )}
 
-          {/* Image Area with no blank frame crossfade */}
-          <motion.div
-            key={currentIndex}
-            initial={{ opacity: 1, scale: 1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="relative flex-1 w-full max-w-6xl h-[72vh] flex items-center justify-center select-none"
-            drag={zoomScale <= 1 ? "x" : false}
-            dragConstraints={{ left: 0, right: 0 }}
-            onDragStart={() => setIsPanning(true)}
-            onDragEnd={(_, info) => {
-              setIsPanning(false)
-              if (Math.abs(info.offset.x) > SWIPE_THRESHOLD_PX) {
-                if (info.offset.x < 0) nextImage()
-                else prevImage()
-              }
-            }}
-            onDoubleClick={onDoubleClick}
-            style={{ touchAction: zoomScale > 1 ? "none" : "pan-y" }}
-            onPointerDown={(e) => {
-              pointersRef.current.set(e.pointerId, { x: e.clientX, y: e.clientY })
-              if (pointersRef.current.size === 2) {
-                const pts = Array.from(pointersRef.current.values())
-                const dx = pts[0].x - pts[1].x
-                const dy = pts[0].y - pts[1].y
-                pinchStartDistanceRef.current = Math.hypot(dx, dy)
-              }
-            }}
-            onPointerMove={(e) => {
-              if (!pointersRef.current.has(e.pointerId)) return
-              pointersRef.current.set(e.pointerId, { x: e.clientX, y: e.clientY })
-              if (pointersRef.current.size === 2 && pinchStartDistanceRef.current) {
-                const pts = Array.from(pointersRef.current.values())
-                const dx = pts[0].x - pts[1].x
-                const dy = pts[0].y - pts[1].y
-                const dist = Math.hypot(dx, dy)
-                const ratio = dist / pinchStartDistanceRef.current
-                const next = Math.max(1, Math.min(3, ratio * 1.8))
-                setZoomScale(next)
-              }
-            }}
-            onPointerUp={(e) => {
-              pointersRef.current.delete(e.pointerId)
-              if (pointersRef.current.size < 2) {
+          {/* Prev button - only show in regular gallery mode */}
+          {!showTestimonials && (
+            <button
+              className="absolute left-6 z-20 text-white hover:text-primary"
+              onClick={prevImage}
+              aria-label="Previous image"
+            >
+              <ChevronLeft className="w-10 h-10" />
+            </button>
+          )}
+
+          {/* Image Area with testimonials or regular gallery */}
+          {showTestimonials && testimonials.length > 0 ? (
+            /* Testimonials View */
+            <div className="flex-1 w-full max-w-7xl h-[72vh] grid grid-cols-1 gap-12 md:grid-cols-2 items-center px-4">
+              {/* Image Stack */}
+              <div className="relative h-80 w-full">
+                <AnimatePresence>
+                  {testimonials.map((testimonial, index) => (
+                    <motion.div
+                      key={testimonial.src}
+                      initial={{
+                        opacity: 0,
+                        scale: 0.9,
+                        z: -100,
+                        rotate: randomRotateY(),
+                      }}
+                      animate={{
+                        opacity: index === currentIndex ? 1 : 0.7,
+                        scale: index === currentIndex ? 1 : 0.95,
+                        z: index === currentIndex ? 0 : -100,
+                        rotate: index === currentIndex ? 0 : randomRotateY(),
+                        zIndex: index === currentIndex
+                          ? 40
+                          : testimonials.length + 2 - index,
+                        y: index === currentIndex ? [0, -80, 0] : 0,
+                      }}
+                      exit={{
+                        opacity: 0,
+                        scale: 0.9,
+                        z: 100,
+                        rotate: randomRotateY(),
+                      }}
+                      transition={{
+                        duration: 0.4,
+                        ease: "easeInOut",
+                      }}
+                      className="absolute inset-0 origin-bottom cursor-pointer"
+                      onClick={onDoubleClick}
+                    >
+                      <Image
+                        src={testimonial.src || "/placeholder.svg"}
+                        alt={testimonial.name}
+                        fill
+                        className="object-cover rounded-3xl"
+                        draggable={false}
+                        priority={index === currentIndex}
+                      />
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
+
+              {/* Testimonial Content */}
+              <div className="flex flex-col justify-between py-4 text-white">
+                <motion.div
+                  key={currentIndex}
+                  initial={{
+                    y: 20,
+                    opacity: 0,
+                  }}
+                  animate={{
+                    y: 0,
+                    opacity: 1,
+                  }}
+                  exit={{
+                    y: -20,
+                    opacity: 0,
+                  }}
+                  transition={{
+                    duration: 0.2,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <h3 className="text-2xl font-bold text-white">
+                    {testimonials[currentIndex]?.name}
+                  </h3>
+                  <p className="text-sm text-gray-300">
+                    {testimonials[currentIndex]?.designation}
+                  </p>
+                  <motion.p className="mt-8 text-lg text-gray-200">
+                    {testimonials[currentIndex]?.quote.split(" ").map((word, index) => (
+                      <motion.span
+                        key={index}
+                        initial={{
+                          filter: "blur(10px)",
+                          opacity: 0,
+                          y: 5,
+                        }}
+                        animate={{
+                          filter: "blur(0px)",
+                          opacity: 1,
+                          y: 0,
+                        }}
+                        transition={{
+                          duration: 0.2,
+                          ease: "easeInOut",
+                          delay: 0.02 * index,
+                        }}
+                        className="inline-block"
+                      >
+                        {word}&nbsp;
+                      </motion.span>
+                    ))}
+                  </motion.p>
+                </motion.div>
+                
+                {/* Testimonial Navigation */}
+                <div className="flex gap-4 pt-12 md:pt-0">
+                  <button
+                    onClick={prevImage}
+                    className="group/button flex h-10 w-10 items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+                    aria-label="Previous testimonial"
+                  >
+                    <IconArrowLeft className="h-6 w-6 text-white transition-transform duration-300 group-hover/button:rotate-12" />
+                  </button>
+                  <button
+                    onClick={nextImage}
+                    className="group/button flex h-10 w-10 items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+                    aria-label="Next testimonial"
+                  >
+                    <IconArrowRight className="h-6 w-6 text-white transition-transform duration-300 group-hover/button:-rotate-12" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            /* Regular Gallery View */
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 1, scale: 1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="relative flex-1 w-full max-w-6xl h-[72vh] flex items-center justify-center select-none"
+              drag={zoomScale <= 1 ? "x" : false}
+              dragConstraints={{ left: 0, right: 0 }}
+              onDragStart={() => setIsPanning(true)}
+              onDragEnd={(_, info) => {
+                setIsPanning(false)
+                if (Math.abs(info.offset.x) > SWIPE_THRESHOLD_PX) {
+                  if (info.offset.x < 0) nextImage()
+                  else prevImage()
+                }
+              }}
+              onDoubleClick={onDoubleClick}
+              style={{ touchAction: zoomScale > 1 ? "none" : "pan-y" }}
+              onPointerDown={(e) => {
+                pointersRef.current.set(e.pointerId, { x: e.clientX, y: e.clientY })
+                if (pointersRef.current.size === 2) {
+                  const pts = Array.from(pointersRef.current.values())
+                  const dx = pts[0].x - pts[1].x
+                  const dy = pts[0].y - pts[1].y
+                  pinchStartDistanceRef.current = Math.hypot(dx, dy)
+                }
+              }}
+              onPointerMove={(e) => {
+                if (!pointersRef.current.has(e.pointerId)) return
+                pointersRef.current.set(e.pointerId, { x: e.clientX, y: e.clientY })
+                if (pointersRef.current.size === 2 && pinchStartDistanceRef.current) {
+                  const pts = Array.from(pointersRef.current.values())
+                  const dx = pts[0].x - pts[1].x
+                  const dy = pts[0].y - pts[1].y
+                  const dist = Math.hypot(dx, dy)
+                  const ratio = dist / pinchStartDistanceRef.current
+                  const next = Math.max(1, Math.min(3, ratio * 1.8))
+                  setZoomScale(next)
+                }
+              }}
+              onPointerUp={(e) => {
+                pointersRef.current.delete(e.pointerId)
+                if (pointersRef.current.size < 2) {
+                  pinchStartDistanceRef.current = null
+                }
+              }}
+              onPointerCancel={(e) => {
+                pointersRef.current.delete(e.pointerId)
                 pinchStartDistanceRef.current = null
-              }
-            }}
-            onPointerCancel={(e) => {
-              pointersRef.current.delete(e.pointerId)
-              pinchStartDistanceRef.current = null
-            }}
-          >
-            {/* Previous image layer fades out */}
-            {previousIndex !== null && previousIndex !== currentIndex && (
+              }}
+            >
+              {/* Previous image layer fades out */}
+              {previousIndex !== null && previousIndex !== currentIndex && (
+                <motion.div
+                  className="absolute inset-0"
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0 }}
+                  transition={{ duration: 0 }}
+                  onAnimationComplete={() => setPreviousIndex(null)}
+                >
+                  <Image
+                    src={images?.[previousIndex] || "/placeholder.svg"}
+                    alt={`${title} ${previousIndex + 1}`}
+                    fill
+                    className="object-contain"
+                    priority
+                  />
+                </motion.div>
+              )}
+              {/* Current image layer stays visible */}
               <motion.div
                 className="absolute inset-0"
-                initial={{ opacity: 1 }}
-                animate={{ opacity: 0 }}
-                transition={{ duration: 0 }}
-                onAnimationComplete={() => setPreviousIndex(null)}
+                animate={{ scale: zoomScale, cursor: zoomScale > 1 ? "grab" : "auto" }}
+                transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                drag={zoomScale > 1}
+                dragConstraints={{ left: -200, right: 200, top: -200, bottom: 200 }}
+                dragElastic={0.15}
               >
                 <Image
-                  src={images?.[previousIndex] || "/placeholder.svg"}
-                  alt={`${title} ${previousIndex + 1}`}
+                  src={images?.[currentIndex] || "/placeholder.svg"}
+                  alt={`${title} ${Number.isFinite(currentIndex) ? currentIndex + 1 : 1} of ${images?.length ?? 0}`}
                   fill
                   className="object-contain"
                   priority
                 />
               </motion.div>
-            )}
-            {/* Current image layer stays visible */}
-            <motion.div
-              className="absolute inset-0"
-              animate={{ scale: zoomScale, cursor: zoomScale > 1 ? "grab" : "auto" }}
-              transition={{ type: "spring", stiffness: 200, damping: 25 }}
-              drag={zoomScale > 1}
-              dragConstraints={{ left: -200, right: 200, top: -200, bottom: 200 }}
-              dragElastic={0.15}
-            >
-              <Image
-                src={images?.[currentIndex] || "/placeholder.svg"}
-                alt={`${title} ${Number.isFinite(currentIndex) ? currentIndex + 1 : 1} of ${images?.length ?? 0}`}
-                fill
-                className="object-contain"
-                priority
-              />
             </motion.div>
-          </motion.div>
+          )}
 
-          {/* Next button */}
-          <button
-            className="absolute right-6 text-white hover:text-primary"
-            onClick={nextImage}
-            aria-label="Next image"
-          >
-            <ChevronRight className="w-10 h-10" />
-          </button>
+          {/* Next button - only show in regular gallery mode */}
+          {!showTestimonials && (
+            <button
+              className="absolute right-6 text-white hover:text-primary"
+              onClick={nextImage}
+              aria-label="Next image"
+            >
+              <ChevronRight className="w-10 h-10" />
+            </button>
+          )}
 
           {/* Thumbnails */}
           <div className="mt-6 flex gap-3 overflow-x-auto no-scrollbar max-w-5xl px-4" aria-label="Image thumbnails">

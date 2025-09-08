@@ -2,6 +2,12 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 
 interface ServiceCardProps {
   title: string;
@@ -22,6 +28,8 @@ export function ServiceCard({
   index = 0,
   detailedContent,
 }: ServiceCardProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   // Even index (0, 2, 4...) = Image LEFT, Content RIGHT
   // Odd index (1, 3, 5...) = Image RIGHT, Content LEFT
   const isEvenIndex = index % 2 === 0;
@@ -106,23 +114,56 @@ export function ServiceCard({
   // Image panel component
   const ImagePanel = () => (
     <div className="w-full md:w-1/2 relative h-[300px] flex-shrink-0">
-      <Image
-        src={imageUrl}
-        alt={title}
-        fill
-        className="object-cover"
-      />
-      
-      {/* Subtle overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/20"></div>
-      
-      {/* Title overlay - always visible */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6">
-        <h3 className="text-2xl font-semibold text-white mb-2">{title}</h3>
-        <p className="text-gray-200 text-sm leading-relaxed line-clamp-2">
-          {description}
-        </p>
-      </div>
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogTrigger asChild>
+          <div className="relative h-full cursor-pointer group">
+            <Image
+              src={imageUrl}
+              alt={title}
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            
+            {/* Subtle overlay for better text readability */}
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
+            
+            {/* Title overlay - always visible */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6">
+              <h3 className="text-2xl font-semibold text-white mb-2">{title}</h3>
+              <p className="text-gray-200 text-sm leading-relaxed line-clamp-2">
+                {description}
+              </p>
+            </div>
+
+            {/* Click hint overlay */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="bg-white/90 backdrop-blur-sm rounded-full p-3">
+                <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </DialogTrigger>
+
+        <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-transparent border-none shadow-none">
+          <div className="relative w-full h-full flex items-center justify-center">
+            <Image
+              src={imageUrl}
+              alt={title}
+              width={1200}
+              height={800}
+              className="max-w-full max-h-full object-contain rounded-lg"
+              style={{
+                width: 'auto',
+                height: 'auto',
+                maxWidth: '90vw',
+                maxHeight: '90vh'
+              }}
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 

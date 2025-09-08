@@ -8,6 +8,7 @@ import { TextReveal } from "@/components/ui/text-reveal"
 import { Sparkles } from "@/components/ui/sparkles"
 import { Particles } from "@/components/ui/particles"
 import { ArrowRight, MapPin, Home, Layers, Building2, Users, Leaf as LeafIcon, Waves as WavesIcon, TreePine as TreePineIcon, Zap as ZapIcon } from "lucide-react"
+import GalleryModal from "./GalleryModal"
 // Map string keys received from the server to actual icon components
 const ICON_MAP: Record<string, any> = {
   Leaf: LeafIcon,
@@ -51,7 +52,19 @@ export default function ProjectsClient({
   const [activeTab, setActiveTab] = useState<"layouts" | "clubhouses">("layouts")
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
   const [isMounted, setIsMounted] = useState(false)
+  const [galleryModalOpen, setGalleryModalOpen] = useState(false)
+  const [selectedGalleryProject, setSelectedGalleryProject] = useState<LayoutProject | ClubhouseProject | null>(null)
+  const [showTestimonials, setShowTestimonials] = useState(false)
   const reduceMotion = useReducedMotion()
+
+  // Sample testimonial data - you can customize this for each project
+  const generateTestimonialData = (project: LayoutProject | ClubhouseProject) => {
+    return project.images.map((_, index) => ({
+      name: project.name,
+      designation: project.theme || `${project.area} Development`,
+      quote: project.description || `Experience luxury living at ${project.name} - a premium development featuring world-class amenities and sustainable design principles.`
+    }))
+  }
 
   useEffect(() => setIsMounted(true), [])
 
@@ -193,7 +206,11 @@ export default function ProjectsClient({
                       viewport={isMounted ? { once: true, margin: "-50px 0px -50px 0px", amount: 0.3 } : {}}
                       whileHover={isMounted ? { scale: 1.02 } : {}}
                       className="relative group cursor-pointer"
-                      onClick={() => setSelectedProject(selectedProject === project.id ? null : project.id)}
+                      onClick={() => {
+                        setSelectedGalleryProject(project)
+                        setGalleryModalOpen(true)
+                        setShowTestimonials(true) // Enable testimonials by default
+                      }}
                     >
                       <div className="grid grid-cols-2 gap-4">
                         {project.images.slice(0, 4).map((image, imgIndex) => (
@@ -292,7 +309,11 @@ export default function ProjectsClient({
 
                       {/* CTA */}
                       <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                        <Button className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold">
+                        <Button className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold" onClick={() => {
+                          setSelectedGalleryProject(project)
+                          setGalleryModalOpen(true)
+                          setShowTestimonials(true) // Enable testimonials by default
+                        }}>
                           View Project Details
                           <ArrowRight className="ml-2 w-5 h-5" />
                         </Button>
@@ -315,7 +336,12 @@ export default function ProjectsClient({
                   transition={isMounted ? { duration: 0.8, delay: index * 0.15, ease: [0.25, 0.25, 0.25, 0.75] } : {}}
                   viewport={isMounted ? { once: true, margin: "-100px 0px -100px 0px", amount: 0.2 } : {}}
                   whileHover={isMounted ? { y: -10 } : {}}
-                  className="bg-card rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group"
+                  className="bg-card rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group cursor-pointer"
+                  onClick={() => {
+                    setSelectedGalleryProject(clubhouse)
+                    setGalleryModalOpen(true)
+                    setShowTestimonials(true) // Enable testimonials by default
+                  }}
                 >
                   {/* Image Gallery */}
                   <div className="relative h-64 overflow-hidden">
@@ -405,6 +431,23 @@ export default function ProjectsClient({
           </div>
         </Sparkles>
       </section>
+
+      {/* Gallery Modal */}
+      {selectedGalleryProject && (
+        <GalleryModal
+          open={galleryModalOpen}
+          onClose={() => {
+            setGalleryModalOpen(false)
+            setSelectedGalleryProject(null)
+          }}
+          images={selectedGalleryProject.images}
+          title={selectedGalleryProject.name}
+          testimonialData={generateTestimonialData(selectedGalleryProject)}
+          showTestimonials={showTestimonials}
+          autoplayTestimonials={true}
+          onToggleMode={setShowTestimonials}
+        />
+      )}
     </div>
   )
 }

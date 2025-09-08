@@ -223,7 +223,7 @@ export default function HomeClient() {
         {/* Content Sections */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }} className="relative z-10">
           {/* Stats Section */}
-          <section className="py-20 bg-background">
+          {/* <section className="py-20 bg-background">
             <div className="container mx-auto px-6 lg:px-8">
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
                 {stats.map((s, i) => {
@@ -240,7 +240,7 @@ export default function HomeClient() {
                 })}
               </div>
             </div>
-          </section>
+          </section> */}
 
           {/* Showcase Grid (lightweight placeholder) */}
           <section className="py-20">
