@@ -66,7 +66,7 @@ export function FloatingDock() {
           transition={{ duration: 0.3, ease: "easeOut" }}
           className="fixed top-8 left-[38%] transform -translate-x-1/2 z-50 hidden lg:block"
         >
-          <div className="flex items-center gap-4 bg-black/20 backdrop-blur-xl border border-white/10 rounded-2xl p-3">
+          <div className="flex items-center gap-4 bg-black/70 backdrop-blur-xl border border-white/10 rounded-2xl p-3">
             {/* Logo on the left */}
             <Tooltip>
               <TooltipTrigger asChild>
@@ -80,7 +80,7 @@ export function FloatingDock() {
                       alt="EverGrove"
                       width={140}
                       height={40}
-                      className="h-8 w-auto"
+                      className="h-12 w-auto"
                     />
                   </motion.div>
                 </Link>

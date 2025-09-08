@@ -10,8 +10,13 @@ import { TextReveal } from "@/components/ui/text-reveal"
 import { Sparkles } from "@/components/ui/sparkles"
 import { Particles } from "@/components/ui/particles"
 import { AnimatedBeam } from "@/components/ui/animated-beam"
+import dynamic from "next/dynamic"
+
 // Lazy-load the heavy layout grid to defer hydration
-const LazyCustomLayoutGrid = React.lazy(() => import("@/components/custom_layout-grid"))
+const LazyCustomLayoutGrid = dynamic(() => import("@/components/custom_layout-grid"), {
+  ssr: false,
+  loading: () => <div className="h-screen flex items-center justify-center"><LoadingScreen /></div>
+})
 
 // Map string keys to lucide-react components for stats icons
 const STATS_ICON_MAP: Record<string, any> = {
@@ -25,18 +30,26 @@ export default function HomeClient() {
   const [svgContent, setSvgContent] = useState<string | null>(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
-  const containerRef = useRef(null)
-  const { scrollYProgress } = useScroll({
+  const [isMounted, setIsMounted] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+  
+  // Create a safe scroll hook that only activates after mounting
+  const scrollConfig = isMounted && containerRef.current ? {
     target: containerRef,
-    offset: ["start start", "end start"],
-  })
+    offset: ["start start", "end start"] as ["start start", "end start"],
+  } : undefined
 
-  // Preserve the original horizontal scroll animation
+  const { scrollYProgress } = useScroll(scrollConfig)
+
+  // Preserve the original horizontal scroll animation - with fallback values
   const xPosition = useTransform(scrollYProgress, [0, 0.5], ["0%", "-155%"])
   // Fade out the hero earlier so the morphing text does not overlap the following sections
   const opacity = useTransform(scrollYProgress, [0, 0.15, 0.3], [1, 0, 0])
 
   useEffect(() => {
+    // Set mounted state to true after component mounts
+    setIsMounted(true)
+    
     const timer = setTimeout(() => setIsLoaded(true), 3000)
     fetch("/Union.svg")
       .then((response) => response.text())
@@ -46,6 +59,21 @@ export default function HomeClient() {
     return () => clearTimeout(timer)
   }, [])
 
+  // Additional effect to ensure ref is properly attached after mount
+  useEffect(() => {
+    if (isMounted && containerRef.current) {
+      // Force a slight delay to ensure DOM is fully ready
+      const timeout = setTimeout(() => {
+        // This ensures the ref is properly hydrated
+        if (containerRef.current) {
+          containerRef.current.scrollTop = 0
+        }
+      }, 100)
+      
+      return () => clearTimeout(timeout)
+    }
+  }, [isMounted])
+
   const stats = [
     { icon: "Building", value: "500+", label: "Projects Completed" },
     { icon: "Users", value: "50+", label: "Expert Team Members" },
@@ -54,10 +82,13 @@ export default function HomeClient() {
   ]
 
   const morphingTexts = [
-    "Luxury Living Spaces",
-    "Sustainable Architecture",
-    "Modern Design Solutions",
-    "Premium Developments",
+    "Spaces that Grow with You.",
+    "Rooted in Design, Growing with You",
+    "Designing Groves, Creating Spaces",
+    "Crafting Groves, Cultivating Spaces",
+    "From Groves to Beautiful Spaces",
+    "Beyond Groves, Better Spaces",
+    "Everlasting Groves, Timeless Spaces",
   ]
 
   // Original full-card dataset (copied from app/page.tsx) — used to restore the original layout grid
@@ -138,7 +169,7 @@ export default function HomeClient() {
     return () => clearInterval(interval)
   }, [])
 
-  if (!isLoaded) {
+  if (!isLoaded || !isMounted) {
     return <LoadingScreen />
   }
 
@@ -246,9 +277,7 @@ export default function HomeClient() {
           <section className="py-20">
             <div className="container mx-auto px-6 lg:px-8">
               <h2 className="font-display text-3xl font-bold mb-8">Featured Layouts</h2>
-              <Suspense fallback={<div className="h-screen flex items-center justify-center"><LoadingScreen /></div>}>
-                <LazyCustomLayoutGrid cards={gridCards} />
-              </Suspense>
+              <LazyCustomLayoutGrid cards={gridCards} />
             </div>
           </section>
 
