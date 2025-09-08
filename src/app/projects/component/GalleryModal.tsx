@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useMemo, useRef, useState } from "react"
+import React, { useEffect, useMemo, useRef, useState, useCallback } from "react"
 import { createPortal } from "react-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
@@ -39,7 +39,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({
   const [previousIndex, setPreviousIndex] = useState<number | null>(null)
   const lastIndexRef = useRef<number>(initialIndex)
   const [zoomScale, setZoomScale] = useState(1)
-  const [isPanning, setIsPanning] = useState(false)
+
   const pointersRef = useRef<Map<number, { x: number; y: number }>>(new Map())
   const pinchStartDistanceRef = useRef<number | null>(null)
   const dialogRef = useRef<HTMLDivElement>(null)
@@ -84,7 +84,6 @@ const GalleryModal: React.FC<GalleryModalProps> = ({
       lastActiveElementRef.current?.focus()
       // Reset interaction state on close
       setZoomScale(1)
-      setIsPanning(false)
       pointersRef.current.clear()
       pinchStartDistanceRef.current = null
     }
@@ -92,7 +91,6 @@ const GalleryModal: React.FC<GalleryModalProps> = ({
 
   // Reset transient gesture state when the image changes
   useEffect(() => {
-    setIsPanning(false)
     pointersRef.current.clear()
     pinchStartDistanceRef.current = null
     setZoomScale(1)
@@ -102,8 +100,8 @@ const GalleryModal: React.FC<GalleryModalProps> = ({
     }
   }, [currentIndex])
 
-  const prevImage = () => setCurrentIndex((i) => (i === 0 ? images.length - 1 : i - 1))
-  const nextImage = () => setCurrentIndex((i) => (i === images.length - 1 ? 0 : i + 1))
+  const prevImage = useCallback(() => setCurrentIndex((i) => (i === 0 ? images.length - 1 : i - 1)), [images.length])
+  const nextImage = useCallback(() => setCurrentIndex((i) => (i === images.length - 1 ? 0 : i + 1)), [images.length])
 
   // Preload neighbors
   const neighborUrls = useMemo(() => {
@@ -131,8 +129,8 @@ const GalleryModal: React.FC<GalleryModalProps> = ({
       if (e.key === "End") setCurrentIndex(images.length - 1)
     }
     document.addEventListener("keydown", handleKey, { capture: true })
-    return () => document.removeEventListener("keydown", handleKey, { capture: true } as any)
-  }, [open, onClose, images.length])
+    return () => document.removeEventListener("keydown", handleKey, { capture: true })
+  }, [open, onClose, images.length, prevImage, nextImage])
   // Close modal when clicking on backdrop
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -161,6 +159,9 @@ const GalleryModal: React.FC<GalleryModalProps> = ({
   }, [currentIndex, open])
 
   if (!open) return null
+
+  const portalTarget = typeof document !== "undefined" ? document.body : null
+  if (!portalTarget) return null
 
   return createPortal(
     <motion.div
@@ -321,9 +322,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({
               className="relative flex-1 w-full max-w-6xl h-[72vh] flex items-center justify-center select-none"
               drag={zoomScale <= 1 ? "x" : false}
               dragConstraints={{ left: 0, right: 0 }}
-              onDragStart={() => setIsPanning(true)}
               onDragEnd={(_, info) => {
-                setIsPanning(false)
                 if (Math.abs(info.offset.x) > SWIPE_THRESHOLD_PX) {
                   if (info.offset.x < 0) nextImage()
                   else prevImage()
@@ -438,7 +437,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({
           </div>
 
     </motion.div>,
-    typeof document !== "undefined" ? document.body : (null as any)
+    portalTarget
   )
 }
 

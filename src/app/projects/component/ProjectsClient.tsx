@@ -10,8 +10,10 @@ import { Particles } from "@/components/ui/particles"
 import { ArrowRight, MapPin, Home, Layers, Building2, Users, Leaf as LeafIcon, Waves as WavesIcon, TreePine as TreePineIcon, Zap as ZapIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import GalleryModal from "./GalleryModal"
+import { ComponentType } from "react"
+
 // Map string keys received from the server to actual icon components
-const ICON_MAP: Record<string, any> = {
+const ICON_MAP: Record<string, ComponentType<{className?: string}>> = {
   Leaf: LeafIcon,
   Waves: WavesIcon,
   TreePine: TreePineIcon,
@@ -25,7 +27,7 @@ type LayoutProject = {
   plots: number
   theme: string
   // icon can be a string key (from server) or a component (client)
-  icon: string | any
+  icon: string | ComponentType<{className?: string}>
   color: string
   description: string
   scope: string[]
@@ -52,7 +54,6 @@ export default function ProjectsClient({
 }) {
   const router = useRouter()
   const [activeTab, setActiveTab] = useState<"layouts" | "clubhouses">("layouts")
-  const [selectedProject, setSelectedProject] = useState<number | null>(null)
   const [isMounted, setIsMounted] = useState(false)
   const [galleryModalOpen, setGalleryModalOpen] = useState(false)
   const [selectedGalleryProject, setSelectedGalleryProject] = useState<LayoutProject | ClubhouseProject | null>(null)
@@ -61,7 +62,7 @@ export default function ProjectsClient({
 
   // Sample testimonial data - you can customize this for each project
   const generateTestimonialData = (project: LayoutProject | ClubhouseProject) => {
-    return project.images.map((_, index) => ({
+    return project.images.map(() => ({
       name: project.name,
       designation: project.theme || `${project.area} Development`,
       quote: project.description || `Experience luxury living at ${project.name} - a premium development featuring world-class amenities and sustainable design principles.`
@@ -69,11 +70,6 @@ export default function ProjectsClient({
   }
 
   useEffect(() => setIsMounted(true), [])
-
-  // simple variants (respect reduced motion)
-  const heroVariants = reduceMotion
-    ? {}
-    : { initial: { opacity: 0, y: 60 }, animate: { opacity: 1, y: 0 }, transition: { duration: 1.2 } }
 
   return (
     <div className="min-h-screen bg-background">
@@ -413,7 +409,7 @@ export default function ProjectsClient({
                 viewport={isMounted ? { once: true, margin: "-30px 0px -30px 0px", amount: 0.3 } : {}}
                 className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
               >
-                Let's discuss how we can bring your vision to life with our expertise in luxury development and
+                Let&apos;s discuss how we can bring your vision to life with our expertise in luxury development and
                 sustainable design.
               </motion.p>
               <motion.div
