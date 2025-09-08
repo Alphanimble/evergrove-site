@@ -18,7 +18,7 @@ export interface ProjectCardProps {
     images: string[];
   };
   index: number
-  onViewDetails: () => void
+  onViewDetails: (index?: number) => void
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onViewDetails }) => (
@@ -34,7 +34,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onViewDetails
       <motion.div
         whileHover={{ scale: 1.02 }}
         className="relative group cursor-pointer"
-        onClick={onViewDetails}
+        onClick={() => onViewDetails(0)}
       >
         <div className="grid grid-cols-2 gap-4">
           {project.images.slice(0, 4).map((image: string, imgIndex: number) => (
@@ -45,6 +45,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onViewDetails
               transition={{ delay: imgIndex * 0.1, duration: 0.6 }}
               viewport={{ once: true }}
               className="relative aspect-square overflow-hidden rounded-2xl"
+              onClick={(e) => {
+                e.stopPropagation()
+                onViewDetails(imgIndex)
+              }}
             >
               <Image
                 src={image || "/placeholder.svg"}
@@ -125,7 +129,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onViewDetails
         </div>
         {/* CTA */}
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <Button className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold" onClick={onViewDetails}>
+          <Button className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold" onClick={() => onViewDetails()}>
             View Project Details
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>

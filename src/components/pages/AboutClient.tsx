@@ -182,17 +182,18 @@ export default function AboutClient() {
                 key={project.name}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 0.25, 0.25, 0.75] }}
                 viewport={{ once: true }}
+                whileHover={{ scale: 1.02, y: -10 }}
                 className="group"
               >
-                <div className="bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2">
+                <div className="bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
                   <div className="aspect-video relative overflow-hidden">
                     <Image
                       src={project.image || "/placeholder.svg"}
                       alt={project.name}
                       fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                     />
                   </div>
                   <div className="p-8">

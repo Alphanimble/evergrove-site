@@ -502,5 +502,5 @@ function ServicesContent() {
 }
 
 export default function Page() {
-  return <ServicesClient />
+  return <ServicesContent />
 }

@@ -72,11 +72,11 @@ const ClubhouseCard: React.FC<ClubhouseCardProps> = ({ clubhouse, index, onExplo
       </div>
       <Button
         variant="outline"
-        className="w-full rounded-full font-semibold group-hover:bg-primary group-hover:text-white transition-colors bg-transparent"
+        className="w-full group/btn border-border hover:border-primary dark:border-primary dark:text-primary dark:hover:bg-primary dark:hover:text-primary-foreground transition-all duration-300"
         onClick={onExplore}
       >
         Explore Clubhouse
-        <ArrowRight className="ml-2 w-4 h-4" />
+        <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
       </Button>
     </div>
   </motion.div>
