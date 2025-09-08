@@ -1,5 +1,5 @@
-import ProjectsClient from "../../components/projects/ProjectsClient"
 "use client"
+import ProjectsClient from "../../components/projects/ProjectsClient"
 
 import { motion } from "framer-motion"
 import Image from "next/image"

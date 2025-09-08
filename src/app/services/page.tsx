@@ -1,11 +1,12 @@
 "use client"
 
 import { useState, useEffect, Suspense } from "react"
-import { ServiceContent } from "@/app/services/component/ServiceContent"
+// import { ServiceContent } from "@/app/services/component/ServiceContent"
 import { ServiceCard } from "@/app/services/component/ServiceCard"
 import { useSearchParams } from "next/navigation"
 import { motion } from "framer-motion"
 import Image from "next/image"
+import ServicesClient from "@/components/pages/ServicesClient"
 
 function ServicesContent() {
   const searchParams = useSearchParams()

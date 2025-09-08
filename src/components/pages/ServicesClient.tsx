@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, Suspense } from "react"
-import { ServiceContent } from "@/components/ui/ServiceContent"
+import { ServiceContent } from "@/app/services/component/ServiceContent"
 import { useSearchParams } from "next/navigation"
 import { motion } from "framer-motion"
 import Image from "next/image"
