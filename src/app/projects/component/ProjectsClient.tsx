@@ -8,6 +8,7 @@ import { TextReveal } from "@/components/ui/text-reveal"
 import { Sparkles } from "@/components/ui/sparkles"
 import { Particles } from "@/components/ui/particles"
 import { ArrowRight, MapPin, Home, Layers, Building2, Users, Leaf as LeafIcon, Waves as WavesIcon, TreePine as TreePineIcon, Zap as ZapIcon } from "lucide-react"
+import { useRouter } from "next/navigation"
 import GalleryModal from "./GalleryModal"
 // Map string keys received from the server to actual icon components
 const ICON_MAP: Record<string, any> = {
@@ -49,6 +50,7 @@ export default function ProjectsClient({
   layoutProjects: LayoutProject[]
   clubhouseProjects: ClubhouseProject[]
 }) {
+  const router = useRouter()
   const [activeTab, setActiveTab] = useState<"layouts" | "clubhouses">("layouts")
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
   const [isMounted, setIsMounted] = useState(false)
@@ -422,7 +424,11 @@ export default function ProjectsClient({
                 whileHover={isMounted ? { scale: 1.05 } : {}}
                 whileTap={isMounted ? { scale: 0.95 } : {}}
               >
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-primary/25 transition-all duration-300">
+                <Button 
+                  size="lg" 
+                  className="bg-primary hover:bg-primary/90 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-primary/25 transition-all duration-300"
+                  onClick={() => router.push('/about#contact-section')}
+                >
                   Schedule Consultation
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>

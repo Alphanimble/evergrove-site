@@ -11,6 +11,7 @@ import { Sparkles } from "@/components/ui/sparkles"
 import { Particles } from "@/components/ui/particles"
 import { AnimatedBeam } from "@/components/ui/animated-beam"
 import dynamic from "next/dynamic"
+import { useRouter } from "next/navigation"
 
 // Lazy-load the heavy layout grid to defer hydration
 const LazyCustomLayoutGrid = dynamic(() => import("@/components/custom_layout-grid"), {
@@ -27,6 +28,7 @@ const STATS_ICON_MAP: Record<string, any> = {
 }
 
 export default function HomeClient() {
+  const router = useRouter()
   const [svgContent, setSvgContent] = useState<string | null>(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
@@ -235,14 +237,23 @@ export default function HomeClient() {
 
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.8, duration: 0.8 }} className="flex flex-col sm:flex-row gap-4">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-4 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-primary/25 transition-all duration-300">
+                  <Button 
+                    size="lg" 
+                    className="bg-primary hover:bg-primary/90 text-white px-4 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-primary/25 transition-all duration-300"
+                    onClick={() => router.push('/projects')}
+                  >
                     Explore Projects
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </motion.div>
 
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button variant="outline" size="lg" className="glass-effect text-white border-white/30 hover:bg-white/10 px-3 py-4 text-lg font-semibold rounded-full bg-transparent backdrop-blur-xl">
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="glass-effect text-white border-white/30 hover:bg-white/10 px-3 py-4 text-lg font-semibold rounded-full bg-transparent backdrop-blur-xl"
+                    onClick={() => router.push('/about#contact-section')}
+                  >
                     Schedule Consultation
                   </Button>
                 </motion.div>
@@ -287,8 +298,21 @@ export default function HomeClient() {
               <h3 className="font-display text-3xl font-bold mb-4">Start Your Project With Us</h3>
               <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">Schedule a consultation and let our team craft a tailored solution for your vision.</p>
               <div className="flex items-center justify-center gap-4">
-                <Button size="lg" className="bg-primary text-white px-6 py-3 rounded-full">Get In Touch</Button>
-                <Button variant="outline" size="lg" className="px-6 py-3 rounded-full">Explore Services</Button>
+                <Button 
+                  size="lg" 
+                  className="bg-primary text-white px-6 py-3 rounded-full"
+                  onClick={() => router.push('/about#contact-section')}
+                >
+                  Get In Touch
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="px-6 py-3 rounded-full"
+                  onClick={() => router.push('/services')}
+                >
+                  Explore Services
+                </Button>
               </div>
             </div>
           </section>

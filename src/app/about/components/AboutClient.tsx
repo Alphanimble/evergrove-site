@@ -213,7 +213,7 @@ export default function AboutClient() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 bg-gradient-to-r from-primary/5 to-accent/5">
+      <section id="contact-section" className="py-20 bg-gradient-to-r from-primary/5 to-accent/5">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <motion.div
