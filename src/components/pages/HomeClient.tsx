@@ -1,17 +1,16 @@
 "use client"
 
 import Image from "next/image"
-import React, { useEffect, useState, useRef, Suspense } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Award, Users, Building, Leaf } from "lucide-react"
 import { LoadingScreen } from "@/components/ui/loading-screen"
 import { TextReveal } from "@/components/ui/text-reveal"
-import { Sparkles } from "@/components/ui/sparkles"
 import { Particles } from "@/components/ui/particles"
-import { AnimatedBeam } from "@/components/ui/animated-beam"
 import dynamic from "next/dynamic"
 import { useRouter } from "next/navigation"
+import { ComponentType } from "react"
 
 // Lazy-load the heavy layout grid to defer hydration
 const LazyCustomLayoutGrid = dynamic(() => import("@/components/custom_layout-grid"), {
@@ -20,7 +19,7 @@ const LazyCustomLayoutGrid = dynamic(() => import("@/components/custom_layout-gr
 })
 
 // Map string keys to lucide-react components for stats icons
-const STATS_ICON_MAP: Record<string, any> = {
+const STATS_ICON_MAP: Record<string, ComponentType<any>> = {
   Building,
   Users,
   Award,
@@ -75,13 +74,6 @@ export default function HomeClient() {
       return () => clearTimeout(timeout)
     }
   }, [isMounted])
-
-  const stats = [
-    { icon: "Building", value: "500+", label: "Projects Completed" },
-    { icon: "Users", value: "50+", label: "Expert Team Members" },
-    { icon: "Award", value: "25+", label: "Awards Won" },
-    { icon: "Leaf", value: "100%", label: "Sustainable Designs" },
-  ]
 
   const morphingTexts = [
     "Spaces that Grow with You.",
@@ -169,7 +161,7 @@ export default function HomeClient() {
       setCurrentTextIndex((prev) => (prev + 1) % morphingTexts.length)
     }, 3000)
     return () => clearInterval(interval)
-  }, [])
+  }, [morphingTexts.length])
 
   if (!isLoaded || !isMounted) {
     return <LoadingScreen />
@@ -217,7 +209,7 @@ export default function HomeClient() {
           {/* Hero Content Overlay */}
           <div className="absolute bottom-20 ml-12 z-20 max-w-2xl pt-24">
             <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 1 }}>
-              <TextReveal className="font-display text-4xl md:text-2xl font-bold text-white leading-tight">Crafting Tomorrow's Living Spaces</TextReveal>
+              <TextReveal className="font-display text-4xl md:text-2xl font-bold text-white leading-tight">Crafting Tomorrow&apos;s Living Spaces</TextReveal>
 
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.3, duration: 0.8 }} className="my-6 h-16 flex items-center">
                 <div className="relative text-2xl md:text-xl font-semibold overflow-hidden">

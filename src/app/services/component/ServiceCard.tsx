@@ -30,10 +30,6 @@ export function ServiceCard({
 }: ServiceCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Even index (0, 2, 4...) = Image LEFT, Content RIGHT
-  // Odd index (1, 3, 5...) = Image RIGHT, Content LEFT
-  const isEvenIndex = index % 2 === 0;
-
   // Content panel component
   const ContentPanel = () => (
     <div className="w-full md:w-1/2">

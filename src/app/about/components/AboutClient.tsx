@@ -177,7 +177,7 @@ export default function AboutClient() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
+            {projects.map((project) => (
               <motion.div
                 key={project.name}
                 initial={{ opacity: 0, y: 30 }}
@@ -224,7 +224,7 @@ export default function AboutClient() {
               className="text-center mb-12"
             >
               <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-                Let's Create Something <span className="text-gradient">Extraordinary</span>
+                Let&apos;s Create Something <span className="text-gradient">Extraordinary</span>
               </h2>
               <p className="text-xl text-muted-foreground">
                 Ready to bring your vision to life? Get in touch with our team today.

@@ -502,5 +502,9 @@ function ServicesContent() {
 }
 
 export default function Page() {
-  return <ServicesContent />
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ServicesContent />
+    </Suspense>
+  )
 }

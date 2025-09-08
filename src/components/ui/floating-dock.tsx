@@ -93,7 +93,7 @@ export function FloatingDock() {
 
             {/* Navigation Items */}
             <div className="flex items-center gap-2">
-              {dockItems.map((item, index) => (
+              {dockItems.map((item) => (
                 <Tooltip key={item.label}>
                   <TooltipTrigger asChild>
                     <Link href={item.href}>
