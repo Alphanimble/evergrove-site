@@ -1,43 +1,52 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export function middleware(request: NextRequest) {
-  // Get the client's IP address
-  const forwarded = request.headers.get('x-forwarded-for')
-  const realIp = request.headers.get('x-real-ip')
-  const clientIp = forwarded?.split(',')[0] || realIp
+  // Get the host header
+  const host = request.headers.get('host') || ''
+  
+  // Only allow localhost and 127.0.0.1 - be very strict
+  const isLocalhost = host === 'localhost:3000' || 
+                     host === '127.0.0.1:3000' ||
+                     host === 'localhost' ||
+                     host === '127.0.0.1' ||
+                     host.startsWith('localhost:') ||
+                     host.startsWith('127.0.0.1:')
 
-  // Allow localhost/127.0.0.1 and IPv6 localhost (::1)
-  const allowedIps = [
-    '127.0.0.1',
-    'localhost',
-    '::1',
-    '::ffff:127.0.0.1'
-  ]
+  console.log(`Middleware check - Host: ${host}, IsLocalhost: ${isLocalhost}`)
 
-  // Check if the request is coming from localhost
-  const isLocalhost = allowedIps.some(ip => 
-    clientIp?.includes(ip) || 
-    request.headers.get('host')?.includes('localhost') ||
-    request.headers.get('host')?.includes('127.0.0.1')
-  )
-
-  // If not from localhost, return 403 Forbidden
+  // Block everything that's not localhost
   if (!isLocalhost) {
+    console.log(`Blocking access from host: ${host}`)
     return new NextResponse(
-      JSON.stringify({ 
-        message: 'Access restricted. This site is temporarily unavailable.',
-        timestamp: new Date().toISOString()
-      }),
+      `<!DOCTYPE html>
+<html>
+<head>
+  <title>Access Restricted</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 100px; }
+    .container { max-width: 500px; margin: 0 auto; }
+    h1 { color: #d32f2f; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🚫 Access Restricted</h1>
+    <p>This website is temporarily unavailable for external access.</p>
+    <p>Please contact the administrator if you need access.</p>
+  </div>
+</body>
+</html>`,
       {
         status: 403,
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'text/html',
           'X-Robots-Tag': 'noindex'
         }
       }
     )
   }
 
+  console.log(`Allowing access from host: ${host}`)
   // Allow the request to continue
   return NextResponse.next()
 }
@@ -46,12 +55,8 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
+     * Match all request paths except static files and Next.js internals
      */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    '/((?!_next/static|_next/image|favicon.ico).*)',
   ],
 }
