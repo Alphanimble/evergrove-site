@@ -4,8 +4,9 @@ import { useState, useEffect, Suspense } from "react"
 import { ServiceContent } from "@/app/services/component/ServiceContent"
 import { ServiceCard } from "@/app/services/component/ServiceCard"
 import { useSearchParams } from "next/navigation"
-import { motion } from "framer-motion"
+import { motion } from "framer-motion"  
 import Image from "next/image"
+
 
 function ServicesContent() {
   const searchParams = useSearchParams()
@@ -44,7 +45,7 @@ function ServicesContent() {
               Our <span className="text-gradient">Services</span>
             </h1>
             <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              Comprehensive architectural solutions tailored to your vision and needs
+             Things we offer
             </p>
           </motion.div>
         </div>
@@ -81,7 +82,7 @@ function ServicesContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="bg-card rounded-2xl shadow-lg overflow-hidden"
+            className="bg-card dark:bg-slate-900/95 rounded-2xl shadow-lg overflow-hidden"
           >
             {selectedService === "architecture-design" ? (
               <div className="container mx-auto px-4 py-8">
@@ -99,8 +100,8 @@ function ServicesContent() {
                   <ServiceCard
                     title="Conceptual Design and Master Planning"
                     description="We create compelling design concepts and master plans for plotted developments, ensuring that the layout, spatial distribution, and design elements align with the client's vision and the surrounding environment."
-                    imageUrl="/Renders/Master_plan/Ernika/Masterplan and parks detail with pictures (2).pdf"
-                    
+                    imageUrl="/Renders/Master_plan/Eternia/Master_plan/1.jpg"
+
                     index={0}
                     detailedContent={{
                       additionalInfo: "Our conceptual design process begins with understanding your vision and site characteristics. We develop comprehensive master plans that optimize land use, integrate infrastructure, and create sustainable communities.",
@@ -500,10 +501,6 @@ function ServicesContent() {
   )
 }
 
-export default function ServicesPage() {
-  return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
-      <ServicesContent />
-    </Suspense>
-  )
+export default function Page() {
+  return <ServicesContent />
 }

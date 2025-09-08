@@ -94,13 +94,12 @@ export function ServiceContent({ service }: ServiceContentProps) {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      {serviceContent.map((item, index) => (
+      {serviceContent.map((item) => (
         <ServiceCard
-          key={index}
+          key={item.title + item.imageUrl}
           title={item.title}
           description={item.description}
           imageUrl={item.imageUrl}
-          
         />
       ))}
     </div>
