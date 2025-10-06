@@ -187,7 +187,7 @@ export default function HomeClient() {
               {/* SVG Mask Effect */}
               {svgContent && (
                 <div
-                  className="absolute inset-0 backdrop-blur-sm bg-black/30 top-[-240px]"
+                  className="absolute inset-0 backdrop-blur-sm bg-black/30 top-[-120px] md:top-[-240px]"
                   style={{
                     WebkitMaskImage: `url("data:image/svg+xml,${encodeURIComponent(svgContent)}")`,
                     maskImage: `url("data:image/svg+xml,${encodeURIComponent(svgContent)}")`,
@@ -202,17 +202,17 @@ export default function HomeClient() {
               )}
 
               {/* Main SVG Logo */}
-              <Image src="/Union.svg" alt="EverGrove Spaces" width={1200} height={500} className="relative z-10 opacity-30 w-full h-auto top-[-120px] " priority />
+              <Image src="/Union.svg" alt="EverGrove Spaces" width={1200} height={500} className="relative z-10 opacity-30 w-full h-auto top-[-60px] md:top-[-120px]" priority />
             </div>
           </motion.div>
 
           {/* Hero Content Overlay */}
-          <div className="absolute bottom-20 ml-12 z-20 max-w-2xl pt-24">
+          <div className="absolute bottom-20 ml-4 md:ml-12 z-20 max-w-2xl pt-12 md:pt-24">
             <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 1 }}>
-              <TextReveal className="font-display text-4xl md:text-2xl font-bold text-white leading-tight">Crafting Tomorrow&apos;s Living Spaces</TextReveal>
+              <TextReveal className="font-display text-xl md:text-4xl font-bold text-white leading-tight">Crafting Tomorrow&apos;s Living Spaces</TextReveal>
 
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.3, duration: 0.8 }} className="my-6 h-16 flex items-center">
-                <div className="relative text-2xl md:text-xl font-semibold overflow-hidden">
+                <div className="relative text-xl md:text-2xl font-semibold overflow-hidden">
                   <AnimatePresence mode="wait">
                     <motion.span key={currentTextIndex} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5, ease: "easeInOut" }} className="text-gradient block">
                       {morphingTexts[currentTextIndex]}
@@ -221,7 +221,7 @@ export default function HomeClient() {
                 </div>
               </motion.div>
 
-              <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.5, duration: 0.8 }} className="text-lg md:text-sm text-white/90 mb-8 leading-relaxed max-w-[70%]">
+              <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.5, duration: 0.8 }} className="text-base md:text-lg text-white/90 mb-8 leading-relaxed">
                 Where architectural excellence meets sustainable innovation.
                 Experience the future of luxury living with cutting-edge design
                 and unparalleled craftsmanship.

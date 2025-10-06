@@ -157,7 +157,7 @@ export function FloatingDock() {
               className="px-3 py-2"
             >
               <Image
-                src={theme === 'dark' ? '/evergrove spaces_logo_20250806-2.svg' : '/evergrove spaces_logo_20250806-1.svg'}
+                src='/Background.png'
                 alt="EverGrove"
                 width={120}
                 height={32}
