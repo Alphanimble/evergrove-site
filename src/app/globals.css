@@ -106,4 +106,35 @@ body {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
+
+  /* Mobile-specific improvements */
+  @media (max-width: 640px) {
+    .text-gradient {
+      font-size: 0.9em; /* Slightly smaller gradient text on mobile */
+    }
+    
+    /* Ensure touch targets are large enough */
+    button {
+      min-height: 44px;
+    }
+    
+    /* Better font rendering on mobile */
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+    
+    /* Prevent horizontal overflow */
+    .overflow-x-hidden {
+      overflow-x: hidden;
+    }
+  }
+
+  /* Tablet improvements */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .glass-effect {
+      backdrop-filter: blur(15px); /* Slightly less blur for better performance */
+    }
+  }
 }

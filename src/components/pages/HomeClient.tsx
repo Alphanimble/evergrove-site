@@ -43,7 +43,8 @@ export default function HomeClient() {
   const { scrollYProgress } = useScroll(scrollConfig)
 
   // Preserve the original horizontal scroll animation - with fallback values
-  const xPosition = useTransform(scrollYProgress, [0, 0.5], ["0%", "-155%"])
+  // Reduce the scroll distance on mobile for better performance and visibility
+  const xPosition = useTransform(scrollYProgress, [0, 0.5], ["0%", "-100%"])
   // Fade out the hero earlier so the morphing text does not overlap the following sections
   const opacity = useTransform(scrollYProgress, [0, 0.15, 0.3], [1, 0, 0])
 
@@ -169,11 +170,11 @@ export default function HomeClient() {
 
   return (
     <>
-      <div ref={containerRef} className="relative w-full bg-background text-foreground">
+      <div ref={containerRef} className="relative w-full bg-background text-foreground overflow-x-hidden">
         {/* Hero Section with Horizontal Scroll Animation */}
         <motion.div className="sticky top-0 h-screen overflow-hidden" style={{ opacity: opacity }}>
-          {/* Particles Background */}
-          <Particles count={30} />
+          {/* Particles Background - Reduced count for better mobile performance */}
+          <Particles count={20} />
 
           {/* Background Image with Fade Effect */}
           <motion.div className="absolute inset-0">
@@ -182,12 +183,12 @@ export default function HomeClient() {
           </motion.div>
 
           {/* Horizontally Scrolling Logo */}
-          <motion.div className="relative bottom-10 z-10 h-full flex items-center justify-center sm:justify-start overflow-hidden" style={{ x: xPosition }}>
-            <div className="relative w-full max-w-[120vw] sm:max-w-[120vw] md:max-w-[120vw] lg:max-w-[120vw] xl:max-w-[60vw] ml-2">
+          <motion.div className="relative bottom-5 sm:bottom-10 z-10 h-full flex items-center justify-center sm:justify-start overflow-hidden" style={{ x: xPosition }}>
+            <div className="relative w-full max-w-[140vw] sm:max-w-[120vw] md:max-w-[120vw] lg:max-w-[120vw] xl:max-w-[60vw] ml-1 sm:ml-2">
               {/* SVG Mask Effect */}
               {svgContent && (
                 <div
-                  className="absolute inset-0 backdrop-blur-sm bg-black/30 top-[-120px] md:top-[-240px]"
+                  className="absolute inset-0 backdrop-blur-sm bg-black/30 top-[-80px] sm:top-[-120px] md:top-[-240px]"
                   style={{
                     WebkitMaskImage: `url("data:image/svg+xml,${encodeURIComponent(svgContent)}")`,
                     maskImage: `url("data:image/svg+xml,${encodeURIComponent(svgContent)}")`,
@@ -202,17 +203,17 @@ export default function HomeClient() {
               )}
 
               {/* Main SVG Logo */}
-              <Image src="/Union.svg" alt="EverGrove Spaces" width={1200} height={500} className="relative z-10 opacity-30 w-full h-auto top-[-60px] md:top-[-120px]" priority />
+              <Image src="/Union.svg" alt="EverGrove Spaces" width={1200} height={500} className="relative z-10 opacity-30 w-full h-auto top-[-40px] sm:top-[-60px] md:top-[-120px]" priority />
             </div>
           </motion.div>
 
           {/* Hero Content Overlay */}
-          <div className="absolute bottom-20 ml-4 md:ml-12 z-20 max-w-2xl pt-12 md:pt-24">
+          <div className="absolute bottom-10 sm:bottom-16 md:bottom-20 ml-4 mr-4 sm:ml-8 md:ml-12 sm:mr-8 md:mr-0 z-20 max-w-full sm:max-w-2xl pt-6 sm:pt-12 md:pt-24">
             <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 1 }}>
-              <TextReveal className="font-display text-xl md:text-4xl font-bold text-white leading-tight">Crafting Tomorrow&apos;s Living Spaces</TextReveal>
+              <TextReveal className="font-display text-lg sm:text-xl md:text-4xl font-bold text-white leading-tight">Crafting Tomorrow&apos;s Living Spaces</TextReveal>
 
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.3, duration: 0.8 }} className="my-6 h-16 flex items-center">
-                <div className="relative text-xl md:text-2xl font-semibold overflow-hidden">
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.3, duration: 0.8 }} className="my-4 sm:my-6 h-12 sm:h-16 flex items-center">
+                <div className="relative text-base sm:text-xl md:text-2xl font-semibold overflow-hidden">
                   <AnimatePresence mode="wait">
                     <motion.span key={currentTextIndex} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5, ease: "easeInOut" }} className="text-gradient block">
                       {morphingTexts[currentTextIndex]}
@@ -221,29 +222,29 @@ export default function HomeClient() {
                 </div>
               </motion.div>
 
-              <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.5, duration: 0.8 }} className="text-base md:text-lg text-white/90 mb-8 leading-relaxed">
+              <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.5, duration: 0.8 }} className="text-sm sm:text-base md:text-lg text-white/90 mb-6 sm:mb-8 leading-relaxed">
                 Where architectural excellence meets sustainable innovation.
                 Experience the future of luxury living with cutting-edge design
                 and unparalleled craftsmanship.
               </motion.p>
 
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.8, duration: 0.8 }} className="flex flex-col sm:flex-row gap-4">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.8, duration: 0.8 }} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
                   <Button 
                     size="lg" 
-                    className="bg-primary hover:bg-primary/90 text-white px-4 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-primary/25 transition-all duration-300"
+                    className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-4 sm:px-6 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-full shadow-2xl hover:shadow-primary/25 transition-all duration-300"
                     onClick={() => router.push('/projects')}
                   >
                     Explore Projects
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    <ArrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
                   </Button>
                 </motion.div>
 
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
                   <Button 
                     variant="outline" 
                     size="lg" 
-                    className="glass-effect text-white border-white/30 hover:bg-white/10 px-3 py-4 text-lg font-semibold rounded-full bg-transparent backdrop-blur-xl"
+                    className="w-full sm:w-auto glass-effect text-white border-white/30 hover:bg-white/10 px-3 sm:px-4 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-full bg-transparent backdrop-blur-xl"
                     onClick={() => router.push('/about#contact-section')}
                   >
                     Schedule Consultation
@@ -277,22 +278,22 @@ export default function HomeClient() {
           </section> */}
 
           {/* Showcase Grid (lightweight placeholder) */}
-          <section className="py-20">
-            <div className="container mx-auto px-6 lg:px-8">
-              <h2 className="font-display text-3xl font-bold mb-8">Featured Layouts</h2>
+          <section className="py-12 sm:py-16 md:py-20">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="font-display text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center sm:text-left">Featured Layouts</h2>
               <LazyCustomLayoutGrid cards={gridCards} />
             </div>
           </section>
 
           {/* Contact CTA */}
-          <section className="py-20 bg-gradient-to-r from-primary/5 to-accent/5">
-            <div className="container mx-auto px-6 lg:px-8 text-center">
-              <h3 className="font-display text-3xl font-bold mb-4">Start Your Project With Us</h3>
-              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">Schedule a consultation and let our team craft a tailored solution for your vision.</p>
-              <div className="flex items-center justify-center gap-4">
+          <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-r from-primary/5 to-accent/5">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <h3 className="font-display text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Start Your Project With Us</h3>
+              <p className="text-muted-foreground mb-6 sm:mb-8 max-w-2xl mx-auto text-sm sm:text-base">Schedule a consultation and let our team craft a tailored solution for your vision.</p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-md sm:max-w-none mx-auto">
                 <Button 
                   size="lg" 
-                  className="bg-primary text-white px-6 py-3 rounded-full"
+                  className="w-full sm:w-auto bg-primary text-white px-6 py-3 rounded-full"
                   onClick={() => router.push('/about#contact-section')}
                 >
                   Get In Touch
@@ -300,7 +301,7 @@ export default function HomeClient() {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="px-6 py-3 rounded-full"
+                  className="w-full sm:w-auto px-6 py-3 rounded-full"
                   onClick={() => router.push('/services')}
                 >
                   Explore Services
