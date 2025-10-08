@@ -31,9 +31,9 @@ interface CustomLayoutGridProps {
 const CardContent = ({ title, description }: CardContent) => {
   return (
     <div>
-      <p className="font-bold md:text-4xl text-xl text-white">{title}</p>
+      <p className="font-bold text-lg sm:text-xl md:text-4xl text-white">{title}</p>
       <p className="font-normal text-base text-white"></p>
-      <p className="font-normal text-base my-4 max-w-lg text-neutral-200">{description}</p>
+      <p className="font-normal text-sm sm:text-base my-4 max-w-lg text-neutral-200">{description}</p>
     </div>
   )
 }
@@ -63,8 +63,8 @@ const HoverCard = ({ card }: { card: Card }) => {
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
       {/* Title that's always visible */}
-      <div className="absolute bottom-0 left-0 right-0 p-8 transition-opacity duration-300 group-hover:opacity-0">
-        <h3 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 transition-opacity duration-300 group-hover:opacity-0">
+        <h3 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight">
           {card.content.title}
         </h3>
       </div>
@@ -75,27 +75,27 @@ const HoverCard = ({ card }: { card: Card }) => {
         initial={{ opacity: 0 }}
         whileHover={{ opacity: 1 }}
       >
-        <div className="h-full flex flex-col justify-between p-8">
+        <div className="h-full flex flex-col justify-between p-4 sm:p-6 md:p-8">
           {/* Header */}
           <div>
-            <h3 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
+            <h3 className="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-3 sm:mb-4">
               {card.content.title}
             </h3>
-            <p className="text-white/90 text-base md:text-lg leading-relaxed mb-6">{card.content.description}</p>
+            <p className="text-white/90 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6">{card.content.description}</p>
           </div>
 
           {/* Features Grid */}
           {card.content.subPoints && (
-            <div className={`grid ${gridColumns} gap-3`}>
+            <div className={`grid ${gridColumns} gap-2 sm:gap-3`}>
               {card.content.subPoints.map((point, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="glass-effect rounded-xl p-4 hover:bg-white/20 transition-colors"
+                  className="glass-effect rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 hover:bg-white/20 transition-colors"
                 >
-                  <p className="text-white text-sm md:text-base font-semibold text-center">{point}</p>
+                  <p className="text-white text-xs sm:text-sm md:text-base font-semibold text-center">{point}</p>
                 </motion.div>
               ))}
             </div>
@@ -115,7 +115,7 @@ export default function CustomLayoutGrid({ cards }: CustomLayoutGridProps) {
 
   return (
     <div className="relative">
-      <div className="h-screen w-full max-w-[1920px] mx-auto">
+      <div className="min-h-[80vh] sm:min-h-screen w-full max-w-[1920px] mx-auto">
         <LayoutGrid cards={formattedCards} />
       </div>
     </div>
