@@ -15,7 +15,7 @@ import { ComponentType } from "react"
 // Lazy-load the heavy layout grid to defer hydration
 const LazyCustomLayoutGrid = dynamic(() => import("@/components/custom_layout-grid"), {
   ssr: false,
-  loading: () => <div className="h-screen flex items-center justify-center"><LoadingScreen /></div>
+  loading: () => <div className="h-32 flex items-center justify-center"><span className="text-muted-foreground">Loading...</span></div>
 })
 
 // Map string keys to lucide-react components for stats icons
@@ -52,27 +52,40 @@ export default function HomeClient() {
     // Set mounted state to true after component mounts
     setIsMounted(true)
     
-    const timer = setTimeout(() => setIsLoaded(true), 3000)
-    fetch("/Union.svg")
-      .then((response) => response.text())
-      .then((svg) => setSvgContent(svg))
-      .catch((error) => console.error("Error loading SVG:", error))
-
-    return () => clearTimeout(timer)
+    // Preload critical resources in parallel
+    const loadResources = async () => {
+      try {
+        // Preload SVG content
+        const svgResponse = await fetch("/Union.svg")
+        const svg = await svgResponse.text()
+        setSvgContent(svg)
+        
+        // Preload critical images
+        if (typeof window !== 'undefined') {
+          const img = document.createElement('img')
+          img.src = "/dark.png"
+        }
+        
+        // Set loaded after resources are ready or timeout
+        setIsLoaded(true)
+      } catch (error) {
+        console.error("Error loading resources:", error)
+        setIsLoaded(true) // Still show content even if preloading fails
+      }
+    }
+    
+    // Add a minimum loading time but allow early completion
+    const minLoadingTime = setTimeout(() => setIsLoaded(true), 1000)
+    loadResources()
+    
+    return () => clearTimeout(minLoadingTime)
   }, [])
 
   // Additional effect to ensure ref is properly attached after mount
   useEffect(() => {
     if (isMounted && containerRef.current) {
-      // Force a slight delay to ensure DOM is fully ready
-      const timeout = setTimeout(() => {
-        // This ensures the ref is properly hydrated
-        if (containerRef.current) {
-          containerRef.current.scrollTop = 0
-        }
-      }, 100)
-      
-      return () => clearTimeout(timeout)
+      // Immediately set scroll position without delay
+      containerRef.current.scrollTop = 0
     }
   }, [isMounted])
 
@@ -160,11 +173,11 @@ export default function HomeClient() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTextIndex((prev) => (prev + 1) % morphingTexts.length)
-    }, 3000)
+    }, 2500) // Reduced from 3000ms for better user engagement
     return () => clearInterval(interval)
   }, [morphingTexts.length])
 
-  if (!isLoaded || !isMounted) {
+  if (!isLoaded) {
     return <LoadingScreen />
   }
 
@@ -174,7 +187,7 @@ export default function HomeClient() {
         {/* Hero Section with Horizontal Scroll Animation */}
         <motion.div className="sticky top-0 h-screen overflow-hidden" style={{ opacity: opacity }}>
           {/* Particles Background - Reduced count for better mobile performance */}
-          <Particles count={20} />
+          <Particles count={10} />
 
           {/* Background Image with Fade Effect */}
           <motion.div className="absolute inset-0">

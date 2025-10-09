@@ -19,12 +19,12 @@ export function LoadingScreen() {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(timer)
-          setTimeout(() => setIsLoading(false), 500)
+          setTimeout(() => setIsLoading(false), 200)
           return 100
         }
-        return prev + 2
+        return prev + 4 // Increased increment for faster loading
       })
-    }, 50)
+    }, 30) // Decreased interval for smoother animation
 
     return () => clearInterval(timer)
   }, [])
