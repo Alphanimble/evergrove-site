@@ -4,7 +4,11 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useEffect, useState } from "react"
 import Image from "next/image"
 
-export function LoadingScreen() {
+interface LoadingScreenProps {
+  onComplete?: () => void
+}
+
+export function LoadingScreen({ onComplete }: LoadingScreenProps = {}) {
   const [isLoading, setIsLoading] = useState(true)
   const [progress, setProgress] = useState(0)
   const [mounted, setMounted] = useState(false)
@@ -19,15 +23,21 @@ export function LoadingScreen() {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(timer)
-          setTimeout(() => setIsLoading(false), 200)
+          setTimeout(() => {
+            setIsLoading(false)
+            // Call the completion callback when loading is done
+            if (onComplete) {
+              onComplete()
+            }
+          }, 500)
           return 100
         }
-        return prev + 4 // Increased increment for faster loading
+        return prev + 2
       })
-    }, 30) // Decreased interval for smoother animation
+    }, 50)
 
     return () => clearInterval(timer)
-  }, [])
+  }, [onComplete])
 
   return (
     <AnimatePresence>

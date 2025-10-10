@@ -12,10 +12,10 @@ import dynamic from "next/dynamic"
 import { useRouter } from "next/navigation"
 import { ComponentType } from "react"
 
-// Lazy-load the heavy layout grid to defer hydration
+// Preload the layout grid component immediately
 const LazyCustomLayoutGrid = dynamic(() => import("@/components/custom_layout-grid"), {
   ssr: false,
-  loading: () => <div className="h-32 flex items-center justify-center"><span className="text-muted-foreground">Loading...</span></div>
+  loading: () => <div className="h-32 flex items-center justify-center"><span className="text-muted-foreground animate-pulse">Loading...</span></div>
 })
 
 // Map string keys to lucide-react components for stats icons
@@ -30,6 +30,8 @@ export default function HomeClient() {
   const router = useRouter()
   const [svgContent, setSvgContent] = useState<string | null>(null)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [showLoadingScreen, setShowLoadingScreen] = useState(true)
+  const [contentReady, setContentReady] = useState(false)
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
   const [isMounted, setIsMounted] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -52,34 +54,82 @@ export default function HomeClient() {
     // Set mounted state to true after component mounts
     setIsMounted(true)
     
-    // Preload critical resources in parallel
-    const loadResources = async () => {
+    // Preload ALL resources while loading screen is showing
+    const preloadResources = async () => {
       try {
         // Preload SVG content
         const svgResponse = await fetch("/Union.svg")
         const svg = await svgResponse.text()
         setSvgContent(svg)
         
-        // Preload critical images
+        // Preload critical images and components
         if (typeof window !== 'undefined') {
-          const img = document.createElement('img')
-          img.src = "/dark.png"
+          const promises = [
+            // Image preloading
+            new Promise((resolve) => {
+              const img = document.createElement('img')
+              img.onload = resolve
+              img.onerror = resolve
+              img.src = "/dark.png"
+            }),
+            new Promise((resolve) => {
+              const img = document.createElement('img')
+              img.onload = resolve
+              img.onerror = resolve
+              img.src = "/Union.svg"
+            }),
+            // Preload layout grid images
+            new Promise((resolve) => {
+              const img = document.createElement('img')
+              img.onload = resolve
+              img.onerror = resolve
+              img.src = "/Renders/Clubhouse/Eternia/eternia_2.png"
+            }),
+            new Promise((resolve) => {
+              const img = document.createElement('img')
+              img.onload = resolve
+              img.onerror = resolve
+              img.src = "/Renders/Clubhouse/Ernika/ernika_2.png"
+            }),
+            new Promise((resolve) => {
+              const img = document.createElement('img')
+              img.onload = resolve
+              img.onerror = resolve
+              img.src = "/Renders/Entrance_Arch/Ernika/2.png"
+            })
+          ]
+          
+          await Promise.all(promises)
         }
         
-        // Set loaded after resources are ready or timeout
+        // Force component to load by accessing it
+        import("@/components/custom_layout-grid")
+        
+        // Mark content as ready
+        setContentReady(true)
         setIsLoaded(true)
       } catch (error) {
-        console.error("Error loading resources:", error)
-        setIsLoaded(true) // Still show content even if preloading fails
+        console.error("Error preloading resources:", error)
+        // Still mark as ready even if preloading fails
+        setContentReady(true)
+        setIsLoaded(true)
       }
     }
     
-    // Add a minimum loading time but allow early completion
-    const minLoadingTime = setTimeout(() => setIsLoaded(true), 1000)
-    loadResources()
-    
-    return () => clearTimeout(minLoadingTime)
+    // Start preloading immediately
+    preloadResources()
   }, [])
+
+  // Callback when loading screen completes
+  const handleLoadingComplete = () => {
+    // Only hide loading screen if content is ready
+    if (contentReady) {
+      setShowLoadingScreen(false)
+    } else {
+      // If content isn't ready yet, wait a bit more
+      setTimeout(() => setShowLoadingScreen(false), 500)
+    }
+  }
 
   // Additional effect to ensure ref is properly attached after mount
   useEffect(() => {
@@ -177,13 +227,17 @@ export default function HomeClient() {
     return () => clearInterval(interval)
   }, [morphingTexts.length])
 
-  if (!isLoaded) {
-    return <LoadingScreen />
-  }
-
   return (
     <>
-      <div ref={containerRef} className="relative w-full bg-background text-foreground overflow-x-hidden">
+      {showLoadingScreen && <LoadingScreen onComplete={handleLoadingComplete} />}
+      
+      <div 
+        ref={containerRef} 
+        className={`relative w-full bg-background text-foreground overflow-x-hidden ${
+          showLoadingScreen ? 'opacity-0 pointer-events-none absolute inset-0' : 'opacity-100'
+        }`}
+        style={{ transition: 'opacity 0.3s ease-in-out' }}
+      >
         {/* Hero Section with Horizontal Scroll Animation */}
         <motion.div className="sticky top-0 h-screen overflow-hidden" style={{ opacity: opacity }}>
           {/* Particles Background - Reduced count for better mobile performance */}
